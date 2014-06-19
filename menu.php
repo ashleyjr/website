@@ -41,7 +41,7 @@
 
       <h4>Projects</h4>
          <ul>
-			<li><a href="AudioSpectrumAnalyser" target="content">ASA</a>
+			<li><a href="AudioSpectrumAnalyser" target="_blank">ASA</a>
 			<li><a href="DebugSerial" target="_blank">DebugSerial</a>
 
          </ul>

@@ -1,35 +1,35 @@
 <html>
    <head>
       <title>sainsburys</title>
-      <style type="text/css">
+    	<style type="text/css">
          body {
 	            font-family:Times New Roman;
 	            font-size:13pt;
 	            margin:30px;
-               background-color:#222222;
-               color:#008000;
+               background-color:#FFFFFF;
+               color:#8F590D;
             }
-            a:link 
-            {
-               COLOR: #008000;
-            }
-            a:visited 
-            {
-               COLOR: #008000;
-            }
-            a:hover 
-            {
-               COLOR: #008000;
-            }
-            a:active 
-            {
-               COLOR: #008000;
-            }
+			a:link 
+         	{
+         	   COLOR: #8F590D;
+         	}
+         	a:visited
+         	{
+         	   COLOR: #8F590D;
+         	}
+         	a:hover 
+         	{
+         	   COLOR: #8F590D;
+         	}
+         	a:active 
+         	{
+         	   COLOR: #8F590D;
+         	}
             img{
                width: auto; /* you can use % */
                height: 250px;
             }
-      </style>  
+      </style> 
    </head>
 
    <body>

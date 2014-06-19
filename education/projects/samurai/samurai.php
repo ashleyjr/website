@@ -1,7 +1,7 @@
 <html>
    <head>
-      <title>content</title>
-   	<style type="text/css">
+      <title>projects</title>
+      <style type="text/css">
          body {
 	            font-family:Times New Roman;
 	            font-size:13pt;
@@ -9,7 +9,7 @@
                background-color:#FFFFFF;
                color:#8F590D;
             }
-			a:link 
+          	a:link 
          	{
          	   COLOR: #8F590D;
          	}
@@ -24,20 +24,23 @@
          	a:active 
          	{
          	   COLOR: #8F590D;
-         	}
+         	} 
             img{
                width: auto; /* you can use % */
-               height: 250px;
+               height: 400px;
             }
-      </style> 
+      </style>
    </head>
 
    <body>
-   <h2>Music</h2>
-   I play guitar very badly so I prefer to listen to the music of others.
-   This is just a collection of some of my favourite artisits and albums. 
-   
-   <h3>Under construction</h3>
-   </body>
 
+   <h2>SAMURAI: Sixteen bit ARM and MIPS Unified RISC Architecture with Interrupts</h2>
+	  <img src="samurai.jpg" alt="samurai" target="_blank">
+	  
+
+	<h3><a href="ProgGuide.pdf" target="_blank">Programmer's Guide</a> </h3>
+
+
+
+   </body>
 </html>

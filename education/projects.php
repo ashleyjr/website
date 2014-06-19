@@ -50,6 +50,20 @@
          <th>Title</th>
          <th>View</th>
          <th>Associated module</th>
+	  </tr>
+	<tr>
+         <td>
+            05/2014 
+         </td>
+         <td style="white-space: nowrap">
+			SAMURAI			
+		 </td>
+         <td>
+            [<a href="projects/samurai/samurai.php" target="content">view</a>] 
+         </td>
+         <td style="white-space: nowrap">
+            ELEC6027: VLSI Design Project
+         </td>
       </tr>
 		<tr>
          <td>
