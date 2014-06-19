@@ -6,25 +6,25 @@
 	            font-family:Times New Roman;
 	            font-size:13pt;
 	            margin:30px;
-               background-color:#222222;
-               color:#008000;
+               background-color:#FFFFFF;
+               color:#8F590D;
             }
-            a:link 
-            {
-               COLOR: #008000;
-            }
-            a:visited 
-            {
-               COLOR: #008000;
-            }
-            a:hover 
-            {
-               COLOR: #008000;
-            }
-            a:active 
-            {
-               COLOR: #008000;
-            }
+          	a:link 
+         	{
+         	   COLOR: #8F590D;
+         	}
+         	a:visited
+         	{
+         	   COLOR: #8F590D;
+         	}
+         	a:hover 
+         	{
+         	   COLOR: #8F590D;
+         	}
+         	a:active 
+         	{
+         	   COLOR: #8F590D;
+         	} 
             img{
                width: auto; /* you can use % */
                height: 200px;
@@ -36,11 +36,12 @@
       <h2>Projects</h2>
       A collection of the more interesting projects from my academic career.
       I made the change to <a href="http://www.latex-project.org/" target="_blank">LaTeX</a> in late 2012. 
-      <table 
+	  <p>
+		<table 
          border="1"
          style="
-         background-color:#222222;
-         border:1px  #008000;
+         background-color:#FFFFF;
+         border:1px  #8F590D;
          width:50%;
          border-collapse:collapse;"
       >
@@ -50,6 +51,20 @@
          <th>View</th>
          <th>Associated module</th>
       </tr>
+		<tr>
+         <td>
+            01/2014 
+         </td>
+         <td style="white-space: nowrap">
+			Coevolution			
+		 </td>
+         <td>
+            [<a href="projects/EofC/EofC.php" target="content">view</a>] 
+         </td>
+         <td style="white-space: nowrap">
+            COMP6026: Evolution of Complexity
+         </td>
+      </tr>
       <tr>
          <td>
             05/2013 
@@ -58,7 +73,7 @@
             A small scale quadcopter for robotic swarm development 
          </td>
          <td>
-            [<a href="#quadcopter" target="content">view</a>] 
+            [<a href="projects/quadcopter/quadcopter.php" target="content">view</a>] 
          </td>
          <td style="white-space: nowrap">
             COMP3020: Part III project {Dissertation}
@@ -72,7 +87,7 @@
             Arrhythmia: A machine learning exercise 
          </td>
          <td>
-            [<a href="#arrhythmia" target="content">view</a>] 
+            [<a href="projects/arrhythmia/arrhythmia.php" target="content">view</a>] 
          </td>
          <td style="white-space: nowrap">
             COMP3008: Machine learning
@@ -86,7 +101,7 @@
             CORDIC architecture in system verilog 
          </td>
          <td>
-            [<a href="#cordic" target="content">view</a>]          
+            [<a href="projects/cordic/cordic.php" target="content">view</a>]          
          </td>
          <td style="white-space: nowrap">
             ELEC3017: Digital system design            
@@ -100,7 +115,7 @@
             Image contour extraction 
          </td>
          <td>
-            [<a href="#ice" target="content">view</a>]          
+            [<a href="projects/image_contour_extraction/image_contour_extraction.php" target="content">view</a>]          
          </td>
          <td style="white-space: nowrap">
             COMP3032: Intelligent algorithms
@@ -114,7 +129,7 @@
             Robot football 
          </td>
          <td>
-            [<a href="#robot" target="content">view</a>]          
+            [<a href="projects/football/football.php" target="content">view</a>]          
          </td>
          <td style="white-space: nowrap">
             ELEC2032: Electronic design
@@ -128,7 +143,7 @@
             System verilog design of a sequential multiplier 
          </td>
          <td>
-            [<a href="#verilog" target="content">view</a>]          
+            [<a href="projects/multiplier/multiplier.php" target="content">view</a>]          
          </td>
          <td style="white-space: nowrap">
             ELEC2032: Electronic design
@@ -142,7 +157,7 @@
             Analogue design 
          </td>
          <td>
-            [<a href="#analogue" target="content">view</a>]          
+            [<a href="projects/analogue/analogue.php" target="content">view</a>]          
          </td>
          <td style="white-space: nowrap">
             ELEC2032: Electronic design
@@ -153,6 +168,7 @@
 
 
 
+ 	<!--
 
    <a id="quadcopter"></a>
    <h2>A small scale quadcopter for robotic swarm development</h2>
@@ -163,7 +179,7 @@
          I began design work in October with a lot of construction starting at the beginning of 2013.
       </p>
       <p>
-         Find the report <a href="projects/quadcopter/a_small_scale_quadcopter_platform_for_robotic_swarm_development.pdf" target="_blank">here</a> (80MB) for which I received 74%.
+         Find the report <a href="projects/quadcopter/Quadcopter_AJR.pdf" target="_blank">here</a> (80MB) for which I received 74%.
       </p>
 
 
@@ -269,7 +285,7 @@
       <p>
          Find the report <a href="projects/analogue/analogue_design.pdf" target="_blank">here</a> for which I received 72%. 
       </p>
-
+	-->
 
    </body>
 </html>
