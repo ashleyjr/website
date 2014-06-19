@@ -1,30 +1,30 @@
 <html>
    <head>
       <title>Courses</title>
-      <style type="text/css">
+     	<style type="text/css">
          body {
 	            font-family:Times New Roman;
-	            font-size:13pt;
-	            margin:30px;
-               background-color:#222222;
-               color:#008000;
-            }
-            a:link 
-            {
-               COLOR: #008000;
-            }
-            a:visited 
-            {
-               COLOR: #008000;
-            }
-            a:hover 
-            {
-               COLOR: #008000;
-            }
-            a:active 
-            {
-               COLOR: #008000;
-            }
+            	font-size:13pt;
+            	margin:10px;
+               background-color:#FFFFFF;
+               color:#8F590D;
+         }
+         a:link 
+         {
+            COLOR: #8F590D;
+         }
+         a:visited
+         {
+            COLOR: #8F590D;
+         }
+         a:hover 
+         {
+            COLOR: #8F590D;
+         }
+         a:active 
+         {
+            COLOR: #8F590D;
+         } 
       </style>
    </head>
 
@@ -35,13 +35,15 @@
 
    <body>
    <h3><a href="http://www.southampton.ac.uk/" target="_blank">University of Southampton</a></h3>
-   <p>Currently in my third year of University I made good progress with a 1st class academic standing.</p>
+   <h4> Classification: First Class Honours </h4>
+	<h4>Weighted Grade: 75.5% </h4>
+
 
       <table 
          border="1"
          style="
-         background-color:#222222;
-         border:1px  #008000;
+         background-color:#FFFFFF;
+         border:1px  #8F590D;
          width:100%;
          border-collapse:collapse;" 
       >
@@ -382,8 +384,9 @@
          <td>10</td>
          <td>COMP6026</td>
          <td>Evolution of Complexity</td>
-         <td>?</td>
-      </tr>
+         <td>86</td>
+	  	<td>Great module! How can we use the natural world to influence engineering decision? Genetic algorithms are cool.</td>
+		</tr>
       <tr>
          <td>01/2014</td>
          <td>4</td>
@@ -391,7 +394,8 @@
          <td>10</td>
          <td>ELEC6010</td>
          <td>Digital IC Design</td>
-         <td>?</td>
+		 <td>69</td>
+		<td> Transistor level up digital IC design. Using <a href="http://opencircuitdesign.com/magic/" target="_blank">Magic</a> for layout <a href="http://www.cadence.com/products/fv/simvision/pages/default.aspx" target="_blank">SimVision</a> for verification.</td>
       </tr>
       <tr>
          <td>01/2014</td>
@@ -400,7 +404,8 @@
          <td>40</td>
          <td>ELEC6050</td>
          <td>Group Design Project</td>
-         <td>?</td>
+		 <td>82</td>
+		<td>Team of 4. Unified Extensible Firmware Interface (UEFI).</td>
       </tr>
       <tr>
          <td>05/2014</td>
@@ -409,16 +414,18 @@
          <td>10</td>
          <td>COMP6033</td>
          <td>Individual Research Review</td>
-         <td>?</td>
-      </tr>
+         <td>76</td>
+	  	<td>Tumour Detection by Volumetric Image Analysis</td>
+		</tr>
       <tr>
          <td>05/2014</td>
          <td>4</td>
          <td>2</td>
          <td>20</td>
-         <td>ELEC6016</td>
-         <td>Digital Systems Synthesis</td>
-         <td>?</td>
+         <td>COMP6036</td>
+         <td>Advanced Machine Learning</td>
+		 <td>76</td>
+		<td>SVMs for regression and classification. Theory and practice.</td>
       </tr>
       <tr>
          <td>05/2014</td>
@@ -427,7 +434,8 @@
          <td>20</td>
          <td>ELEC6016</td>
          <td>VLSI Design Project</td>
-         <td>?</td>
+		 <td>81</td>
+		<td>Fully custom 16-Bit processor. My proudest achievement to date.</td>
       </tr>
       <tr>
          <td>05/2014</td>
@@ -436,19 +444,19 @@
          <td>10</td>
          <td>ELEC6049</td>
          <td>Exploitation of Electrical and Electronic Technology</td>
-         <td>?</td>
+		 <td>76</td>
+		<td>Great module. Different guest speaker from very respectable companies and we did extended research into their fields.</td>
       </tr>
    </table>
 
 
 
    <h3><li><a href="http://www.altoncollege.ac.uk/" target="_blank">Alton College</a></li></h3>
-
       <table 
          border="1"
          style="
-         background-color:#222222;
-         border:1px  #008000;
+         background-color:#FFFFFF;
+         border:1px  #8F590D;
          width:50%;
          border-collapse:collapse;"
       >

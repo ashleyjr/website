@@ -1,44 +1,49 @@
-<html>
-   <head>
+<html dir="rtl">
+	<div dir="ltr">
+	</div>
+	<head>
       <title>menu</title>
       <style type="text/css">
          body {
 	            font-family:Times New Roman;
             	font-size:13pt;
             	margin:10px;
-               background-color:#000000;
-               color:#008000;
+               background-color:#FFD9A3;
+               color:#8F590D;
          }
          a:link 
          {
-            COLOR: #008000;
+            COLOR: #8F590D;
          }
-         a:visited 
+         a:visited
          {
-            COLOR: #008000;
+            COLOR: #8F590D;
          }
          a:hover 
          {
-            COLOR: #008000;
+            COLOR: #8F590D;
          }
          a:active 
          {
-            COLOR: #008000;
+            COLOR: #8F590D;
          }
       </style>
    </head>
 
    <body>
       <h2>Menu</h2>
-         <ul>
+		 <ul>
             <li><a href="home.php" target="content">Home</a>
             <li><a href="bio.php" target="content">Bio</a>
-            <li><a href="calender.php" target="content">Calender</a>
+			<li><a href="calender.php" target="content">Calender</a>
+			<li><a href="AshleyRobinson.pdf" target="_blank">CV</a> 
          </ul>
 
-      <h4>Electronics</h4>
+      <h4>Projects</h4>
          <ul>
-            <li><a href="electronics/projects.php" target="content">Projects</a>
+			<li><a href="AudioSpectrumAnalyser" target="content">ASA</a>
+			<li><a href="DebugSerial" target="_blank">DebugSerial</a>
+
          </ul>
 
       <h4>Education</h4>
@@ -70,6 +75,7 @@
                $length = 100;
                echo "<li><a href=site_info/visitors.php?start=".$start."&length=".$length." target=content>Visitors</a>";//List item and variable link
             ?>   
-         </ul> 
-   </body>
+			<li><a href="site_info/updates.php" target="content">Updates</a>
+		</ul>   
+ 	</body>
 </html>

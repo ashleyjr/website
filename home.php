@@ -6,25 +6,25 @@
 	            font-family:Times New Roman;
 	            font-size:13pt;
 	            margin:30px;
-               background-color:#222222;
-               color:#008000;
+               background-color:#FFFFFF;
+               color:#8F590D;
             }
-            a:link 
-            {
-               COLOR: #008000;
-            }
-            a:visited 
-            {
-               COLOR: #008000;
-            }
-            a:hover 
-            {
-               COLOR: #008000;
-            }
-            a:active 
-            {
-               COLOR: #008000;
-            }
+			a:link 
+         	{
+         	   COLOR: #8F590D;
+         	}
+         	a:visited
+         	{
+         	   COLOR: #8F590D;
+         	}
+         	a:hover 
+         	{
+         	   COLOR: #8F590D;
+         	}
+         	a:active 
+         	{
+         	   COLOR: #8F590D;
+         	}
             img{
                width: auto; /* you can use % */
                height: 250px;
@@ -35,32 +35,32 @@
 
 
 
-   <h1>Ashley J. Robinson</h1>
-    
-   This is my personal website.
-   It is a collection of my projects, experiences and plans for the future. 
+	<h1>Ashley J. Robinson</h1>
 
-   <h3>Contact details</h3>
+	
+	
+	<img src="images/mugshot.jpg" alt="images/mugshot.jpg" target="_blank"><br>
+	
+	
+	<h3> Hot Links </h3>
+	<ul>
+		<li><a href="AshleyRobinson.pdf" target="_blank">CV</a>
+		<li><a href="AudioSpectrumAnalyser" target="content">AudioSpectrumAnalyser</a>
+		<li><a href="DebugSerial" target="_blank">DebugSerial</a>
+		<li><a href="education/projects/quadcopter/Quadcopter_AJR.pdf" target="_blank">Small Swarm Quadcopter</a>  
+    </ul>
+
+	
+   <h3>Contact Details</h3>
       <p>
       Mobile: 07554162860</br>
-      E-mail: <a href="mailto:ajr2g10@ecs.soton.ac.uk?Subject=Hi%20Ash">ajr2g10@ecs.soton.ac.uk</a></br>
+      E-mail: <a href="mailto:ashley181291@gmail.com?Subject=Hi%20Ash">ashley181291@gmail.com</a></br>
       Check my <a href="calender.php" target="content">Calender</a>
       </p>
 
 
-   <h3>The plan</h3>
-   <ul>
-      <li>  Long range
-      <br>  I am currently an engineering student at the University of Southampton and set graduate in the summer of 2014.
-            I'm looking forward to starting a career in the electronics industry and getting my hands on as much hardware as possible.
 
-      <li>  Short range
-      <br>  Currently I'm working in Cambridge but due to finish on the 6th of Septmeber.
-            Afterwards I'm looking forward to some R&R before heading back to university at the start of October.
-   </ul>
-   
-
-   <h3>Random site sample</h3>
+    <!-- <h3>Random site sample</h3> 
       <?php
          // -- Get a random image --
          //Make sure it's a jpg
@@ -81,14 +81,15 @@
             }
             fclose($file_handle);
          }
-      ?>
+	?>
+	-->
 
-   <h3>Updates</h3>
+   <!-- <h3>Updates</h3>
       <table 
          border="1"
          style="
-         background-color:#222222;
-         border:1px  #008000;
+         background-color:#FFFFFF;
+         border:1px  #8F590D;
          width:100%;
          border-collapse:collapse;"
       >
@@ -98,7 +99,7 @@
          <th style="white-space: nowrap">Status</th>
          <th>Details</th>
       </tr>
-
+	
 
 
       <?php
@@ -157,7 +158,7 @@
             }
          } 
       ?> 
-
+	-->
 
    </table>
    </body>
