@@ -89,7 +89,7 @@
 
 		
 	$To = 'ashley181291@gmail.com';
-	$Subject = 'ajrobinson.org';
+	$Subject = 'Visitor';
 	$Message = "\r\nDate: %s \r\nRemote: %s \r\nReferer: %s \r\nAgent: %s \r\n\r\nGeolocaton Magic:";
 	$Message = sprintf($Message,$date, $remote, $referer, $agent);
 
@@ -103,11 +103,6 @@
 	$Message .= "\r\n   Longitude:   ".(string)$geo["geoplugin_longitude"];
 	$Message .= "\r\n   Region Code: ".(string)$geo["geoplugin_regionCode"];
 	$Message .= "\r\n   Region Name: ".(string)$geo["geoplugin_regionName"];
-
-
-
-
-
 
 	$Headers = "From: ajrobinson.org \r\n";
 	mail($To, $Subject, $Message, $Headers);

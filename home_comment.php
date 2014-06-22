@@ -58,21 +58,33 @@
       Check my <a href="calender.php" target="content">Calender</a>
       </p>
 
-	<h3>Comments</h3>
-	<p>
-      I am very interested in your opinion of the site. Layout, structure and content.</br>
-      </p>
+	<h3>Thanks for your comment!</h3>
 
-	
-	<form id="form1" name="form1" method="post" action="home_comment.php">
-		<textarea name="comment" id="textarea" cols="45" rows="5"></textarea><br>
-		Name (optional):   <input type="text" name="name" id="name"><br>
-		Email (optional): <input type="text" name="email" id="email">
-  		<input type="submit" name="button" id="button" value="Send" />
-  	</form>
-	
-
-
+	<?php 
+		$Message = "";
+		$buff = $_POST['name']; 
+		if (strlen($buff) !== 0){
+			echo "Name: ";
+			echo $_POST['name']; 
+			$Message .= "Name: ".$buff."\n\r";	
+		}
+		$buff = $_POST['email']; 
+		if (strlen($buff) !== 0){
+			echo "<br>Email: ";
+			echo $_POST['email']; 
+			$Message .= "Email: ".$buff."\n\r";	
+		}
+		$buff = $_POST['comment']; 
+		if (strlen($buff) !== 0){
+			echo "<br><br>Comment: <br>";
+			echo $buff;
+		   $Message .= "Comment: ".$buff."\n\r";
+		}	
+		$To = 'ashley181291@gmail.com';
+		$Subject = 'Comment';
+		$Headers = "From: ajrobinson.org \r\n";
+		mail($To, $Subject, $Message, $Headers);
+	?>
 
     <!-- <h3>Random site sample</h3> 
       <?php
