@@ -76,4 +76,15 @@
    mysqli_query($con,$sql);
    mysqli_close($con);
 
+
+   // This emails me the info too
+
+	$To = 'ashley181291@gmail.com';
+	$Subject = 'ajrobinson.org';
+	$Message = 'This example demonstrates how you can send plain text email with PHP';
+	$Headers = "From: ajrobinson.org \r\n";
+	mail($To, $Subject, $Message, $Headers);
+
+		
 ?>
+
