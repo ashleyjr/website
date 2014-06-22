@@ -79,9 +79,36 @@
 
    // This emails me the info too
 
+   	$date = date('Y-m-d H:i:s');
+   	$remote = $_SERVER['REMOTE_ADDR']; 
+	$referer = $_SERVER['HTTP_REFERER'];
+	$agent = $_SERVER['HTTP_USER_AGENT'];
+	
+	$geo = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR']));
+	//$geo = (string)$implode(',', $geo);
+
+		
 	$To = 'ashley181291@gmail.com';
 	$Subject = 'ajrobinson.org';
-	$Message = 'This example demonstrates how you can send plain text email with PHP';
+	$Message = "\r\nDate: %s \r\nRemote: %s \r\nReferer: %s \r\nAgent: %s \r\n\r\nGeolocaton Magic:";
+	$Message = sprintf($Message,$date, $remote, $referer, $agent);
+
+	$Message .= "\r\n   City:        ".(string)$geo["geoplugin_city"];
+	$Message .= "\r\n   Region:      ".(string)$geo["geoplugin_region"];
+	$Message .= "\r\n   Area Code:   ".(string)$geo["geoplugin_areaCode"];
+	$Message .= "\r\n   DMA Code:    ".(string)$geo["geoplugin_dmaCode"];
+	$Message .= "\r\n   Country:     ".(string)$geo["geoplugin_countryName"];
+	$Message .= "\r\n   Continent:   ".(string)$geo["geoplugin_continentCode"];
+	$Message .= "\r\n   Latitude:    ".(string)$geo["geoplugin_latitude"];
+	$Message .= "\r\n   Longitude:   ".(string)$geo["geoplugin_longitude"];
+	$Message .= "\r\n   Region Code: ".(string)$geo["geoplugin_regionCode"];
+	$Message .= "\r\n   Region Name: ".(string)$geo["geoplugin_regionName"];
+
+
+
+
+
+
 	$Headers = "From: ajrobinson.org \r\n";
 	mail($To, $Subject, $Message, $Headers);
 
