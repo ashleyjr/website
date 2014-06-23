@@ -34,9 +34,9 @@
       <h2>Menu</h2>
 		 <ul>
             <li><a href="home.php" target="content">Home</a>
-            <li><a href="bio.php" target="content">Bio</a>
+            <li><a href="bio/bio.php" target="content">Bio</a>
 			<li><a href="calender.php" target="content">Calender</a>
-			<li><a href="AshleyRobinson.pdf" target="_blank">CV</a> 
+			<li><a href="AshleyRobinsonCV.pdf" target="_blank">CV</a> 
          </ul>
 
       <h4>Projects</h4>
@@ -56,12 +56,13 @@
       <h4>Work Experience</h4>
          <ul>
             <li><a href="work_experience/csr.php" target="content">CSR</a>
-            <li><a href="work_experience/sainsburys.php" target="content">Sainsburys</a>
+            <li><a href="work_experience/sainsburys.php" target="content">Sainsbury's</a>
             <li><a href="work_experience/mjrobinson.php" target="content">M.J.Robinson</a>
          </ul>
 
       <h4>Other Interests</h4>
-         <ul>
+		 <ul>
+			<li><a href="other_interests/vehicles.php" target="content">Cars and Bikes</a>
             <li><a href="other_interests/films.php" target="content">Films</a>
             <li><a href="other_interests/music.php" target="content">Music</a>
             <li><a href="other_interests/outdoors.php" target="content">Outdoors</a>

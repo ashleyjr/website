@@ -33,10 +33,12 @@
    </head>
 
    <body>
-      <h2>Sainsburys</h2>
+      <h2>Sainsbury's</h2>
       
-      I worked in a supermarket while studying at sixth form. It was horrible. 
-      However I did meet some great people.  
+		I worked for Sainsbury's from July 2008 to September 2010.
+		This was in parallel with my A-level studies therefore anywhere between a minimum of 12 hours a week to full-time in the holidays.
+			
+		<p><img src="sainsburys.png" alt="sainsburys.png" target="_blank"><br> 
 
    </body>
 
