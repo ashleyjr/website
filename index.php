@@ -79,7 +79,7 @@
 
    // This emails me the info too
 
-   	$date = date('Y-m-d H:i:s');
+   	$date = gmdate('Y-m-d H:i:s');
    	$remote = $_SERVER['REMOTE_ADDR']; 
 	$referer = $_SERVER['HTTP_REFERER'];
 	$agent = $_SERVER['HTTP_USER_AGENT'];
