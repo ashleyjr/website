@@ -68,9 +68,11 @@
             <li><a href="other_interests/outdoors.php" target="content">Outdoors</a>
          </ul>
 
-      <h4>Site info</h4>     
+	  <h4>Site info</h4>    
+		
          <ul>
-               <?php
+			<li><a href="site_info/login.php" target="content">Login</a>
+			<?php
                // Defaults
                $start = 0;
                $length = 100;
