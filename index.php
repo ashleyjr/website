@@ -35,11 +35,12 @@
    //Database for customer count
 
    //Values
-   $host = "";
-   $username = "a";
-   $password = "";
+   $host = "ajrobinson.db.11129888.hostedresource.com";
+   $username = "ajrobinson";
+   $password = "Tompson@1";
    $db_name = "ajrobinson";
    $tbl_name = "visits";
+   
    //Create if necessary
    $con = mysqli_connect($host,$username,$password);
    //Create database
@@ -49,26 +50,29 @@
    //Create table
    $sql="CREATE TABLE IF NOT EXISTS ".$tbl_name."
       (
-         PID INT NOT NULL AUTO_INCREMENT, 
-         PRIMARY KEY(PID),
-         TIME CHAR(19),
-         IP_ADDRESS CHAR(15),
-         REFERER CHAR(100),
-         USER_AGENT CHAR(100)
+         	PID INT NOT NULL AUTO_INCREMENT, 
+         	PRIMARY KEY(PID),
+			DATE CHAR(25), 
+			TIME CHAR(25),
+         	IP_ADDRESS CHAR(15),
+         	REFERER CHAR(100),
+         	USER_AGENT CHAR(100)
       )";
    mysqli_query($con,$sql);
    //Add visit info
    $sql="
       INSERT INTO ".$tbl_name."
       (
-         TIME,
+		  DATE,
+		  TIME,
          IP_ADDRESS,
          REFERER,
          USER_AGENT
       ) 
       VALUES 
       ( 
-         '".date('Y-m-d H:i:s')."',
+		  '".gmdate('d-m-Y')."',
+		  '".gmdate('H:i:s')."',
          '".$_SERVER['REMOTE_ADDR']."', 
          '".$_SERVER['HTTP_REFERER']."',
          '".$_SERVER['HTTP_USER_AGENT']."'

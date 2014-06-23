@@ -45,96 +45,92 @@
    </head>
 
    <body>      
-   <?php
-      //Get data out of database
-      //Values
-      $host = "ajrobinson.db.11129888.hostedresource.com";
-      $username = "ajrobinson";
-      $password = "Tompson@1";
-      $db_name = "ajrobinson";
-      $tbl_name = "visits";
-      //Connect
-      $con = mysqli_connect($host,$username,$password,$db_name);
-      //Read data backwards
-      $result = mysqli_query($con,"SELECT * FROM ".$tbl_name." ORDER BY PID DESC");
-      //Display a set number of rows
-      $rows = mysqli_num_rows($result);
-
-      //Take care of stuff from URL
-      $length = $_GET["length"];
-      $start = $_GET["start"];
+   		<?php
+      		//Get data out of database
+      		//Values
+      		$host = "ajrobinson.db.11129888.hostedresource.com";
+      		$username = "ajrobinson";
+      		$password = "Tompson@1";
+      		$db_name = "ajrobinson";
+      		$tbl_name = "visits";
+      		//Connect
+      		$con = mysqli_connect($host,$username,$password,$db_name);
+      		//Read data backwards
+      		$result = mysqli_query($con,"SELECT * FROM ".$tbl_name." ORDER BY PID DESC");
+	  		
+	  		//Display a set number of rows
+      		$rows = mysqli_num_rows($result);
 
 
-      //Take care of end
-      $limit = $start + $length;
-      if($limit > $rows){
-         $limit = $rows;
-      }
+      		//Take care of stuff from URL
+      		$jump = $_GET["jump"];
+      		$length = $_GET["length"];
+	  		  
+  
+	  		echo "<h2> Visitors</h2>";
+			
 
-      //Tell user how many visits they are looking at
-      $begin = $rows - $start;
-      if($begin > $rows){
-         $begin = $rows;
-      }
-      $end = $begin - $length;
-      if($end > $begin){
-         $end = 0;
-      }
-      if($end < 0){
-         $end = 0;
-      }
-      echo "<h2> Visitors ".$begin." to ".$end."</h2>";
+			echo "Backwards from entry ".($rows-$jump)." for ".$length." entries. <br>";		
+			//Setup table	
+	  		$end = $jump + $length;
+			if($end > $rows) $end = $rows;	  
+	  
+			// User options
+			$user = "";
+			if($jump != 0){
+				$temp = $jump - $length; 
+				if($temp < 0) $temp = 0;
+				$user .= "[<a href=visitors.php?jump=".$temp."&length=".$length." target=content>Later</a>]  ";	
+			}
+			if($end != $rows){
+				$temp = $jump + $length;
+				$user .= "[<a href=visitors.php?jump=".$temp."&length=".$length." target=content>Earlier</a>]";	
+			}
+			$user .= "<br>";
+			$temp = $length / 2;
+			if($temp < 1) $temp = 1;	
+			$user .= "[<a href=visitors.php?jump=".$jump."&length=".$temp." target=content>Shorter</a>]";	
+			$temp = $length * 2;
+			if($temp > $rows) $temp = $rows;	
+			$user .= "[<a href=visitors.php?jump=".$jump."&length=".$temp." target=content>Longer</a>]";	
+		
+			echo $user;	
+		
 
-      //Setup table
-      echo 
-      "<table>
-         <tr>
-            <th>Vistor</th>
-            <th style='width:150px'>Date/Time</th>
-            <th>IP Address</th>
-            <th>Referer</th>
-            <th>Browser</th>
-         </tr>";
-
-
-      //Display table
-      for($i = $rows;$i > 0;$i--){
-         $row = mysqli_fetch_array($result);       // Get every row
-         if(($i <= $begin)&&($i >= $end)){         // Display only some
-            echo "<tr>";//New line in table
-            echo "<td>".$row['PID']."</td>";                                     //TODO: This is shit 
-            echo "<td>".$row['TIME']."</td>";   
-            echo "<td>".$row['IP_ADDRESS']."</td>";
-            //list of active stuff
-            $active[0] = '/</';
-            $active[1] = '/</';
-            //remove active stuff
-            echo "<td>".preg_replace($active,'',$row['REFERER'])."</td>";
-            echo "<td>".preg_replace($active,'',$row['USER_AGENT'])."</td>";  
-            echo "</tr>"; 
-         }
-      }
-      mysqli_close($con);
-      echo "</table>";
-
-
-      // User options
-      echo "<br>View section...<br><br>";
-      $start = 0;
-      for($i = $rows;$i > 1;$i = $i - $length){
-         $next = $i-$length;
-         if($next < 0){
-            $next = 0;
-         }
-         echo "[<a href=visitors.php?start=".$start."&length=".$length." target=content>".$i."..".$next."</a>]   <br>";
-         $start = $start + $length;
-      }
-
-      echo "<br>View more/less...<br><br>";
-      for($i=1;$i<$rows;$i=$i+$i){
-         echo "[<a href=visitors.php?start=0&length=".$i." target=content>".$i." rows</a>]   <br>";
-      }
-
-   ?> 
+			// Table header
+			echo 
+      		"<table>
+      		   	<tr>
+      		      	<th>Visitor</th>
+      		      	<th style='width:75px'>Date</th>
+	  		  		<th style='width:75px'>Time(GMT)</th>
+	  		  		<th style='width:150px'>IP Address</th>
+      		      	<th style='width:300px'>Referer</th>
+      		      	<th style='width:300px'>Browser</th>
+      		   	</tr>";
+		
+			//Display table	
+     		for($i = 0;$i < $end;$i++){
+     		   	$row = mysqli_fetch_array($result);       // Get every row
+     		   	if($i >= $jump){         // Display only some
+     		   	   	echo "<tr>";//New line in table
+     		   	   	echo "<td>".$row['PID']."</td>";                                     //TODO: This is shit 
+     		   	   	echo "<td>".$row['DATE']."</td>";   
+	 		   	 	echo "<td>".$row['TIME']."</td>";    
+	 		   	 	echo "<td>".$row['IP_ADDRESS']."</td>";
+     		   	   	//list of active stuff
+     		   	   	$active[0] = '/</';
+     		   	   	$active[1] = '/</';
+     		   	   	//remove active stuff
+     		   	   	echo "<td>".preg_replace($active,'',$row['REFERER'])."</td>";
+     		   	   	echo "<td>".preg_replace($active,'',$row['USER_AGENT'])."</td>";  
+     		   	   	echo "</tr>"; 
+     		  	}	
+     		}
+     		mysqli_close($con);
+     		echo "</table>";
+			// options again
+			echo $user;	
+   		?> 
    </body>
 </html>

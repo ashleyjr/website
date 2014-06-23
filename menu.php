@@ -74,9 +74,9 @@
 			<li><a href="site_info/login.php" target="content">Login</a>
 			<?php
                // Defaults
-               $start = 0;
-               $length = 100;
-               echo "<li><a href=site_info/visitors.php?start=".$start."&length=".$length." target=content>Visitors</a>";//List item and variable link
+               $jump = 0;
+               $length = 10;
+               echo "<li><a href=site_info/visitors.php?jump=".$jump."&length=".$length." target=content>Visitors</a>";//List item and variable link
             ?>   
 			<li><a href="site_info/updates.php" target="content">Updates</a>
 		</ul>   
