@@ -45,9 +45,35 @@
 			if( ($_POST['password'] === "Tompson1") and ($_POST['username'] === "ashley")){
 				$Message = "SUCCESFUL\n\r";
 				$Message .= "\n\rUSERNAME: ".$_POST['username']."   \n\r";	
-
-
-
+      			// Values
+      			$host = "ajrobinson.db.11129888.hostedresource.com";
+      			$username = "ajrobinson";
+      			$password = "Tompson@1";
+      			$db_name = "ajrobinson";
+      			$tbl_name = "visits";
+      			// Connect
+      			$con = mysqli_connect($host,$username,$password,$db_name);
+      			// Read data backwards
+      			$result = mysqli_query($con,"SELECT * FROM ".$tbl_name." ORDER BY PID DESC");
+	  			// Number of rows
+      			$rows = mysqli_num_rows($result);	
+				// Calculate bins	
+				
+				$bins = array_fill(1,23,0);	
+				print_r($bins);	
+				for($i = 0;$i < $rows;$i++){
+     			   	$row = mysqli_fetch_array($result);       // Get every row   
+					$j = (int)substr($row['TIME'],0,2);
+					$bins[$j] = $bins[$j] + 1;
+				}
+     			mysqli_close($con);	
+				
+				print_r($bins);	
+				
+				
+				
+							
+				
 				include("../pChart/pData.class"); 
 				include("../pChart/pChart.class"); 
 
