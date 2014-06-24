@@ -43,8 +43,7 @@
 		';
 		if( isset($_POST['password']) and isset($_POST['username'])  ){
 			if( ($_POST['password'] === "Tompson1") and ($_POST['username'] === "ashley")){
-				$Message = "SUCCESFUL\n\r";
-				$Message .= "\n\rUSERNAME: ".$_POST['username']."   \n\r";	
+				
       			// Values
       			$host = "ajrobinson.db.11129888.hostedresource.com";
       			$username = "ajrobinson";
@@ -57,10 +56,11 @@
       			$result = mysqli_query($con,"SELECT * FROM ".$tbl_name." ORDER BY PID DESC");
 	  			// Number of rows
       			$rows = mysqli_num_rows($result);	
-				// Calculate bins	
 				
-				$bins = array_fill(1,23,0);	
-				print_r($bins);	
+				
+				
+				// Calculate bins	
+				$bins = array_fill(0,23,0);		
 				for($i = 0;$i < $rows;$i++){
      			   	$row = mysqli_fetch_array($result);       // Get every row   
 					$j = (int)substr($row['TIME'],0,2);
@@ -68,11 +68,13 @@
 				}
      			mysqli_close($con);	
 				
-				print_r($bins);	
 				
 				
 				
-							
+				$file = "test.png";			
+				if (file_exists($file)) {
+				    unlink($file);
+				}
 				
 				include("../pChart/pData.class"); 
 				include("../pChart/pChart.class"); 
@@ -80,14 +82,12 @@
 				
 				//Dataset definition      
 				$DataSet = new pData;     
-				$DataSet->ImportFromCSV("test.csv",",",array(1,2,3),FALSE,0);     
+				$DataSet->AddPoint($bins,"Serie1");
+				//$DataSet->ImportFromCSV("test.csv",",",array(1,2,3),FALSE,0);     
 				$DataSet->AddAllSeries();     
 				$DataSet->SetAbsciseLabelSerie();     
 				$DataSet->SetSerieName("January","Serie1");     
-				$DataSet->SetSerieName("February","Serie2");     
-				$DataSet->SetSerieName("March","Serie3");     
-				$DataSet->SetYAxisName("Average age");  
-				$DataSet->SetYAxisUnit("µs");  
+				$DataSet->SetYAxisName("Visitors");   
 				
 				// Initialise the graph     
 				$Test = new pChart(700,230);     
@@ -111,23 +111,24 @@
 				$Test->setFontProperties("../pChart/tahoma.ttf",8);     
 				$Test->drawLegend(75,35,$DataSet->GetDataDescription(),255,255,255);     
 				$Test->setFontProperties("../pChart/tahoma.ttf",10);     
-				$Test->drawTitle(60,22,"example 1",50,50,50,585);     
+				$Test->drawTitle(60,22,"Site Visitors",50,50,50,585);     
 				$Test->Render("test.png"); 
 
-				echo '<img src="test.png"/>';	
+				echo '<img src="';
+				echo $file;
+				echo '"/>';	
 
 			}else{
 				$Message = "FAILED\n\r";
 				$Message .= "\n\rUSERNAME: ".$_POST['username']."   \n\r";	
 				$Message .= "\n\rPASSWORD: ".$_POST['password']."   \n\r";	
 				echo $login;
+				// Send email	
+				$To = 'ashley181291@gmail.com';
+				$Subject = 'Login';
+				$Headers = "From: ajrobinson.org \r\n";
+				mail($To, $Subject, $Message, $Headers);
 			}
-
-			// Send email	
-			$To = 'ashley181291@gmail.com';
-			$Subject = 'Login';
-			$Headers = "From: ajrobinson.org \r\n";
-			mail($To, $Subject, $Message, $Headers);
 		}else{
 			echo $login;
 		}
