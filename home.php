@@ -73,7 +73,7 @@
 				if (strlen($_POST['name']) !== 0)		$Message .= "\n\rNAME: ".$_POST['name']."   \n\r";	
 				if (strlen($_POST['email']) !== 0)		$Message .= "\n\rEMAIL: ".$_POST['email']."   \n\r";		
 				if (strlen($_POST['comment']) !== 0)	$Message .= "\n\rCOMMENT: ".$_POST['comment']."   \n\r";	
-				echo $Message;	
+				echo nl2br($Message);	
 				// Send email	
 				$To = 'ashley181291@gmail.com';
 				$Subject = 'Comment';
