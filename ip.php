@@ -2,7 +2,7 @@
 	if (isset($_GET["ip"]) and $_GET["machine"])
 	{
 		// Ask geo location
-		$geo = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$IP));
+		$geo = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_GET["ip"]));
 
 		// Make a txt submission
 		$info =  "\r\n";
