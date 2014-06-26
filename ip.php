@@ -5,7 +5,6 @@
 		$geo = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_GET["ip"]));
 
 		// Make a txt submission
-		$info =  "\r\n";
 		$info .= "\r\nMachine:     ".$_GET["machine"]; 
 		$info .= "\r\nDate:        ".gmdate('Y-m-d');
 		$info .= "\r\nTime:        ".gmdate('H:i:s');
@@ -19,7 +18,7 @@
 		$info .= "\r\nLongitude:   ".(string)$geo["geoplugin_longitude"];
 		
 		file_put_contents("ip.txt", $info);
-		echo nl2br($info);
+		echo $info;
 	}
 	else
 	{
