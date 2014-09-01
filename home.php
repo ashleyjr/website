@@ -27,7 +27,7 @@
          	}
             img{
                width: auto; /* you can use % */
-               height: 250px;
+               height: 300px;
             }
       </style>
    </head>
@@ -39,13 +39,15 @@
 
 	
 	
-	<img src="bio/mugshot.jpg" alt="mugshot" target="_blank"><br>
-	
-	
+	<img src="bio/dinner.jpg" alt="mugshot" target="_blank"><br>
+	<br>	
+	I've just finished an MEng Electronic Engineering degree at the University of Southampton and I currently work for an engineering consultancy in Cambridge.<br>	
+	This webpage is serves as my live CV, a repository for my personal projects and scratch pad for web based experiments.<br>
+	You'll also find some personal stories, photos and opinions.<br>
+	Please feel free to contact me, I look forward to hearing from you.
 	<h3> Hot Links </h3>
 	<ul>
 		<li><a href="AshleyRobinsonCV.pdf" target="_blank">CV</a>
-		<li><a href="AudioSpectrumAnalyser" target="content">AudioSpectrumAnalyser</a>
 		<li><a href="DebugSerial" target="_blank">DebugSerial</a>
 		<li><a href="education/projects/quadcopter/Quadcopter_AJR.pdf" target="_blank">Small Swarm Quadcopter</a> 
 		<li><a href="AshleyRobinsonUKESF.pdf" target="_blank">UKESF Scholar of the Year Report</a>  
