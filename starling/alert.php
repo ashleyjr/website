@@ -1,27 +1,77 @@
-<?php 
-	if ($handle = opendir('.')) {	
-		while (false !== ($entry = readdir($handle))) {
-			if ($entry != "." && $entry != "..") {
+<?php
+	$filename = "starlings.xml";
+	if(file_exists($filename)){
+		$file = file_get_contents($filename);
 
-				$split = explode(".",$entry);
+		$p = xml_parser_create();
+		xml_parse_into_struct($p, $file, $values, $tags);
+		xml_parser_free($p);
+		
+		//var_dump($tags);
 
-				if($split[1] == "sta"){
+		$open = False;
+		foreach($values as $value){
 
-					$file = fopen($entry,"r");
-					$Subject = $entry;
-					$message = fread($file,filesize($entry));
-					fclose($file);
+			//print_r($value);
+			if($value["tag"] == "ENTRY"){
+				//echo "entry ".$value["type"];
+				if($value["type"]  == "open"){
+					$open = True;
 
-					$to = 'ashley181291@gmail.com';
-					$subject = $entry;
-					$headers = "From: ajrobinson.org \r\n";
-					mail($to, $subject, $message, $headers);
-
+					$title = "";
+					$detail = "";
+					$code = "";
+					$status = "";
+					$priority = "";
 				}
-	        }
-	    }
-	
-	    closedir($handle);
+		
+				if($value["type"]  == "close"){
+					$open = False;
+
+					// Send reminder
+					$To = 'ashley181291@gmail.com';
+					$Subject = $title;
+
+					$Message = '<html><body><center>';
+					$Message .= "<u><h2>".$title."</h2></u>";
+					$Message .= "<h3>".$detail."</h3>";
+					$Message .= "Priority: ".$priority;
+					$Message .= "<br>Starling Code: ".$code;
+					$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/edit.php' target='_blank'>Upgrade</a>";
+					$Message .= "   		<a href='http://www.ajrobinson.org/starling/edit.php' target='_blank'>Downgrade</a>";
+					$Message .= "   		<a href='http://www.ajrobinson.org/starling/delete.php?code=".$code."' target='_blank'>Delete</a>";
+					$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/submit.php' target='_blank'>Submit New Starling</a>";
+					$Message .= '</center></body></html>';
+					
+
+					$Headers = "From: ajrobinson.org \r\n";
+					$Headers .= "MIME-Version: 1.0\r\n";
+					$Headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+					echo $Message;
+					mail($To, $Subject, $Message, $Headers);
+				}	
+			}
+			if($open){
+				if($value["tag"] == "CODE"){
+					$code = $value["value"];	
+				}
+				if($value["tag"] == "STATUS"){
+					$status = $value["value"];
+				}
+				if($value["tag"] == "TITLE"){
+					$title = $value["value"];
+				}
+				if($value["tag"] == "DETAIL"){
+					$detail = $value["value"];
+				}
+				if($value["tag"] == "PRIORITY"){
+					$priority = $value["value"];
+				}
+
+			}
+			//var_dump($open);
+			//echo "<br>";
+		}
 	}
 ?>
-
