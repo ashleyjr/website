@@ -79,12 +79,6 @@
 						</table>
   					</form>';
 
-
-		function endsWith($haystack, $needle)
-		{
-		    return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
-		}
-
 		if( isset($_POST['title']) 	and
 			isset($_POST['detail']) and
 			isset($_POST['priority']) ){
@@ -94,32 +88,34 @@
 			$end = "</starlings>";
 			while(1){
 				if(file_exists($filename)){
-					$file = file_get_contents($filename);
-					if(endsWith($file, $end)){
-
-						$p = xml_parser_create();
-						xml_parse_into_struct($p, $file, $values, $tags);
-						xml_parser_free($p);
-						$code = 0;
-						foreach($tags['CODE'] as $entry){
-							$test = intval($values[$entry]['value']);
-							if($test == $code){
-								$code = $test + 1;
-							}
-						}	
-		
-							
-						$info  = 	"\t<entry>\n";
-						$info .= 	"\t\t<code>".$code."</code>\n";
-						$info .= 	"\t\t<title>".$_POST['title']."</title>\n";
-						$info .= 	"\t\t<detail>".$_POST['detail']."</detail>\n";	
-						$info .= 	"\t\t<priority>".$_POST['priority']."</priority>\n";
-						$info .= 	"\t\t<created>".gmdate('d-m-Y')."</created>\n";				
-						$info .= 	"\t</entry>\n";	
-
-						$new = substr_replace($file, $info, (strlen($file)-strlen($end)), 0);	
-						file_put_contents($filename, $new);	
+					// Open xml	
+					$xml = new SimpleXMLElement(file_get_contents($filename));
+					// Find next code
+					$num = $xml->count();
+					$code = 0;
+					for($i=0;$i<$num;$i++){
+						$test = intval($xml->entry[$i]->code);
+						if($code == $test){
+							$code = $test + 1;
+						}
 					}
+					// Add new entry
+					$entry = $xml->addChild('entry');
+					$entry->addChild("code",$code);
+					$entry->addChild("title",$_POST['title']);
+					$entry->addChild("detail",$_POST['detail']);
+					$entry->addChild("priority",$_POST['priority']);
+					$entry->addChild("status","open");
+					$entry->addChild("created",gmdate('d-m-Y'));
+					$output = $xml->asXML();
+					// Use DomDoc to format
+					$doc = new DOMDocument();
+					$doc->preserveWhiteSpace = false;
+					$doc->formatOutput = true;
+					$doc->loadXML($output);
+					$output =  $doc->saveXML();
+					// Save as xml file
+					file_put_contents($filename,$output);
 					break;		
 				}else{
 					$file = fopen($filename,"wb");

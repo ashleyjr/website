@@ -27,29 +27,31 @@
 		
 				if($value["type"]  == "close"){
 					$open = False;
+					echo $status;
+					if($status == "open"){
+						// Send reminder
+						$To = 'ashley181291@gmail.com';
+						$Subject = $title;
 
-					// Send reminder
-					$To = 'ashley181291@gmail.com';
-					$Subject = $title;
+						$Message = '<html><body><center>';
+						$Message .= "<u><h2>".$title."</h2></u>";
+						$Message .= "<h3>".$detail."</h3>";
+						$Message .= "Priority: ".$priority;
+						$Message .= "<br>Starling Code: ".$code;
+						$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/upgrade.php' target='_blank'>Upgrade</a>";
+						$Message .= "   		<a href='http://www.ajrobinson.org/starling/downgrade.php' target='_blank'>Downgrade</a>";
+						$Message .= "   		<a href='http://www.ajrobinson.org/starling/close.php?code=".$code."' target='_blank'>Close</a>";
+						$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/submit.php' target='_blank'>Submit New Starling</a>";
+						$Message .= '</center></body></html>';
+						
 
-					$Message = '<html><body><center>';
-					$Message .= "<u><h2>".$title."</h2></u>";
-					$Message .= "<h3>".$detail."</h3>";
-					$Message .= "Priority: ".$priority;
-					$Message .= "<br>Starling Code: ".$code;
-					$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/edit.php' target='_blank'>Upgrade</a>";
-					$Message .= "   		<a href='http://www.ajrobinson.org/starling/edit.php' target='_blank'>Downgrade</a>";
-					$Message .= "   		<a href='http://www.ajrobinson.org/starling/delete.php?code=".$code."' target='_blank'>Delete</a>";
-					$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/submit.php' target='_blank'>Submit New Starling</a>";
-					$Message .= '</center></body></html>';
-					
+						$Headers = "From: ajrobinson.org \r\n";
+						$Headers .= "MIME-Version: 1.0\r\n";
+						$Headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-					$Headers = "From: ajrobinson.org \r\n";
-					$Headers .= "MIME-Version: 1.0\r\n";
-					$Headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-					echo $Message;
-					mail($To, $Subject, $Message, $Headers);
+						echo $Message;
+						mail($To, $Subject, $Message, $Headers);
+					}	
 				}	
 			}
 			if($open){
