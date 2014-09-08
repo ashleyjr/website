@@ -26,7 +26,7 @@
 
 		// Open xml file and go through each entry
 		$xml = new SimpleXMLElement(file_get_contents($filename));
-		$num = $xml->count();
+		$num = count($xml);
 		for($i=($num-1);$i>-1;$i--){
 			if($xml->entry[$i]->status == "open"){
 				// Priority check for send emails
