@@ -109,7 +109,7 @@
 	$Message .= "\r\n   Region Name: ".(string)$geo["geoplugin_regionName"];
 
 	$Headers = "From: ajrobinson.org \r\n";
-	mail($To, $Subject, $Message, $Headers);
+	//mail($To, $Subject, $Message, $Headers);
 
 		
 ?>
