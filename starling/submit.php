@@ -32,52 +32,75 @@
       </style>
    </head>
    <body>
+	<center>
 
 
+	
 
-	<?php 
-		$form = '
-				<h3>Submit Starling</h3>
 					<form id="starling" name="starling" method="post" action="">
-						<table width="450px">
-							</tr>
+						
+						<table width="600px" align="cemter">
+							
+								
 							<tr>
-								<td valign="top">
-							  		<label for="title">Title </label>
-								</td>
-							 	<td valign="top">
-							  		<input  type="title" name="title" maxlength="50" size="30">
-								 </td>
+								<th><h1>Submit Starling</h1></th>
 							</tr>
+
+							<tr>				
+							  	<th><h2><label for="title">Title </label></h2></th>
+							</tr>
+
+
+							<tr>
 							 
+							  	<th><input  type="title" name="title" maxlength="50" size="30"></th>
+							
+							</tr>
+
+
 							<tr>
-							 	<td valign="top">
-							  		<label for="detail">Detail</label>
-							 	</td>
-							 	<td valign="top">
-							  		<textarea  name="detail" maxlength="1000" cols="25" rows="6"></textarea>
-							 	</td>
+							  		<th><h2><label for="detail">Detail</label></h2></th>
+							</tr>
+
+
+
+							<tr>
+							 
+							  		<th><textarea  name="detail" maxlength="1000" cols="25" rows="6"></textarea></th>
+							 
+							</tr>
+
+
+							<tr>
+							
+							  		<th><h2><label for="priority">Priority</label></h2></th>
+
+							
+							</tr>
+							
+
+							<tr>								
+									<th><input  type="radio" name="priority" value="high"> 		High<br></th>
 							</tr>
 
 							<tr>
-								<td valign="top">
-							  		<label for="priority">Priority</label>
-								</td>
-							 	<td valign="top">
-									<input  type="radio" name="priority" value="high"> 		High<br>
-									<input  type="radio" name="priority" value="medium"> 	Medium<br>
-									<input  type="radio" name="priority" value="low">	 	Low<br>
-								</td>	
+									<th><input  type="radio" name="priority" value="medium"> 	Medium<br></th>
 							</tr>
-								
+
+							<tr>
+									<th><input  type="radio" name="priority" value="low">	 	Low<br></th>
+							
+							</tr>
+
+
 								
 							<tr>
-							 	<td colspan="2" style="text-align:left">
-							 		<input type="submit" value="Submit">   
-							 	</td>
+					
+							 		<th><input type="submit" value="Submit"></th>   
+							
 							</tr>
-						</table>
-  					</form>';
+
+		<?php 
 
 		if( isset($_POST['title']) 	and
 			isset($_POST['detail']) and
@@ -124,13 +147,17 @@
 					fclose($file);
 				}
 			}
-			echo $form;
-			echo "<h3>Thanks for your Starling!</h3>";
-		}else{
-			echo $form;
+			echo '<tr>
+					
+				<th><h3>Thanks for your Starling!</h3></th>
+				
+					</tr>';
 		}
-	?>
+?>
 
+			</table>
+  		</form>
 
+	</center>
    </body>
 </html>
