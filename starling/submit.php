@@ -28,7 +28,10 @@
             img{
                width: auto; /* you can use % */
                height: 300px;
-            }
+			}
+
+
+			
       </style>
    </head>
    <body>
@@ -37,68 +40,60 @@
 
 	
 
-					<form id="starling" name="starling" method="post" action="">
-						
-						<table width="600px" align="cemter">
-							
-								
-							<tr>
-								<th><h1>Submit Starling</h1></th>
-							</tr>
-
-							<tr>				
-							  	<th><h2><label for="title">Title </label></h2></th>
-							</tr>
-
-
-							<tr>
-							 
-							  	<th><input  type="title" name="title" maxlength="50" size="30"></th>
-							
-							</tr>
-
-
-							<tr>
-							  		<th><h2><label for="detail">Detail</label></h2></th>
-							</tr>
-
-
-
-							<tr>
-							 
-							  		<th><textarea  name="detail" maxlength="1000" cols="25" rows="6"></textarea></th>
-							 
-							</tr>
-
-
-							<tr>
-							
-							  		<th><h2><label for="priority">Priority</label></h2></th>
-
-							
-							</tr>
-							
-
-							<tr>								
-									<th><input  type="radio" name="priority" value="high"> 		High<br></th>
-							</tr>
-
-							<tr>
-									<th><input  type="radio" name="priority" value="medium"> 	Medium<br></th>
-							</tr>
-
-							<tr>
-									<th><input  type="radio" name="priority" value="low">	 	Low<br></th>
-							
-							</tr>
-
-
-								
-							<tr>
+		<form id="starling" name="starling" method="post" action="">
+			
+			<table width="600px" align="cemter">
+				
 					
-							 		<th><input type="submit" value="Submit"></th>   
-							
-							</tr>
+				<tr>
+					<th><h1>Submit Starling</h1></th>
+				</tr>
+			
+				
+				<tr>
+					<th><h1> </h1></th>
+				</tr>	
+				<tr>				
+				  	<th><h2><label for="title">Title </label></h2></th>
+				</tr>
+				<tr>
+				  	<th><input  type="title" name="title" maxlength="50" size="50"></th>
+				</tr>
+
+
+
+				<tr>
+					<th><h1> </h1></th>
+				</tr>		
+				<tr>
+				  	<th><h2><label for="detail">Detail</label></h2></th>
+				</tr>
+				<tr>
+				  	<th><textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea></th>
+				</tr>
+
+
+
+
+				<tr>
+					<th><h1> </h1></th>
+				</tr>		
+				<tr>
+				  	<th><h2><label for="priority">Priority</label></h2></th>
+				</tr>
+				<tr>								
+					<th><input  type="radio" name="priority" value="high"> 		High					<input  type="radio" name="priority" value="medium"> 	Medium
+
+					<input  type="radio" name="priority" value="low">	 	Low<br></th>		
+				</tr>
+
+
+				<tr>
+					<th><h1> </h1></th>
+				</tr>		
+				<tr>
+				 	<th><input type="submit" value="Submit"></th>   	
+				</tr>
 
 		<?php 
 

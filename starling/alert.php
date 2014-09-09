@@ -51,10 +51,11 @@
 					$Message .= "<br>Starling Code: ".$code;
 					$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/upgrade.php?code=".$code."' target='_blank'>Upgrade</a>";
 					$Message .= "   		<a href='http://www.ajrobinson.org/starling/downgrade.php?code=".$code."' target='_blank'>Downgrade</a>";
-					$Message .= "   		<a href='http://www.ajrobinson.org/starling/close.php?code=".$code."' target='_blank'>Close</a>";
-					$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/submit.php' target='_blank'>Submit New Starling</a>";
+					$Message .= "   		<a href='http://www.ajrobinson.org/starling/close.php?code=".$code."' target='_blank'>Close</a><p>";
+				
+					$Message .= "   		<a href='http://www.ajrobinson.org/starling/submit.php' target='_blank'>Submit New Starling</a><p>";
+
 					$Message .= '</center></body></html>';
-					
 
 					$Headers = "From: ajrobinson.org \r\n";
 					$Headers .= "MIME-Version: 1.0\r\n";
