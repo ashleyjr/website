@@ -49,7 +49,8 @@
 					$Message .= "<h3>".$detail."</h3>";
 					$Message .= "Priority: ".$priority;
 					$Message .= "<br>Starling Code: ".$code;
-					$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/upgrade.php?code=".$code."' target='_blank'>Upgrade</a>";
+					$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/edit.php?code=".$code."' target='_blank'>Edit</a>";
+					$Message .= "			<a href='http://www.ajrobinson.org/starling/upgrade.php?code=".$code."' target='_blank'>Upgrade</a>";
 					$Message .= "   		<a href='http://www.ajrobinson.org/starling/downgrade.php?code=".$code."' target='_blank'>Downgrade</a>";
 					$Message .= "   		<a href='http://www.ajrobinson.org/starling/close.php?code=".$code."' target='_blank'>Close</a><p>";
 				
