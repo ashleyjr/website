@@ -1,6 +1,6 @@
 <html>
    <head>
-      <title>visitors</title>
+      <title>View Starlings</title>
      	<style type="text/css">
          body {
 	            font-family:Times New Roman;
@@ -63,7 +63,14 @@
       		   	</tr>";
 
 		for($i=($num-1);$i>-1;$i--){
-			echo "<tr>";//New line in table
+			
+			// New row with colour depedent on status
+			if($xml->entry[$i]->status == "open"){
+				echo '<tr bgcolor="#FFCC33">';
+			}else{
+				echo '<tr bgcolor="#FF3333">';
+			}
+			
 			echo "<td>".$xml->entry[$i]->code."</td>";   
 			echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		echo "<td>".$xml->entry[$i]->detail."</td>";    

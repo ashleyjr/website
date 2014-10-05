@@ -42,7 +42,7 @@
 
 					// Send reminder
 					$To = 'ashley181291@gmail.com';
-					$Subject = $title;
+					$Subject = $priority .": ". $title;
 
 					$Message = '<html><body><center>';
 					$Message .= "<u><h2>".$title."</h2></u>";
