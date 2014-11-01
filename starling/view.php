@@ -60,7 +60,8 @@
 	  		  		<th>Detail</th>
 					<th>Priority</th>
 					<th>Status</th>
-      		   	</tr>";
+					<th>Change Status</th>	
+				</tr>";
 
 		for($i=($num-1);$i>-1;$i--){
 			
@@ -76,6 +77,11 @@
 	 		echo "<td>".$xml->entry[$i]->detail."</td>";    
 	 		echo "<td>".$xml->entry[$i]->priority."</td>";
 			echo "<td>".$xml->entry[$i]->status."</td>";
+			if($xml->entry[$i]->status == "open"){
+				echo "<td><a href='http://www.ajrobinson.org/starling/close.php?code=".$xml->entry[$i]->code."' target='_blank'>Close</a></td>";
+			}else{
+				echo "<td><a href='http://www.ajrobinson.org/starling/open.php?code=".$xml->entry[$i]->code."' target='_blank'>Reopen</a></td>";
+			}
 			echo "</tr>";				
 		}
 		echo "</table>";
