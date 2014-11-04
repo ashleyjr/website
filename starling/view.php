@@ -44,13 +44,78 @@
    </head>
 <body>
 <?php
+
+	echo "<a href='http://www.ajrobinson.org/starling/submit.php' target='_blank'>Submit New Starling</a><p>";
+				
 	$filename = "starlings.xml";
+	
+
+
+	if( isset($_GET['close'])){
+		$code = $_GET['close'];
+		$xml = new SimpleXMLElement(file_get_contents($filename));
+		$num = $xml->count();
+		for($i=0;$i<$num;$i++){
+			$test = $xml->entry[$i]->code;
+			if($test == $code){
+				$xml->entry[$i]->status = "closed";
+				break;
+			}
+		}
+		$output = $xml->asXML();
+		// Use DomDoc to format
+		$doc = new DOMDocument();
+		$doc->preserveWhiteSpace = false;
+		$doc->formatOutput = true;
+		$doc->loadXML($output);
+		$output =  $doc->saveXML();
+		file_put_contents($filename, $output);
+
+		$Message .= "Closed ".$code." <br>";
+
+		echo $Message;	
+	}
+
+
+
+
+	if( isset($_GET['reopen'])){
+		$code = $_GET['reopen'];
+		$xml = new SimpleXMLElement(file_get_contents($filename));
+		$num = $xml->count();
+		for($i=0;$i<$num;$i++){
+			$test = $xml->entry[$i]->code;
+			if($test == $code){
+				$xml->entry[$i]->status = "open";
+				break;
+			}
+		}
+			//		echo $out;
+		$output = $xml->asXML();
+		// Use DomDoc to format
+		$doc = new DOMDocument();
+		$doc->preserveWhiteSpace = false;
+		$doc->formatOutput = true;
+		$doc->loadXML($output);
+		$output =  $doc->saveXML();
+		file_put_contents($filename, $output);
+	
+		
+		$Message .= "Reopened ".$code." <br>";
+
+		echo $Message;
+	}
+
+
+
+
 	if(file_exists($filename)){
 	
 		// Open xml file and go through each entry
 		$xml = new SimpleXMLElement(file_get_contents($filename));
 		$num = $xml->count();
 
+			
 
 		echo 
       		"<table>
@@ -61,6 +126,7 @@
 					<th>Priority</th>
 					<th>Status</th>
 					<th>Change Status</th>	
+					<th>Edit</th>	
 				</tr>";
 
 		for($i=($num-1);$i>-1;$i--){
@@ -78,10 +144,11 @@
 	 		echo "<td>".$xml->entry[$i]->priority."</td>";
 			echo "<td>".$xml->entry[$i]->status."</td>";
 			if($xml->entry[$i]->status == "open"){
-				echo "<td><a href='http://www.ajrobinson.org/starling/close.php?code=".$xml->entry[$i]->code."' target='_blank'>Close</a></td>";
+				echo "<td><a href='http://www.ajrobinson.org/starling/view.php?close=".$xml->entry[$i]->code."' target='_blank'>Close</a></td>";
 			}else{
-				echo "<td><a href='http://www.ajrobinson.org/starling/open.php?code=".$xml->entry[$i]->code."' target='_blank'>Reopen</a></td>";
+				echo "<td><a href='http://www.ajrobinson.org/starling/view.php?reopen=".$xml->entry[$i]->code."' target='_blank'>Reopen</a></td>";
 			}
+			echo "<td><a href='http://www.ajrobinson.org/starling/edit.php?code=".$xml->entry[$i]->code."' target='_blank'>Edit</a></td>";
 			echo "</tr>";				
 		}
 		echo "</table>";
