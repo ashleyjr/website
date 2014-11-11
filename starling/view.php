@@ -225,7 +225,7 @@
 							</form>';
 					}
 				}else{
-					echo "<a href='http://www.ajrobinson.org/starling/view.php?submit' target='_blank'>Submit New Starling</a><p>";
+					echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
 				}
 
 			}
@@ -274,11 +274,11 @@
 	 		echo "<td>".$xml->entry[$i]->priority."</td>";
 			echo "<td>".$xml->entry[$i]->status."</td>";
 			if($xml->entry[$i]->status == "open"){
-				echo "<td><a href='http://www.ajrobinson.org/starling/view.php?close=".$xml->entry[$i]->code."' target='_blank'>Close</a></td>";
+				echo "<td><a href='http://www.ajrobinson.org/starling/view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
 			}else{
-				echo "<td><a href='http://www.ajrobinson.org/starling/view.php?reopen=".$xml->entry[$i]->code."' target='_blank'>Reopen</a></td>";
+				echo "<td><a href='http://www.ajrobinson.org/starling/view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
 			}
-			echo "<td><a href='http://www.ajrobinson.org/starling/view.php?edit=".$xml->entry[$i]->code."' target='_blank'>Edit</a></td>";
+			echo "<td><a href='http://www.ajrobinson.org/starling/view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
 			echo "</tr>";				
 		}
 		echo "</table>";
