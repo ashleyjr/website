@@ -95,6 +95,9 @@
 					fclose($file);
 				}
 			}
+			
+			echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
+
 		}else{
 		echo '	
 			<form id="starling" name="starling" method="post" action="">
@@ -135,6 +138,8 @@
 			$output =  $doc->saveXML();
 			file_put_contents($filename, $output);
 
+			echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
+
 			$Message .= "Closed ".$code." <br>";
 
 			echo $Message;	
@@ -162,7 +167,8 @@
 				$output =  $doc->saveXML();
 				file_put_contents($filename, $output);
 			
-				
+				echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
+
 				$Message .= "Reopened ".$code." <br>";
 
 				echo $Message;
@@ -213,6 +219,7 @@
 								}
 							}
 						}	
+					
 						echo '
 							<form id="starling" name="starling" method="post" action="">
 							Edit Starling '.$code.'	<br>
@@ -223,6 +230,9 @@
 							<input type="hidden" name="code" value="'.$code.'"> <br>
 							<input type="submit" value="Submit">   	<br>
 							</form>';
+
+						echo "<br><a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
+
 					}
 				}else{
 					echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
