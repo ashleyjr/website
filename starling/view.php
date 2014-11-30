@@ -97,7 +97,6 @@
 			}
 			
 			echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
-
 		}else{
 		echo '	
 			<form id="starling" name="starling" method="post" action="">
@@ -235,8 +234,14 @@
 
 					}
 				}else{
-					echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
-				}
+					echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling !!</a><p>";
+            
+               if(isset($_GET['see_closed'])){ 
+                   echo "<a href='http://www.ajrobinson.org/starling/view.php'>Hide Closed</a><p>"; 
+               }else{
+                  echo "<a href='http://www.ajrobinson.org/starling/view.php?see_closed'>View Closed</a><p>";
+               }
+            }
 
 			}
 		}
@@ -271,25 +276,49 @@
 
 		for($i=($num-1);$i>-1;$i--){
 			
-			// New row with colour depedent on status
-			if($xml->entry[$i]->status == "open"){
-				echo '<tr bgcolor="#FFCC33">';
-			}else{
-				echo '<tr bgcolor="#FF3333">';
-			}
-			
-			echo "<td>".$xml->entry[$i]->code."</td>";   
-			echo "<td>".$xml->entry[$i]->title."</td>";   
-	 		echo "<td>".$xml->entry[$i]->detail."</td>";    
-	 		echo "<td>".$xml->entry[$i]->priority."</td>";
-			echo "<td>".$xml->entry[$i]->status."</td>";
-			if($xml->entry[$i]->status == "open"){
-				echo "<td><a href='http://www.ajrobinson.org/starling/view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
-			}else{
-				echo "<td><a href='http://www.ajrobinson.org/starling/view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
-			}
-			echo "<td><a href='http://www.ajrobinson.org/starling/view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
-			echo "</tr>";				
+         if( isset($_GET['see_closed'])){
+            // New row with colour depedent on status
+			   if($xml->entry[$i]->status == "open"){
+			   	echo '<tr bgcolor="#FFCC33">';
+			   }else{
+			   	echo '<tr bgcolor="#FF3333">';
+			   }
+			   
+			   echo "<td>".$xml->entry[$i]->code."</td>";   
+			   echo "<td>".$xml->entry[$i]->title."</td>";   
+	 		   echo "<td>".$xml->entry[$i]->detail."</td>";    
+	 		   echo "<td>".$xml->entry[$i]->priority."</td>";
+			   echo "<td>".$xml->entry[$i]->status."</td>";
+			   if($xml->entry[$i]->status == "open"){
+			   	echo "<td><a href='http://www.ajrobinson.org/starling/view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
+			   }else{
+			   	echo "<td><a href='http://www.ajrobinson.org/starling/view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
+			   }
+			   echo "<td><a href='http://www.ajrobinson.org/starling/view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+            echo "</tr>";				
+         }else{
+            if($xml->entry[$i]->status == "open"){ 
+               // New row with colour depedent on status
+			      if($xml->entry[$i]->status == "open"){
+			      	echo '<tr bgcolor="#FFCC33">';
+			      }else{
+			      	echo '<tr bgcolor="#FF3333">';
+			      }
+			      
+			      echo "<td>".$xml->entry[$i]->code."</td>";   
+			      echo "<td>".$xml->entry[$i]->title."</td>";   
+	 		      echo "<td>".$xml->entry[$i]->detail."</td>";    
+	 		      echo "<td>".$xml->entry[$i]->priority."</td>";
+			      echo "<td>".$xml->entry[$i]->status."</td>";
+			      if($xml->entry[$i]->status == "open"){
+			      	echo "<td><a href='http://www.ajrobinson.org/starling/view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
+			      }else{
+			      	echo "<td><a href='http://www.ajrobinson.org/starling/view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
+			      }
+			      echo "<td><a href='http://www.ajrobinson.org/starling/view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+               echo "</tr>";				
+           }
+         }
 		}
 		echo "</table>";
 	}	
