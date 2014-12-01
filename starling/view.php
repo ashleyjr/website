@@ -1,10 +1,10 @@
 <html>
    <head>
       <title>View Starlings</title>
-     	<style type="text/css">
+         <style type="text/css">
          body {
-	            font-family:Times New Roman;
-	            font-size:13pt;
+                font-family:Times New Roman;
+                font-size:13pt;
 	            margin:30px;
                background-color:#FFFFFF;
                color:#8F590D;
@@ -52,7 +52,7 @@
 	if( isset($_GET['submit'])){
 		if( isset($_POST['title']) 	and
 			isset($_POST['detail']) and
-			isset($_POST['priority']) ){
+			isset($_POST['murmation']) ){
 
 			// Look for new number
 			$filename = "starlings.xml";
@@ -75,7 +75,7 @@
 					$entry->addChild("code",$code);
 					$entry->addChild("title",$_POST['title']);
 					$entry->addChild("detail",$_POST['detail']);
-					$entry->addChild("priority",$_POST['priority']);
+					$entry->addChild("murmation",$_POST['murmation']);
 					$entry->addChild("status","open");
 					$entry->addChild("created",gmdate('d-m-Y'));
 					$output = $xml->asXML();
@@ -96,7 +96,7 @@
 				}
 			}
 			
-			echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
+			echo "<a href='view.php?submit'>Submit New Starling</a><p>";
 		}else{
 		echo '	
 			<form id="starling" name="starling" method="post" action="">
@@ -106,12 +106,22 @@
 			<input  type="title" name="title" maxlength="50" size="50"><br>
 			<label for="detail">Detail</label><br>
 			<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
-			<label for="priority">Priority</label>
-			<input  type="radio" name="priority" value="high"> 		High	
-			<input  type="radio" name="priority" value="medium"> 	Medium
-			<input  type="radio" name="priority" value="low">	 	Low<br>
+			<label for="murmation">Murmation</label><br>
+			<input  type="radio" name="murmation" value="1"> 		1	
+			<input  type="radio" name="murmation" value="2"> 	    2
+			<input  type="radio" name="murmation" value="4">	    4  
+            <input  type="radio" name="murmation" value="6">        6  
+            <input  type="radio" name="murmation" value="12">        12  
+            <input  type="radio" name="murmation" value="24">        24 
+            <input  type="radio" name="murmation" value="48">        48  
+            <br>
 			<input type="submit" value="Submit"><br>	
   		</form>';
+            if(isset($_GET['see_closed'])){ 
+                echo "<a href='view.php?submit'>Hide Closed</a><p>"; 
+            }else{
+                echo "<a href='view.php?submit&see_closed'>View Closed</a><p>";
+            }
 
 		}
 	}else{
@@ -137,7 +147,7 @@
 			$output =  $doc->saveXML();
 			file_put_contents($filename, $output);
 
-			echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
+			echo "<a href='view.php?submit'>Submit New Starling</a><p>";
 
 			$Message .= "Closed ".$code." <br>";
 
@@ -166,7 +176,7 @@
 				$output =  $doc->saveXML();
 				file_put_contents($filename, $output);
 			
-				echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
+				echo "<a href='view.php?submit'>Submit New Starling</a><p>";
 
 				$Message .= "Reopened ".$code." <br>";
 
@@ -230,18 +240,18 @@
 							<input type="submit" value="Submit">   	<br>
 							</form>';
 
-						echo "<br><a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling</a><p>";
+						echo "<br><a href='view.php?submit'>Submit New Starling</a><p>";
 
 					}
 				}else{
-					echo "<a href='http://www.ajrobinson.org/starling/view.php?submit'>Submit New Starling !!</a><p>";
-            
-               if(isset($_GET['see_closed'])){ 
-                   echo "<a href='http://www.ajrobinson.org/starling/view.php'>Hide Closed</a><p>"; 
-               }else{
-                  echo "<a href='http://www.ajrobinson.org/starling/view.php?see_closed'>View Closed</a><p>";
-               }
-            }
+					echo "<a href='view.php?submit'>Submit New Starling</a><p>";
+                    
+                    if(isset($_GET['see_closed'])){ 
+                        echo "<a href='view.php'>Hide Closed</a><p>"; 
+                    }else{
+                        echo "<a href='view.php?see_closed'>View Closed</a><p>";
+                    }
+                }
 
 			}
 		}
@@ -268,7 +278,7 @@
 					<th>Code</th>
 					<th>Title</th>
 	  		  		<th>Detail</th>
-					<th>Priority</th>
+					<th>Murmation</th>
 					<th>Status</th>
 					<th>Change Status</th>	
 					<th>Edit</th>	
@@ -287,14 +297,14 @@
 			   echo "<td>".$xml->entry[$i]->code."</td>";   
 			   echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		   echo "<td>".$xml->entry[$i]->detail."</td>";    
-	 		   echo "<td>".$xml->entry[$i]->priority."</td>";
+	 		   echo "<td>".$xml->entry[$i]->murmation."</td>";
 			   echo "<td>".$xml->entry[$i]->status."</td>";
 			   if($xml->entry[$i]->status == "open"){
-			   	echo "<td><a href='http://www.ajrobinson.org/starling/view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
+			   	echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
 			   }else{
-			   	echo "<td><a href='http://www.ajrobinson.org/starling/view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
+			   	echo "<td><a href='view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
 			   }
-			   echo "<td><a href='http://www.ajrobinson.org/starling/view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+			   echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
             echo "</tr>";				
          }else{
             if($xml->entry[$i]->status == "open"){ 
@@ -308,14 +318,14 @@
 			      echo "<td>".$xml->entry[$i]->code."</td>";   
 			      echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		      echo "<td>".$xml->entry[$i]->detail."</td>";    
-	 		      echo "<td>".$xml->entry[$i]->priority."</td>";
+	 		      echo "<td>".$xml->entry[$i]->murmation."</td>";
 			      echo "<td>".$xml->entry[$i]->status."</td>";
 			      if($xml->entry[$i]->status == "open"){
-			      	echo "<td><a href='http://www.ajrobinson.org/starling/view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
+			      	echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
 			      }else{
-			      	echo "<td><a href='http://www.ajrobinson.org/starling/view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
+			      	echo "<td><a href='view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
 			      }
-			      echo "<td><a href='http://www.ajrobinson.org/starling/view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+			      echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
                echo "</tr>";				
            }
          }

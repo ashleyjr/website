@@ -1,39 +1,14 @@
 <?php
 	$filename = "starlings.xml";
 	if(file_exists($filename)){
-		
-		$hour = gmdate("h");
-		$hour = intval($hour)+1;
-
-		// High every hour	
-		$high = True;
-
-
-		// Medium every two hours
-		// low every four hours
-
-		if($hour == 4 or $hour == 8 or $hour == 12 ){
-			$medium = True;
-			$low= True;
-		}else{
-			$medium = False;
-			$low = False;
-		}
-		if(($hour == 2) or ($hour == 6) or ($hour == 10)){
-			$medium = True;
-		}
-
-
 		// Open xml file and go through each entry
 		$xml = new SimpleXMLElement(file_get_contents($filename));
 		$num = count($xml);
 		for($i=($num-1);$i>-1;$i--){
 			if($xml->entry[$i]->status == "open"){
 				// Priority check for send emails
-				$priority = $xml->entry[$i]->priority;
-				if(	(($priority == "high") and ($high == True)) or
-					(($priority == "medium") and ($medium == True)) or
-					(($priority == "low") and ($low == True)) ){
+				$murmation = $xml->entry[$i]->murmation;
+                if($murmation == 0){
 					// Make data nice
 					$title = $xml->entry[$i]->title;
 					$detail = $xml->entry[$i]->detail;
@@ -49,12 +24,7 @@
 					$Message .= "<h3>".$detail."</h3>";
 					$Message .= "Priority: ".$priority;
 					$Message .= "<br>Starling Code: ".$code;
-					$Message .= "<br><br>	<a href='http://www.ajrobinson.org/starling/edit.php?code=".$code."' target='_blank'>Edit</a>";
-					$Message .= "			<a href='http://www.ajrobinson.org/starling/upgrade.php?code=".$code."' target='_blank'>Upgrade</a>";
-					$Message .= "   		<a href='http://www.ajrobinson.org/starling/downgrade.php?code=".$code."' target='_blank'>Downgrade</a>";
-					$Message .= "   		<a href='http://www.ajrobinson.org/starling/close.php?code=".$code."' target='_blank'>Close</a><p>";
-				
-					$Message .= "   		<a href='http://www.ajrobinson.org/starling/submit.php' target='_blank'>Submit New Starling</a><p>";
+					$Message .= "<a href='http://www.ajrobinson.org/starling/view.php' target='_blank'>View Starling</a><p>";
 
 					$Message .= '</center></body></html>';
 
@@ -64,7 +34,20 @@
 
 					echo $Message;
 					mail($To, $Subject, $Message, $Headers);
-				}	
+				}else{
+    			    $murmation = $murmation - 1;
+                    $xml->entry[$i]->murmation = $murmation;
+                    // Add new entry
+                    $output = $xml->asXML();
+                    // Use DomDoc to format
+                    $doc = new DOMDocument();  
+                    $doc->preserveWhiteSpace = false;
+                    $doc->formatOutput = true;
+                    $doc->loadXML($output);
+                    $output =  $doc->saveXML();
+                    // Save as xml file
+                    file_put_contents($filename,$output);
+				}
 			}	
 		}
 	}	
