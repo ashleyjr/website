@@ -96,7 +96,12 @@
 				}
 			}
 			
-			echo "<a href='view.php?submit'>Submit New Starling</a><p>";
+
+            if(isset($_GET['see_closed'])){ 
+              echo "<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
+            }else{
+                echo "<a href='view.php?submit'>Submit New Starling</a><p>";
+            }
 		}else{
 		echo '	
 			<form id="starling" name="starling" method="post" action="">
@@ -114,6 +119,8 @@
             <input  type="radio" name="murmation" value="12">        12  
             <input  type="radio" name="murmation" value="24">        24 
             <input  type="radio" name="murmation" value="48">        48  
+            <input  type="radio" name="murmation" value="72">        72
+            <input  type="radio" name="murmation" value="96">        96 
             <br>
 			<input type="submit" value="Submit"><br>	
   		</form>';
@@ -149,6 +156,12 @@
 
 			echo "<a href='view.php?submit'>Submit New Starling</a><p>";
 
+            if(isset($_GET['see_closed'])){ 
+                echo "<a href='view.php?submit'>Hide Closed</a><p>"; 
+            }else{
+                echo "<a href='view.php?submit&see_closed'>View Closed</a><p>";
+            }
+            
 			$Message .= "Closed ".$code." <br>";
 
 			echo $Message;	
@@ -244,11 +257,12 @@
 
 					}
 				}else{
-					echo "<a href='view.php?submit'>Submit New Starling</a><p>";
                     
                     if(isset($_GET['see_closed'])){ 
+                        echo "<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
                         echo "<a href='view.php'>Hide Closed</a><p>"; 
                     }else{
+                        echo "<a href='view.php?submit'>Submit New Starling</a><p>";
                         echo "<a href='view.php?see_closed'>View Closed</a><p>";
                     }
                 }
@@ -270,68 +284,56 @@
 		$xml = new SimpleXMLElement(file_get_contents($filename));
 		$num = $xml->count();
 
-        if( isset($_GET['see_closed'])){
-		    echo 
-      		    "<table>
-      		   	    <tr>
-					    <th>Code</th>
-					    <th>Title</th>
-	  		  		    <th>Detail</th>
-					    <th>Murmation</th>
-					    <th>Status</th>
-					    <th>Change Status</th>	
-					    <th>Edit</th>	
-				    </tr>";
+			
 
-		    for($i=($num-1);$i>-1;$i--){
+		echo 
+      		"<table>
+      		   	<tr>
+					<th>Code</th>
+					<th>Title</th>
+	  		  		<th>Detail</th>
+					<th>Murmation</th>
+					<th>Change Status</th>	
+					<th>Edit</th>	
+				</tr>";
 
-                // New row with colour depedent on status
-			    if($xml->entry[$i]->status == "open"){
-			   	    echo '<tr bgcolor="#FFCC33">';
-			    }else{
-			   	    echo '<tr bgcolor="#FF2222">';
-			    }
+		for($i=($num-1);$i>-1;$i--){
+			
+         if( isset($_GET['see_closed'])){
+            // New row with colour depedent on status
+			   if($xml->entry[$i]->status == "open"){
+			   	echo '<tr bgcolor="#FFCC33">';
+			   }else{
+			   	echo '<tr bgcolor="#FF6666">';
+			   }
 			   
-			    echo "<td>".$xml->entry[$i]->code."</td>";   
-			    echo "<td>".$xml->entry[$i]->title."</td>";   
-	 		    echo "<td>".$xml->entry[$i]->detail."</td>";    
-	 		    echo "<td>".$xml->entry[$i]->murmation."</td>";
-			    echo "<td>".$xml->entry[$i]->status."</td>";
-			    if($xml->entry[$i]->status == "open"){
-			   	    echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
-			    }else{
-			   	    echo "<td><a href='view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
-			    }
-			    echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
-            echo "</tr>";	
-		    }
-        }else{
-            echo 
-          	    "<table>
-      		   	    <tr>
-					    <th>Code</th>
-					    <th>Title</th>
-	  		  		    <th>Detail</th>
-					    <th>Murmation</th>
-					    <th>Close</th>	
-					    <th>Edit</th>	
-				    </tr>";
+			   echo "<td>".$xml->entry[$i]->code."</td>";   
+			   echo "<td>".$xml->entry[$i]->title."</td>";   
+	 		   echo "<td>".$xml->entry[$i]->detail."</td>";    
+	 		   echo "<td>".$xml->entry[$i]->murmation."</td>";
+			   //echo "<td>".$xml->entry[$i]->status."</td>";
+			   if($xml->entry[$i]->status == "open"){
+			   	echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
+			   }else{
+			   	echo "<td><a href='view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
+			   }
+			   echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+            echo "</tr>";				
+         }else{
+            if($xml->entry[$i]->status == "open"){ 
 
-		    for($i=($num-1);$i>-1;$i--){
-                if($xml->entry[$i]->status == "open"){
-			   
-			        echo "<td>".$xml->entry[$i]->code."</td>";   
-			        echo "<td>".$xml->entry[$i]->title."</td>";   
-	 		        echo "<td>".$xml->entry[$i]->detail."</td>";    
-	 		        echo "<td>".$xml->entry[$i]->murmation."</td>";
+			      echo "<td>".$xml->entry[$i]->code."</td>";   
+			      echo "<td>".$xml->entry[$i]->title."</td>";   
+	 		      echo "<td>".$xml->entry[$i]->detail."</td>";    
+	 		      echo "<td>".$xml->entry[$i]->murmation."</td>";
 
-    		   	    echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
 		
-
-			        echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
-                    echo "</tr>";	
-                }
-		    }
+			      	echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
+		
+			      echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+               echo "</tr>";				
+           }
+         }
 		}
 		echo "</table>";
 	}	
