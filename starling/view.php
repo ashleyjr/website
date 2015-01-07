@@ -54,56 +54,58 @@
 			isset($_POST['detail']) and
 			isset($_POST['murmation']) ){
 
-			// Look for new number
-			$filename = "starlings.xml";
-			$end = "</starlings>";
-			while(1){
-				if(file_exists($filename)){
-					// Open xml	
-					$xml = new SimpleXMLElement(file_get_contents($filename));
-					// Find next code
-					$num = $xml->count();
-					$code = 0;
-					for($i=0;$i<$num;$i++){
-						$test = intval($xml->entry[$i]->code);
-						if($code == $test){
-							$code = $test + 1;
-						}
-					}
-					// Add new entry
-					$entry = $xml->addChild('entry');
-					$entry->addChild("code",$code);
-					$entry->addChild("title",$_POST['title']);
-					$entry->addChild("detail",$_POST['detail']);
-					$entry->addChild("murmation",$_POST['murmation']);
-					$entry->addChild("status","open");
-					$entry->addChild("created",gmdate('d-m-Y'));
-					$output = $xml->asXML();
-					// Use DomDoc to format
-					$doc = new DOMDocument();
-					$doc->preserveWhiteSpace = false;
-					$doc->formatOutput = true;
-					$doc->loadXML($output);
-					$output =  $doc->saveXML();
-					// Save as xml file
-					file_put_contents($filename,$output);
-					break;		
-				}else{
-					$file = fopen($filename,"wb");
-					$entry = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<starlings>\n</starlings>";
-					fwrite($file,$entry);
-					fclose($file);
-				}
-			}
+			   // Look for new number
+			   $filename = "starlings.xml";
+			   $end = "</starlings>";
+			   while(1){
+			   	if(file_exists($filename)){
+			   		// Open xml	
+			   		$xml = new SimpleXMLElement(file_get_contents($filename));
+			   		// Find next code
+			   		$num = $xml->count();
+			   		$code = 0;
+			   		for($i=0;$i<$num;$i++){
+			   			$test = intval($xml->entry[$i]->code);
+			   			if($code == $test){
+			   				$code = $test + 1;
+			   			}
+			   		}
+			   		// Add new entry
+			   		$entry = $xml->addChild('entry');
+			   		$entry->addChild("code",$code);
+			   		$entry->addChild("title",$_POST['title']);
+			   		$entry->addChild("detail",$_POST['detail']);
+			   		$entry->addChild("murmation",$_POST['murmation']);
+			   		$entry->addChild("status","open");
+			   		$entry->addChild("created",gmdate('d-m-Y'));
+			   		$output = $xml->asXML();
+			   		// Use DomDoc to format
+			   		$doc = new DOMDocument();
+			   		$doc->preserveWhiteSpace = false;
+			   		$doc->formatOutput = true;
+			   		$doc->loadXML($output);
+			   		$output =  $doc->saveXML();
+			   		// Save as xml file
+			   		file_put_contents($filename,$output);
+			   		break;		
+			   	}else{
+			   		$file = fopen($filename,"wb");
+			   		$entry = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<starlings>\n</starlings>";
+			   		fwrite($file,$entry);
+			   		fclose($file);
+			   	}
+			   }
 			
-
             if(isset($_GET['see_closed'])){ 
-              echo "<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
+               echo "<a href='view.php?see_closed'>View Closed</a><p>";
             }else{
                 echo "<a href='view.php?submit'>Submit New Starling</a><p>";
             }
-		}else{
-		echo '	
+      	
+            echo "<a href='view.php?see_closed'>View Closed</a><p>";
+         
+      }else{
+		   echo '	
 			<form id="starling" name="starling" method="post" action="">
 			Submit Starling<br>
 				
@@ -124,6 +126,9 @@
             <br>
 			<input type="submit" value="Submit"><br>	
   		</form>';
+         
+            echo "<a href='view.php'>Hide Form</a><p>"; 
+ 
             if(isset($_GET['see_closed'])){ 
                 echo "<a href='view.php?submit'>Hide Closed</a><p>"; 
             }else{
@@ -157,15 +162,11 @@
 			echo "<a href='view.php?submit'>Submit New Starling</a><p>";
 
             if(isset($_GET['see_closed'])){ 
-                echo "<a href='view.php?submit'>Hide Closed</a><p>"; 
+                echo "<a href='view.php?'>Hide Closed</a><p>"; 
             }else{
-                echo "<a href='view.php?submit&see_closed'>View Closed</a><p>";
+                echo "<a href='view.php?see_closed'>View Closed</a><p>";
             }
-            
-			$Message .= "Closed ".$code." <br>";
-
-			echo $Message;	
-		}else{
+      }else{
 			// REOPEN
 			//
 			if( isset($_GET['reopen'])){
@@ -188,18 +189,22 @@
 				$doc->loadXML($output);
 				$output =  $doc->saveXML();
 				file_put_contents($filename, $output);
-			
-				echo "<a href='view.php?submit'>Submit New Starling</a><p>";
+            
+            if(isset($_GET['see_closed'])){ 
+               echo "<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
+               echo "<a href='view.php'>Hide Closed</a><p>"; 
+            }else{
+               echo "<a href='view.php?submit'>Submit New Starling</a><p>";
+               echo "<a href='view.php?see_closed'>View Closed</a><p>";
+            }
 
-				$Message .= "Reopened ".$code." <br>";
-
-				echo $Message;
-			}else{
+     		}else{
 				// EDIT
 				//
 				if( isset($_GET['edit'])){
-					if(isset($_POST['detail']) and isset($_POST['code'])){
-						$code = $_POST['code']; 
+					if(isset($_POST['detail']) and isset($_POST['murmation']) and isset($_POST['code'])){
+                  $code = $_POST['code']; 
+                  $murmation = $_POST['murmation'];
 						$detail = $_POST['detail']; 
 						$filename = "starlings.xml";
 						if(file_exists($filename)){
@@ -211,7 +216,8 @@
 								$test = $xml->entry[$i]->code;
 								if($code == $test){
 									$xml->entry[$i]->detail = $detail;	
-									break;
+                           $xml->entry[$i]->murmation = $murmation;
+                           break;
 								}
 							}
 							// Add new entry
@@ -224,7 +230,16 @@
 							$output =  $doc->saveXML();
 							// Save as xml file
 							file_put_contents($filename,$output);
-  						}
+                  
+                     if(isset($_GET['see_closed'])){ 
+                        echo "<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
+                        echo "<a href='view.php'>Hide Closed</a><p>"; 
+                    }else{
+                        echo "<a href='view.php?submit'>Submit New Starling</a><p>";
+                        echo "<a href='view.php?see_closed'>View Closed</a><p>";
+                    }
+  
+                  }
 					}else{		
 						$code = $_GET['edit'];
 						if(file_exists($filename)){
@@ -249,12 +264,32 @@
 							Detail: '.$detail.'	<br>
 							<label for="detail">New Detail</label><br>
 							<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
-							<input type="hidden" name="code" value="'.$code.'"> <br>
-							<input type="submit" value="Submit">   	<br>
-							</form>';
+                     <label for="murmation">Murmation</label><br>
+			            <input  type="radio" name="murmation" value="1"> 		1	
+			            <input  type="radio" name="murmation" value="2"> 	    2
+			            <input  type="radio" name="murmation" value="4">	    4  
+                        <input  type="radio" name="murmation" value="6">        6  
+                        <input  type="radio" name="murmation" value="12">        12  
+                        <input  type="radio" name="murmation" value="24">        24 
+                        <input  type="radio" name="murmation" value="48">        48  
+                        <input  type="radio" name="murmation" value="72">        72
+                        <input  type="radio" name="murmation" value="96">        96 
+                        <br>
 
+      
+                     <input type="hidden" name="code" value="'.$code.'"> <br>
+      
+                     <input type="submit" value="Submit">   	<br>
+		      
+                     </form>';
+      
 						echo "<br><a href='view.php?submit'>Submit New Starling</a><p>";
-
+                  
+                  if(isset($_GET['see_closed'])){ 
+                     echo "<a href='view.php?edit=".$code."'>Hide Closed</a><p>"; 
+                  }else{
+                     echo "<a href='view.php?see_closed&edit=".$code."'>View Closed</a><p>";
+                  }
 					}
 				}else{
                     
@@ -293,8 +328,8 @@
 					<th>Title</th>
 	  		  		<th>Detail</th>
 					<th>Murmation</th>
-					<th>Change Status</th>	
-					<th>Edit</th>	
+               <th>Change Status</th>	
+               <th>Edit</th>	
 				</tr>";
 
 		for($i=($num-1);$i>-1;$i--){
@@ -313,11 +348,24 @@
 	 		   echo "<td>".$xml->entry[$i]->murmation."</td>";
 			   //echo "<td>".$xml->entry[$i]->status."</td>";
 			   if($xml->entry[$i]->status == "open"){
-			   	echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
-			   }else{
-			   	echo "<td><a href='view.php?reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
+			      if(isset($_GET['see_closed'])){ 
+                  echo "<td><a href='view.php?see_closed&close=".$xml->entry[$i]->code."'>Close</a></td>"; 
+               }else{ 
+                  echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
+
+               }
+            }else{
+			   	echo "<td><a href='view.php?see_closed&reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
 			   }
-			   echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+            
+            
+            if(isset($_GET['see_closed'])){ 
+               echo "<td><a href='view.php?see_closed&edit=".$xml->entry[$i]->code."'>Edit</a></td>"; 
+            }else{ 
+                  echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+            } 
+            
+            
             echo "</tr>";				
          }else{
             if($xml->entry[$i]->status == "open"){ 
@@ -328,7 +376,7 @@
 	 		      echo "<td>".$xml->entry[$i]->murmation."</td>";
 
 		
-			      	echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
+			      echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
 		
 			      echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
                echo "</tr>";				

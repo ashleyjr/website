@@ -17,14 +17,13 @@
 
 					// Send reminder
 					$To = 'ashley181291@gmail.com';
-					$Subject = $priority .": ". $title;
+					$Subject = $title;
 
 					$Message = '<html><body><center>';
-					$Message .= "<u><h2>".$title."</h2></u>";
-					$Message .= "<h3>".$detail."</h3>";
-					$Message .= "Priority: ".$priority;
+					$Message .= "<u><h2>".$title."</h2></u><p>";
+					$Message .= "<h3>".$detail."</h3><p>";
 					$Message .= "<br>Starling Code: ".$code;
-					$Message .= "<a href='http://www.ajrobinson.org/starling/view.php' target='_blank'>View Starling</a><p>";
+					$Message .= "<br><a href='http://www.ajrobinson.org/starling/view.php' target='_blank'>View Starling</a><p>";
 
 					$Message .= '</center></body></html>';
 
