@@ -251,8 +251,8 @@
 								$test = $xml->entry[$i]->code;
 								if($code == $test){
 									$detail = $xml->entry[$i]->detail;
-									$title = $xml->entry[$i]->title;	
-									break;
+									$title = $xml->entry[$i]->title;		
+                           break;
 								}
 							}
 						}	
@@ -263,7 +263,7 @@
 							Title: '.$title.'<br>
 							Detail: '.$detail.'	<br>
 							<label for="detail">New Detail</label><br>
-							<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
+                     <textarea  name="detail" maxlength="1000" cols="45" rows="6">'.$detail.'</textarea><br>
                      <label for="murmation">Murmation</label><br>
 			            <input  type="radio" name="murmation" value="1"> 		1	
 			            <input  type="radio" name="murmation" value="2"> 	    2
@@ -273,7 +273,7 @@
                         <input  type="radio" name="murmation" value="24">        24 
                         <input  type="radio" name="murmation" value="48">        48  
                         <input  type="radio" name="murmation" value="72">        72
-                        <input  type="radio" name="murmation" value="96">        96 
+                        <input  type="radio" name="murmation" value="96" checked>        96 
                         <br>
 
       
@@ -344,8 +344,8 @@
 			   
 			   echo "<td>".$xml->entry[$i]->code."</td>";   
 			   echo "<td>".$xml->entry[$i]->title."</td>";   
-	 		   echo "<td>".$xml->entry[$i]->detail."</td>";    
-	 		   echo "<td>".$xml->entry[$i]->murmation."</td>";
+	 		   echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
+	 		   echo "<td><a href='view.php?edit&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."&detail=".stripslashes($xml->entry[$i]->detail)."'>".($xml->entry[$i]->murmation)." </a></td>";
 			   //echo "<td>".$xml->entry[$i]->status."</td>";
 			   if($xml->entry[$i]->status == "open"){
 			      if(isset($_GET['see_closed'])){ 
@@ -372,7 +372,7 @@
 
 			      echo "<td>".$xml->entry[$i]->code."</td>";   
 			      echo "<td>".$xml->entry[$i]->title."</td>";   
-	 		      echo "<td>".$xml->entry[$i]->detail."</td>";    
+	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
 	 		      echo "<td>".$xml->entry[$i]->murmation."</td>";
 
 		
