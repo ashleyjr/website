@@ -291,17 +291,57 @@
                      echo "<a href='view.php?see_closed&edit=".$code."'>View Closed</a><p>";
                   }
 					}
-				}else{
-                    
-                    if(isset($_GET['see_closed'])){ 
-                        echo "<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
+            }else{
+               // Murmation
+               //
+               if(isset($_GET['murmation']) and isset($_GET['code'])){
+                  $code = $_GET['code']; 
+                  $murmation = $_GET['murmation']; 
+						$filename = "starlings.xml";
+						if(file_exists($filename)){
+							// Open xml	
+							$xml = new SimpleXMLElement(file_get_contents($filename));
+							// Find next code
+							$num = $xml->count();
+							for($i=0;$i<$num;$i++){
+								$test = $xml->entry[$i]->code;
+								if($code == $test){	
+                           $xml->entry[$i]->murmation = $murmation;
+                           break;
+								}
+							}
+							// Add new entry
+							$output = $xml->asXML();
+							// Use DomDoc to format
+							$doc = new DOMDocument();
+							$doc->preserveWhiteSpace = false;
+							$doc->formatOutput = true;
+							$doc->loadXML($output);
+							$output =  $doc->saveXML();
+							// Save as xml file
+							file_put_contents($filename,$output);
+                  
+                     if(isset($_GET['see_closed'])){ 
+                        echo "murmation<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
                         echo "<a href='view.php'>Hide Closed</a><p>"; 
                     }else{
                         echo "<a href='view.php?submit'>Submit New Starling</a><p>";
                         echo "<a href='view.php?see_closed'>View Closed</a><p>";
                     }
-                }
-
+  
+                  } 
+               }else{
+                     // Default
+                     // 
+                     if(isset($_GET['see_closed'])){ 
+                        echo "<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
+                        echo "<a href='view.php'>Hide Closed</a><p>"; 
+                     }else{
+                        echo "<a href='view.php?submit'>Submit New Starling</a><p>";
+                        echo "<a href='view.php?see_closed'>View Closed</a><p>";
+                     }
+               }
+            }
 			}
 		}
 	}
@@ -328,7 +368,7 @@
 					<th>Title</th>
 	  		  		<th>Detail</th>
 					<th>Murmation</th>
-               <th>Change Status</th>	
+               <th>Change</th>	
                <th>Edit</th>	
 				</tr>";
 
@@ -345,9 +385,9 @@
 			   echo "<td>".$xml->entry[$i]->code."</td>";   
 			   echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		   echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
-	 		   echo "<td><a href='view.php?edit&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."&detail=".stripslashes($xml->entry[$i]->detail)."'>".($xml->entry[$i]->murmation)." </a></td>";
-			   //echo "<td>".$xml->entry[$i]->status."</td>";
-			   if($xml->entry[$i]->status == "open"){
+	 		   echo "<td><a href='view.php?murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
+
+            if($xml->entry[$i]->status == "open"){
 			      if(isset($_GET['see_closed'])){ 
                   echo "<td><a href='view.php?see_closed&close=".$xml->entry[$i]->code."'>Close</a></td>"; 
                }else{ 
@@ -373,8 +413,8 @@
 			      echo "<td>".$xml->entry[$i]->code."</td>";   
 			      echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
-	 		      echo "<td>".$xml->entry[$i]->murmation."</td>";
-
+	 		      echo "<td><a href='view.php?murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
+    
 		
 			      echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
 		
