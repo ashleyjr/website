@@ -370,8 +370,9 @@
 					<th>Murmation</th>
                <th>Change</th>	
                <th>Edit</th>	
-				</tr>";
+               </tr>";
 
+      $odd_even = true;
 		for($i=($num-1);$i>-1;$i--){
 			
          if( isset($_GET['see_closed'])){
@@ -409,7 +410,14 @@
             echo "</tr>";				
          }else{
             if($xml->entry[$i]->status == "open"){ 
-
+               // Single bit state machine
+			      if($odd_even){
+                  $odd_even = false;
+                  echo '<tr bgcolor="#FFD9A3">';
+			      }else{
+                  $odd_even = true;
+                  echo '<tr bgcolor="#FFFFFF">';
+			      }
 			      echo "<td>".$xml->entry[$i]->code."</td>";   
 			      echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
