@@ -386,7 +386,7 @@
 			   echo "<td>".$xml->entry[$i]->code."</td>";   
 			   echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		   echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
-	 		   echo "<td><a href='view.php?murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
+	 		   echo "<td><a href='view.php?murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
 
             if($xml->entry[$i]->status == "open"){
 			      if(isset($_GET['see_closed'])){ 
@@ -421,7 +421,7 @@
 			      echo "<td>".$xml->entry[$i]->code."</td>";   
 			      echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
-	 		      echo "<td><a href='view.php?murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
+	 		      echo "<td><a href='view.php?murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
     
 		
 			      echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
