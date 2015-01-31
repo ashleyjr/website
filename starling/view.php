@@ -107,25 +107,25 @@
       }else{
 		   echo '	
 			<form id="starling" name="starling" method="post" action="">
-			Submit Starling<br>
-				
-			<label for="title">Title </label><br>
-			<input  type="title" name="title" maxlength="50" size="50"><br>
-			<label for="detail">Detail</label><br>
-			<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
-			<label for="murmation">Murmation</label><br>
-			<input  type="radio" name="murmation" value="1"> 		1	
-			<input  type="radio" name="murmation" value="2"> 	    2
-			<input  type="radio" name="murmation" value="4">	    4  
-            <input  type="radio" name="murmation" value="6">        6  
-            <input  type="radio" name="murmation" value="12">        12  
-            <input  type="radio" name="murmation" value="24">        24 
-            <input  type="radio" name="murmation" value="48">        48  
-            <input  type="radio" name="murmation" value="72">        72
-            <input  type="radio" name="murmation" value="96">        96 
-            <br>
-			<input type="submit" value="Submit"><br>	
-  		</form>';
+				Submit Starling<br>
+					
+				<label for="title">Title </label><br>
+				<input  type="title" name="title" maxlength="50" size="50"><br>
+				<label for="detail">Detail</label><br>
+				<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
+				<label for="murmation">Murmation</label><br>
+				<input  type="radio" name="murmation" value="1"> 		1	
+				<input  type="radio" name="murmation" value="2"> 	    2
+				<input  type="radio" name="murmation" value="4">	    4  
+            			<input  type="radio" name="murmation" value="6">        6  
+            			<input  type="radio" name="murmation" value="12">        12  
+            			<input  type="radio" name="murmation" value="24">        24 
+            			<input  type="radio" name="murmation" value="48">        48  
+            			<input  type="radio" name="murmation" value="72">        72
+            			<input  type="radio" name="murmation" value="96">        96 
+            			<br>
+				<input type="submit" value="Submit"><br>	
+  			</form>';
          
             echo "<a href='view.php'>Hide Form</a><p>"; 
  
@@ -263,25 +263,25 @@
 							Title: '.$title.'<br>
 							Detail: '.$detail.'	<br>
 							<label for="detail">New Detail</label><br>
-                     <textarea  name="detail" maxlength="1000" cols="45" rows="6">'.$detail.'</textarea><br>
-                     <label for="murmation">Murmation</label><br>
-			            <input  type="radio" name="murmation" value="1"> 		1	
-			            <input  type="radio" name="murmation" value="2"> 	    2
-			            <input  type="radio" name="murmation" value="4">	    4  
-                        <input  type="radio" name="murmation" value="6">        6  
-                        <input  type="radio" name="murmation" value="12">        12  
-                        <input  type="radio" name="murmation" value="24">        24 
-                        <input  type="radio" name="murmation" value="48">        48  
-                        <input  type="radio" name="murmation" value="72">        72
-                        <input  type="radio" name="murmation" value="96" checked>        96 
-                        <br>
-
-      
-                     <input type="hidden" name="code" value="'.$code.'"> <br>
-      
-                     <input type="submit" value="Submit">   	<br>
-		      
-                     </form>';
+					                <textarea  name="detail" maxlength="1000" cols="45" rows="6">'.$detail.'</textarea><br>
+					                <label for="murmation">Murmation</label><br>
+							               <input  type="radio" name="murmation" value="1"> 		1	
+							               <input  type="radio" name="murmation" value="2"> 	    2
+							               <input  type="radio" name="murmation" value="4">	    4  
+					                   <input  type="radio" name="murmation" value="6">        6  
+					                   <input  type="radio" name="murmation" value="12">        12  
+					                   <input  type="radio" name="murmation" value="24">        24 
+					                   <input  type="radio" name="murmation" value="48">        48  
+					                   <input  type="radio" name="murmation" value="72">        72
+					                   <input  type="radio" name="murmation" value="96" checked>        96 
+					                   <br>
+					
+					      
+					                <input type="hidden" name="code" value="'.$code.'"> <br>
+					      
+					                <input type="submit" value="Submit">   	<br>
+							 
+					                </form>';
       
 						echo "<br><a href='view.php?submit'>Submit New Starling</a><p>";
                   
@@ -418,7 +418,7 @@
                   $odd_even = true;
                   echo '<tr bgcolor="#FFFFFF">';
 			      }
-			      echo "<td>".$xml->entry[$i]->code."</td>";   
+			      echo "<td><a href='info.php?code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a></td>";   
 			      echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
 	 		      echo "<td><a href='view.php?murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
