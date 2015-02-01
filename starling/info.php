@@ -76,6 +76,8 @@
 			echo "</table>";
 		}
 
+		echo "<br><a href=\"view.php\">Back to main list</a><br><br>";
+
 		// Add new updates
 		echo '
 			<form id="starling" name="starling" method="post" action="">
@@ -99,6 +101,7 @@
 			$xml->entry[$num]->code = $num+1;	
 			$xml->entry[$num]->info = $_POST['info'];	
                    	$xml->entry[$num]->url = $_POST['url'];
+			$xml->entry[$num]->date = gmdate("m/d/Y g:i:s A", time()-($ms));;
 			// Add new entry
 			$output = $xml->asXML();
 			// Use DomDoc to format
@@ -124,9 +127,9 @@
 		echo "<table>";	
 		for($i=($num-1);$i>-1;$i--){
 			echo "<tr>";
-			echo "<td>".$xml->entry[$i]->code."</td>";	
+			echo "<td>".$xml->entry[$i]->date."</td>";	
 			echo "<td>".$xml->entry[$i]->info."</td>";
-			echo "<td>".$xml->entry[$i]->url."</td>";		
+			echo "<td><a href=\"".$xml->entry[$i]->url."\" target=\"_blank\">".$xml->entry[$i]->url."</a></td>";		
 		}		
 		echo "</table>";
       
