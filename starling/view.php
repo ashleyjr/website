@@ -68,7 +68,7 @@
 			   while(1){
 			   	if(file_exists($filename)){
 			   		// Open xml	
-			   		$xml = new SimpleXMLElement(file_get_contents($filename));
+			   		$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
 			   		// Find next code
 			   		$num = $xml->count();
 			   		$code = 0;
@@ -149,7 +149,7 @@
 		//
 		if( isset($_GET['close'])){
 			$code = $_GET['close'];
-			$xml = new SimpleXMLElement(file_get_contents($filename));
+			$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
 			$num = $xml->count();
 			for($i=0;$i<$num;$i++){
 				$test = $xml->entry[$i]->code;
@@ -179,7 +179,7 @@
 			//
 			if( isset($_GET['reopen'])){
 				$code = $_GET['reopen'];
-				$xml = new SimpleXMLElement(file_get_contents($filename));
+				$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
 				$num = $xml->count();
 				for($i=0;$i<$num;$i++){
 					$test = $xml->entry[$i]->code;
@@ -217,7 +217,7 @@
 						$filename = "starlings.xml";
 						if(file_exists($filename)){
 							// Open xml	
-							$xml = new SimpleXMLElement(file_get_contents($filename));
+							$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
 							// Find next code
 							$num = $xml->count();
 							for($i=0;$i<$num;$i++){
@@ -252,7 +252,7 @@
 						$code = $_GET['edit'];
 						if(file_exists($filename)){
 							// Open xml	
-							$xml = new SimpleXMLElement(file_get_contents($filename));
+							$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
 							// Find next code
 							$num = $xml->count();
 							for($i=0;$i<$num;$i++){
@@ -308,7 +308,7 @@
 						$filename = "starlings.xml";
 						if(file_exists($filename)){
 							// Open xml	
-							$xml = new SimpleXMLElement(file_get_contents($filename));
+							$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
 							// Find next code
 							$num = $xml->count();
 							for($i=0;$i<$num;$i++){
@@ -364,7 +364,7 @@
 	if(file_exists($filename)){
 	
 		// Open xml file and go through each entry
-		$xml = new SimpleXMLElement(file_get_contents($filename));
+		$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
 		$num = $xml->count();
 
 			
