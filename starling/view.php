@@ -135,11 +135,12 @@
 				<input type="submit" value="Submit"><br>	
   			</form>';
          
-            echo "<a href='view.php'>Hide Form</a><p>"; 
  
             if(isset($_GET['see_closed'])){ 
+		echo "<a href='view.php?see_closed'>Hide Form</a><p>";
                 echo "<a href='view.php?submit'>Hide Closed</a><p>"; 
             }else{
+		echo "<a href='view.php'>Hide Form</a><p>"; 
                 echo "<a href='view.php?submit&see_closed'>View Closed</a><p>";
             }
 
