@@ -55,6 +55,9 @@
 	$filename = "starlings.xml";
 	
 
+	if($_GET['user'] == "ashleyjr"){
+
+	
 	// SUBMIT
 	//
 	if( isset($_GET['submit'])){
@@ -105,12 +108,12 @@
 			   }
 			
             if(isset($_GET['see_closed'])){ 
-               echo "<a href='view.php?see_closed'>View Closed</a><p>";
+               echo "<a href='view.php?user=ashleyjr&see_closed'>View Closed</a><p>";
             }else{
-                echo "<a href='view.php?submit'>Submit New Starling</a><p>";
+                echo "<a href='view.php?user=ashleyjr&submit'>Submit New Starling</a><p>";
             }
       	
-            echo "<a href='view.php?see_closed'>View Closed</a><p>";
+            echo "<a href='view.php?user=ashleyjr&see_closed'>View Closed</a><p>";
          
       }else{
 		   echo '	
@@ -137,11 +140,11 @@
          
  
             if(isset($_GET['see_closed'])){ 
-		echo "<a href='view.php?see_closed'>Hide Form</a><p>";
-                echo "<a href='view.php?submit'>Hide Closed</a><p>"; 
+		echo "<a href='view.php?user=ashleyjr&see_closed'>Hide Form</a><p>";
+                echo "<a href='view.php?user=ashleyjr&submit'>Hide Closed</a><p>"; 
             }else{
-		echo "<a href='view.php'>Hide Form</a><p>"; 
-                echo "<a href='view.php?submit&see_closed'>View Closed</a><p>";
+		echo "<a href='view.php?user=ashleyjr'>Hide Form</a><p>"; 
+                echo "<a href='view.php?user=ashleyjr&submit&see_closed'>View Closed</a><p>";
             }
 
 		}
@@ -168,12 +171,12 @@
 			$output =  $doc->saveXML();
 			file_put_contents($filename, $output);
 
-			echo "<a href='view.php?submit'>Submit New Starling</a><p>";
+			echo "<a href='view.php?user=ashleyjr&submit'>Submit New Starling</a><p>";
 
             if(isset($_GET['see_closed'])){ 
-                echo "<a href='view.php?'>Hide Closed</a><p>"; 
+                echo "<a href='view.php?user=ashleyjr'>Hide Closed</a><p>"; 
             }else{
-                echo "<a href='view.php?see_closed'>View Closed</a><p>";
+                echo "<a href='view.php?user=ashleyjr&see_closed'>View Closed</a><p>";
             }
       }else{
 			// REOPEN
@@ -200,11 +203,11 @@
 				file_put_contents($filename, $output);
             
             if(isset($_GET['see_closed'])){ 
-               echo "<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
-               echo "<a href='view.php'>Hide Closed</a><p>"; 
+               echo "<a href='view.php?user=ashleyjr&submit&see_closed'>Submit New Starling</a><p>";
+               echo "<a href='view.php?user=ashleyjr'>Hide Closed</a><p>"; 
             }else{
-               echo "<a href='view.php?submit'>Submit New Starling</a><p>";
-               echo "<a href='view.php?see_closed'>View Closed</a><p>";
+               echo "<a href='view.php?user=ashleyjr&submit'>Submit New Starling</a><p>";
+               echo "<a href='view.php?user=ashleyjr&see_closed'>View Closed</a><p>";
             }
 
      		}else{
@@ -241,11 +244,11 @@
 							file_put_contents($filename,$output);
                   
                      if(isset($_GET['see_closed'])){ 
-                        echo "<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
-                        echo "<a href='view.php'>Hide Closed</a><p>"; 
+                        echo "<a href='view.php?user=ashleyjr&submit&see_closed'>Submit New Starling</a><p>";
+                        echo "<a href='view.php?user=ashleyjr'>Hide Closed</a><p>"; 
                     }else{
-                        echo "<a href='view.php?submit'>Submit New Starling</a><p>";
-                        echo "<a href='view.php?see_closed'>View Closed</a><p>";
+                        echo "<a href='view.php?user=ashleyjr&submit'>Submit New Starling</a><p>";
+                        echo "<a href='view.php?user=ashleyjr&see_closed'>View Closed</a><p>";
                     }
   
                   }
@@ -292,12 +295,12 @@
 							 
 					                </form>';
       
-						echo "<br><a href='view.php?submit'>Submit New Starling</a><p>";
+						echo "<br><a href='view.php?user=ashleyjr&submit'>Submit New Starling</a><p>";
                   
                   if(isset($_GET['see_closed'])){ 
-                     echo "<a href='view.php?edit=".$code."'>Hide Closed</a><p>"; 
+                     echo "<a href='view.php?user=ashleyjr&edit=".$code."'>Hide Closed</a><p>"; 
                   }else{
-                     echo "<a href='view.php?see_closed&edit=".$code."'>View Closed</a><p>";
+                     echo "<a href='view.php?user=ashleyjr&see_closed&edit=".$code."'>View Closed</a><p>";
                   }
 					}
             }else{
@@ -331,11 +334,11 @@
 							file_put_contents($filename,$output);
                   
                      if(isset($_GET['see_closed'])){ 
-                        echo "murmation<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
-                        echo "<a href='view.php'>Hide Closed</a><p>"; 
+                        echo "murmation<a href='view.php?user=ashleyjr&submit&see_closed'>Submit New Starling</a><p>";
+                        echo "<a href='view.php?user=ashleyjr'>Hide Closed</a><p>"; 
                     }else{
-                        echo "<a href='view.php?submit'>Submit New Starling</a><p>";
-                        echo "<a href='view.php?see_closed'>View Closed</a><p>";
+                        echo "<a href='view.php?user=ashleyjr&submit'>Submit New Starling</a><p>";
+                        echo "<a href='view.php?user=ashleyjr&see_closed'>View Closed</a><p>";
                     }
   
                   } 
@@ -343,11 +346,11 @@
                      // Default
                      // 
                      if(isset($_GET['see_closed'])){ 
-                        echo "<a href='view.php?submit&see_closed'>Submit New Starling</a><p>";
-                        echo "<a href='view.php'>Hide Closed</a><p>"; 
+                        echo "<a href='view.php?user=ashleyjr&submit&see_closed'>Submit New Starling</a><p>";
+                        echo "<a href='view.php?user=ashleyjr'>Hide Closed</a><p>"; 
                      }else{
-                        echo "<a href='view.php?submit'>Submit New Starling</a><p>";
-                        echo "<a href='view.php?see_closed'>View Closed</a><p>";
+                        echo "<a href='view.php?user=ashleyjr&submit'>Submit New Starling</a><p>";
+                        echo "<a href='view.php?user=ashleyjr&see_closed'>View Closed</a><p>";
                      }
                }
             }
@@ -395,24 +398,24 @@
 			   echo "<td>".$xml->entry[$i]->code."</td>";   
 			   echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		   echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
-	 		   echo "<td><a href='view.php?murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
+	 		   echo "<td><a href='view.php?user=ashleyjr&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
 
             if($xml->entry[$i]->status == "open"){
 			      if(isset($_GET['see_closed'])){ 
-                  echo "<td><a href='view.php?see_closed&close=".$xml->entry[$i]->code."'>Close</a></td>"; 
+                  echo "<td><a href='view.php?user=ashleyjr&see_closed&close=".$xml->entry[$i]->code."'>Close</a></td>"; 
                }else{ 
-                  echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
+                  echo "<td><a href='view.php?user=ashleyjr&close=".$xml->entry[$i]->code."'>Close</a></td>";
 
                }
             }else{
-			   	echo "<td><a href='view.php?see_closed&reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
+			   	echo "<td><a href='view.php?user=ashleyjr&see_closed&reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
 			   }
             
             
             if(isset($_GET['see_closed'])){ 
-               echo "<td><a href='view.php?see_closed&edit=".$xml->entry[$i]->code."'>Edit</a></td>"; 
+               echo "<td><a href='view.php?user=ashleyjr&see_closed&edit=".$xml->entry[$i]->code."'>Edit</a></td>"; 
             }else{ 
-                  echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+                  echo "<td><a href='view.php?user=ashleyjr&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
             } 
             
             
@@ -427,20 +430,24 @@
                   $odd_even = true;
                   echo '<tr bgcolor="#FFFFFF">';
 			      }
-			      echo "<td><a href='info.php?code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a></td>";   
+			      echo "<td><a href='info.php?user=ashleyjr&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a></td>";   
 			      echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
-	 		      echo "<td><a href='view.php?murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
+	 		      echo "<td><a href='view.php?user=ashleyjr&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
     
 		
-			      echo "<td><a href='view.php?close=".$xml->entry[$i]->code."'>Close</a></td>";
+			      echo "<td><a href='view.php?user=ashleyjr&close=".$xml->entry[$i]->code."'>Close</a></td>";
 		
-			      echo "<td><a href='view.php?edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+			      echo "<td><a href='view.php?user=ashleyjr&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
                echo "</tr>";				
            }
          }
 		}
 		echo "</table>";
+	}
+
+	}else{
+		echo "Access denied";
 	}	
 ?>
    </body>
