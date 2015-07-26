@@ -8,8 +8,11 @@
 		$info .= "\r\nMachine:     ".$_GET["machine"]; 
 		$info .= "\r\nDate:        ".gmdate('Y-m-d');
 		$info .= "\r\nTime:        ".gmdate('H:i:s');
-		$info .= "\r\nSubmitted:   ".$_GET["ip"];
+		$info .= "\r\nSubnet:      ".$_GET["ip"];
 		$info .= "\r\nFound:       ".$_SERVER['REMOTE_ADDR'];		
+        // Ask geo location
+    	$geo = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR']));
+        
 		$info .= "\r\nCity:        ".(string)$geo["geoplugin_city"];
 		$info .= "\r\nRegion:      ".(string)$geo["geoplugin_region"];
 		$info .= "\r\nCountry:     ".(string)$geo["geoplugin_countryName"];
