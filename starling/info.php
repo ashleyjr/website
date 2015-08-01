@@ -76,7 +76,7 @@
 			echo "</table>";
 		}
 
-		echo "<br><a href=\"view.php\">Back to main list</a><br><br>";
+		echo "<br><a href=\"view.php?user=ashleyjr\">Back to main list</a><br><br>";
 
 		// Add new updates
 		echo '
