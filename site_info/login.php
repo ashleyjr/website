@@ -49,6 +49,11 @@
 				$info = file_get_contents("../ip.txt");	
 				echo nl2br($info);
 
+                $info = file_get_contents("../pi.log");    
+				echo nl2br($info);
+                
+                $info = file_get_contents("../pi1.log");    
+				echo nl2br($info);
 
 				echo "<h1>Visiting Times</h1>";
 				
