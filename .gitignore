@@ -1,1 +1,3 @@
 *.xml
+stats/*
+starling/starlings.xml
