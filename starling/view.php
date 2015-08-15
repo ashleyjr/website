@@ -385,7 +385,10 @@
 	  		  		<th>Detail</th>
 					<th>Murmation</th>
                <th>Change</th>	
-               <th>Edit</th>	
+               <th>Edit</th>
+               <th>+1</th>   
+               <th>+24</th>
+               <th>+1w</th>
                </tr>";
 
       $odd_even = true;
@@ -402,7 +405,7 @@
 			   echo "<td>".$xml->entry[$i]->code."</td>";   
 			   echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		   echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
-	 		   echo "<td><a href='view.php?user=ashleyjr&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
+	 		   echo "<td>".($xml->entry[$i]->murmation)."</a></td>";
 
             if($xml->entry[$i]->status == "open"){
 			      if(isset($_GET['see_closed'])){ 
@@ -421,7 +424,12 @@
             }else{ 
                   echo "<td><a href='view.php?user=ashleyjr&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
             } 
-            
+
+
+            echo "<td><a href='view.php?user=ashleyjr&see_closed&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
+            echo "<td><a href='view.php?user=ashleyjr&see_closed&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
+            echo "<td><a href='view.php?user=ashleyjr&see_closed&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
+ 
             
             echo "</tr>";				
          }else{
@@ -437,12 +445,19 @@
 			      echo "<td><a href='info.php?user=ashleyjr&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a></td>";   
 			      echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
-	 		      echo "<td><a href='view.php?user=ashleyjr&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>".($xml->entry[$i]->murmation)." </a></td>";
+	 		      echo "<td>".($xml->entry[$i]->murmation)." </a></td>";
     
 		
 			      echo "<td><a href='view.php?user=ashleyjr&close=".$xml->entry[$i]->code."'>Close</a></td>";
 		
 			      echo "<td><a href='view.php?user=ashleyjr&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+               
+               
+               echo "<td><a href='view.php?user=ashleyjr&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
+               echo "<td><a href='view.php?user=ashleyjr&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
+               echo "<td><a href='view.php?user=ashleyjr&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
+ 
+
                echo "</tr>";				
            }
          }
