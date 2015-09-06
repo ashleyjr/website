@@ -44,18 +44,16 @@
 		if( isset($_POST['password']) and isset($_POST['username'])  ){
 			if( ($_POST['password'] === "Tompson1") and ($_POST['username'] === "ashley")){
 				
-				echo "<h1>IP Submissions </h1>";
+				echo "<h2>IP Submissions </h2>";
 					
 				$info = file_get_contents("../ip.txt");	
 				echo nl2br($info);
 
-                $info = file_get_contents("../pi.log");    
-				echo nl2br($info);
-                
-                $info = file_get_contents("../pi1.log");    
-				echo nl2br($info);
+            echo "<h2>Pi logs</h2>";
+            echo "<a href='../pi.log'>pi log</a>";
+            echo "<br><a href='../pi1.log'>longer pi log</a>";
 
-				echo "<h1>Visiting Times</h1>";
+				echo "<h2>Visiting Times</h2>";
 				
 				include("../pChart/pData.class"); 
 				include("../pChart/pChart.class"); 
