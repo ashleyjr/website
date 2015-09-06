@@ -21,7 +21,7 @@
 		$info .= "\r\nLongitude:   ".(string)$geo["geoplugin_longitude"];
 		
 		file_put_contents("ip.txt", $info);
-		echo $info;
+      echo file_get_contents('boot.txt'); 
 	}
 	else
 	{

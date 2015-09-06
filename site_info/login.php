@@ -49,6 +49,11 @@
 				$info = file_get_contents("../ip.txt");	
 				echo nl2br($info);
 
+            echo "<br>";
+            echo file_get_contents("../boot.txt");
+
+
+
             echo "<h2>Pi logs</h2>";
             echo "<a href='../pi.log'>pi log</a>";
             echo "<br><a href='../pi1.log'>longer pi log</a>";
