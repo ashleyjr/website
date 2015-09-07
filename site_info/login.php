@@ -40,7 +40,9 @@
 				Password: <input type="password" name="password" id="password"><br>
   				<input type="submit" name="button" id="button" value="Login" />
   			</form>
-		';
+         ';
+
+   
 		if( isset($_POST['password']) and isset($_POST['username'])  ){
 			if( ($_POST['password'] === "Tompson1") and ($_POST['username'] === "ashley")){
 				
@@ -51,8 +53,6 @@
 
             echo "<br>";
             echo file_get_contents("../boot.txt");
-
-
 
             echo "<h2>Pi logs</h2>";
             echo "<a href='../pi.log'>pi log</a>";
