@@ -86,7 +86,35 @@
 	
 
 	$filename = "starlings.xml";
-	
+
+
+
+
+   $form =    '	
+			<form id="starling" name="starling" method="post" action="" enctype="application/x-www-form-urlencoded">
+				Submit Starling<br>
+					
+				<label for="title">Title </label><br>
+				<input  type="title" name="title" maxlength="50" size="50"><br>
+				<label for="detail">Detail</label><br>
+				<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
+				<label for="murmation">Murmation</label><br>	
+            			<input  type="radio" name="murmation" value="1">                        1    
+                     <input  type="radio" name="murmation" value="6">                        6
+                     <input  type="radio" name="murmation" value="12">                       12 
+                     <input  type="radio" name="murmation" value="24">                       24 
+            			<input  type="radio" name="murmation" value="48">                       2d  
+            			<input  type="radio" name="murmation" value="72">                       3d
+            			<input  type="radio" name="murmation" value="96">                       4d 
+                     <input  type="radio" name="murmation" value="120">                      5d
+                     <input  type="radio" name="murmation" value="148">                      6d
+                     <input  type="radio" name="murmation" value="172" checked="checked">    1w
+                     <input  type="radio" name="murmation" value="336">                      2w
+                     <input  type="radio" name="murmation" value="504">                      3w
+                     <input  type="radio" name="murmation" value="672">                      1m
+                     <br>
+				<input type="submit" value="Submit"><br>	
+  			</form>';
 
 	if($_GET['user'] == "ashleyjr"){
 
@@ -142,34 +170,9 @@
 			   	}
 			   }
 
-      
+         echo $form; 
       }else{
-		   echo '	
-			<form id="starling" name="starling" method="post" action="" enctype="application/x-www-form-urlencoded">
-				Submit Starling<br>
-					
-				<label for="title">Title </label><br>
-				<input  type="title" name="title" maxlength="50" size="50"><br>
-				<label for="detail">Detail</label><br>
-				<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
-				<label for="murmation">Murmation</label><br>	
-            			<input  type="radio" name="murmation" value="1">                        1    
-                     <input  type="radio" name="murmation" value="6">                        6
-                     <input  type="radio" name="murmation" value="12">                       12 
-                     <input  type="radio" name="murmation" value="24">                       24 
-            			<input  type="radio" name="murmation" value="48">                       2d  
-            			<input  type="radio" name="murmation" value="72">                       3d
-            			<input  type="radio" name="murmation" value="96">                       4d 
-                     <input  type="radio" name="murmation" value="120">                      5d
-                     <input  type="radio" name="murmation" value="148">                      6d
-                     <input  type="radio" name="murmation" value="172" checked="checked">    1w
-                     <input  type="radio" name="murmation" value="336">                      2w
-                     <input  type="radio" name="murmation" value="504">                      3w
-                     <input  type="radio" name="murmation" value="672">                      1m
-                     <br>
-				<input type="submit" value="Submit"><br>	
-  			</form>';
-         
+		   echo $form;         
 		}
 	}else{
 		// CLOSE
