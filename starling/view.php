@@ -455,7 +455,17 @@
 
       $odd_even = true;
 		for($i=($num-1);$i>-1;$i--){
-			
+
+
+         $change_str = "<td><a href='view.php?user=ashleyjr";
+         if(isset($_GET['see_closed'])){
+            $change_str = $change_str."&see_closed";  
+         }   
+         if(isset($_GET['sort'])){
+            $change_str = $change_str."&sort";  
+         }
+         
+
          if( isset($_GET['see_closed'])){
             // New row with colour depedent on status
 			   if($xml->entry[$i]->status == "open"){
@@ -470,15 +480,10 @@
 	 		   echo "<td>".($xml->entry[$i]->murmation)."</a></td>";
 
             if($xml->entry[$i]->status == "open"){
-			      if(isset($_GET['see_closed'])){ 
-                  echo "<td><a href='view.php?user=ashleyjr&see_closed&close=".$xml->entry[$i]->code."'>Close</a></td>"; 
-               }else{ 
-                  echo "<td><a href='view.php?user=ashleyjr&close=".$xml->entry[$i]->code."'>Close</a></td>";
-
-               }
-            }else{
-			   	echo "<td><a href='view.php?user=ashleyjr&see_closed&reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
-			   }
+               echo $change_str."&close=".$xml->entry[$i]->code."'>Close</a></td>";
+            }else{	
+               echo $change_str."&reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
+            }
             
             
             echo "<td><a href='view.php?user=ashleyjr&see_closed&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
@@ -505,7 +510,7 @@
 	 		      echo "<td>".($xml->entry[$i]->murmation)." </a></td>";
     
 		
-			      echo "<td><a href='view.php?user=ashleyjr&close=".$xml->entry[$i]->code."'>Close</a></td>";
+			      echo $change_str."&close=".$xml->entry[$i]->code."'>Close</a></td>";
 
                   
 			      echo "<td><a href='view.php?user=ashleyjr&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
