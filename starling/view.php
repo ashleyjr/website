@@ -175,7 +175,35 @@
          echo $form; 
       }else{
 		   echo $form;         
-		}
+      }
+      if(isset($_GET['murmation']) and isset($_GET['code'])){
+                  $code = $_GET['code']; 
+                  $murmation = $_GET['murmation']; 
+						$filename = "starlings.xml";
+						if(file_exists($filename)){
+							// Open xml	
+							$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
+							// Find next code
+							$num = $xml->count();
+							for($i=0;$i<$num;$i++){
+								$test = $xml->entry[$i]->code;
+								if($code == $test){	
+                           $xml->entry[$i]->murmation = $murmation;
+                           break;
+								}
+							}
+							// Add new entry
+							$output = $xml->asXML();
+							// Use DomDoc to format
+							$doc = new DOMDocument();
+							$doc->preserveWhiteSpace = false;
+							$doc->formatOutput = true;
+							$doc->loadXML($output);
+							$output =  $doc->saveXML();
+							// Save as xml file
+							file_put_contents($filename,$output);
+                  }
+      }           
 	}else{
 		// CLOSE
 		//
@@ -492,10 +520,18 @@
             
             
             echo "<td><a href='view.php?user=".$user."&see_closed&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+            
+            $state = "view.php?user=".$user."&see_closed"; 
+            if(isset($_GET['submit'])){
+               $state = $state."&submit";
+            }  
+            if(isset($_GET['sort'])){
+               $state = $state."&sort";
+            }
 
-            echo "<td><a href='view.php?user=".$user."&see_closed&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
-            echo "<td><a href='view.php?user=".$user."&see_closed&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
-            echo "<td><a href='view.php?user=".$user."&see_closed&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
+            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
+            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
+            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
  
             
             echo "</tr>";				
@@ -520,10 +556,17 @@
                   
 			      echo "<td><a href='view.php?user=".$user."&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
                
-               
-               echo "<td><a href='view.php?user=".$user."&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
-               echo "<td><a href='view.php?user=".$user."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
-               echo "<td><a href='view.php?user=".$user."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
+
+               $state = "view.php?user=".$user; 
+               if(isset($_GET['submit'])){
+                  $state = $state."&submit";
+               }  
+               if(isset($_GET['sort'])){
+                  $state = $state."&sort";
+               }
+               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
+               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
+               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
  
 
                echo "</tr>";				
