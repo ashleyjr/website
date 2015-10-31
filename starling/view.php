@@ -116,7 +116,9 @@
 				<input type="submit" value="Submit"><br>	
   			</form>';
 
-	if($_GET['user'] == "ashleyjr"){
+   $user = "ashley181291";
+   
+   if($_GET['user'] == $user){
 
 
 
@@ -397,47 +399,47 @@
 
 
       if(isset($_GET['edit'])){
-         echo "<a href='view.php?user=ashleyjr'                            >Hide Form</a><p>";
+         echo "<a href='view.php?user=".$user."'                            >Hide Form</a><p>";
       }else{
          if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort'])){
-            echo "<a href='view.php?user=ashleyjr&submit'                  >Submit</a><p>";
-            echo "<a href='view.php?user=ashleyjr&see_closed'              >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=ashleyjr&sort'                    >Sort by Title</a><p>";
+            echo "<a href='view.php?user=".$user."&submit'                  >Submit</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed'              >Show Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."&sort'                    >Sort by Title</a><p>";
          }
          if(isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort'])){
-            echo "<a href='view.php?user=ashleyjr&see_closed&submit'       >Submit</a><p>";
-            echo "<a href='view.php?user=ashleyjr'                         >Hide Closed</a><p>";
-            echo "<a href='view.php?user=ashleyjr&see_closed&sort'         >Sort by Title</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed&submit'       >Submit</a><p>";
+            echo "<a href='view.php?user=".$user."'                         >Hide Closed</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed&sort'         >Sort by Title</a><p>";
          }
          if(!isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort'])){
-            echo "<a href='view.php?user=ashleyjr'                         >Hide Form</a><p>";
-            echo "<a href='view.php?user=ashleyjr&submit&see_closed'       >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=ashleyjr&submit&sort'             >Sort by Title</a><p>";
+            echo "<a href='view.php?user=".$user."'                         >Hide Form</a><p>";
+            echo "<a href='view.php?user=".$user."&submit&see_closed'       >Show Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."&submit&sort'             >Sort by Title</a><p>";
          }
          if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && isset($_GET['sort'])){
-            echo "<a href='view.php?user=ashleyjr&submit&sort'             >Submit</a><p>";
-            echo "<a href='view.php?user=ashleyjr&see_closed&sort'         >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=ashleyjr'                         >Sort by Code</a><p>";
+            echo "<a href='view.php?user=".$user."&submit&sort'             >Submit</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed&sort'         >Show Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."'                         >Sort by Code</a><p>";
          }
          if(!isset($_GET['see_closed']) && isset($_GET['submit']) && isset($_GET['sort'])){
-            echo "<a href='view.php?user=ashleyjr&sort'                    >Hide Form</a><p>";
-            echo "<a href='view.php?user=ashleyjr&see_closed&submit&sort'  >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=ashleyjr&submit'                  >Sort by Code</a><p>";
+            echo "<a href='view.php?user=".$user."&sort'                    >Hide Form</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Show Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."&submit'                  >Sort by Code</a><p>";
          }
          if(isset($_GET['see_closed']) && !isset($_GET['submit']) && isset($_GET['sort'])){
-            echo "<a href='view.php?user=ashleyjr&see_closed&submit&sort'  >Submit</a><p>";
-            echo "<a href='view.php?user=ashleyjr&sort'                    >Hide Closed</a><p>"; 
-            echo "<a href='view.php?user=ashleyjr&see_closed'              >Sort by Code</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Submit</a><p>";
+            echo "<a href='view.php?user=".$user."&sort'                    >Hide Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."&see_closed'              >Sort by Code</a><p>";
          }
          if(isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort'])){
-            echo "<a href='view.php?user=ashleyjr&see_closed'              >Hide Form</a><p>";
-            echo "<a href='view.php?user=ashleyjr&submit'                  >Hide Closed</a><p>"; 
-            echo "<a href='view.php?user=ashleyjr&see_closed&submit&sort'  >Sort by Title</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed'              >Hide Form</a><p>";
+            echo "<a href='view.php?user=".$user."&submit'                  >Hide Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Sort by Title</a><p>";
          }
          if(isset($_GET['see_closed']) && isset($_GET['submit']) && isset($_GET['sort'])){
-            echo "<a href='view.php?user=ashleyjr&see_closed&sort'         >Hide Form</a><p>";
-            echo "<a href='view.php?user=ashleyjr&submit&sort'             >Hide Closed</a><p>"; 
-            echo "<a href='view.php?user=ashleyjr&see_closed&submit'       >Sort by Code</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed&sort'         >Hide Form</a><p>";
+            echo "<a href='view.php?user=".$user."&submit&sort'             >Hide Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."&see_closed&submit'       >Sort by Code</a><p>";
          } 
       } 
       $num = $xml->count();	
@@ -460,7 +462,7 @@
 		for($i=($num-1);$i>-1;$i--){
 
 
-         $change_str = "<td><a href='view.php?user=ashleyjr";
+         $change_str = "<td><a href='view.php?user=".$user;
          if(isset($_GET['see_closed'])){
             $change_str = $change_str."&see_closed";  
          }   
@@ -489,11 +491,11 @@
             }
             
             
-            echo "<td><a href='view.php?user=ashleyjr&see_closed&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
-           
-            echo "<td><a href='view.php?user=ashleyjr&see_closed&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
-            echo "<td><a href='view.php?user=ashleyjr&see_closed&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
-            echo "<td><a href='view.php?user=ashleyjr&see_closed&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
+            echo "<td><a href='view.php?user=".$user."&see_closed&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+
+            echo "<td><a href='view.php?user=".$user."&see_closed&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
+            echo "<td><a href='view.php?user=".$user."&see_closed&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
+            echo "<td><a href='view.php?user=".$user."&see_closed&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
  
             
             echo "</tr>";				
@@ -507,7 +509,7 @@
                   $odd_even = true;
                   echo '<tr bgcolor="#FFFFFF">';
 			      }
-			      echo "<td><a href='info.php?user=ashleyjr&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a></td>";   
+			      echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a></td>";   
 			      echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
 	 		      echo "<td>".($xml->entry[$i]->murmation)." </a></td>";
@@ -516,12 +518,12 @@
 			      echo $change_str."&close=".$xml->entry[$i]->code."'>Close</a></td>";
 
                   
-			      echo "<td><a href='view.php?user=ashleyjr&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
+			      echo "<td><a href='view.php?user=".$user."&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
                
                
-               echo "<td><a href='view.php?user=ashleyjr&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
-               echo "<td><a href='view.php?user=ashleyjr&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
-               echo "<td><a href='view.php?user=ashleyjr&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
+               echo "<td><a href='view.php?user=".$user."&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
+               echo "<td><a href='view.php?user=".$user."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
+               echo "<td><a href='view.php?user=".$user."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
  
 
                echo "</tr>";				
