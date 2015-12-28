@@ -76,8 +76,10 @@
 			echo "</table>";
 		}
 
-		echo "<br><a href=\"view.php?user=ashleyjr\">Back to main list</a><br><br>";
-
+      if(isset($_GET['user'])){ 
+         $user = $_GET['user'];
+		   echo "<br><a href=\"view.php?user=".$user."\">Back to main list</a><br><br>";
+      }
 		// Add new updates
 		echo '
 			<form id="starling" name="starling" method="post" action="">
