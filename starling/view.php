@@ -507,8 +507,8 @@
 			   	echo '<tr bgcolor="#FF6666">';
 			   }
 			   
-			   echo "<td>".$xml->entry[$i]->code."</td>";   
-			   echo "<td>".$xml->entry[$i]->title."</td>";   
+            echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a></td>";   
+            echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		   echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
 	 		   echo "<td>".($xml->entry[$i]->murmation)."</a></td>";
 
