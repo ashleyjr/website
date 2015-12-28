@@ -398,6 +398,7 @@
             $msg[$x]['created'] = (string)$xml->entry[$x]->created;
 
          } 
+         $code = array();
          foreach ($msg as $key => $row) {
             $code[$key] = $row['code'];
             $title[$key] = $row['title'];
@@ -425,21 +426,61 @@
       }
       
 
+      // Sort by murmation if flag
+      if( isset($_GET['sort_m'])){
+         $msg = array();
+         $msg_count = $xml->count();
+         
+         for ($x=0;$x<$msg_count;$x++){
+            $msg[$x]['code'] = (string)$xml->entry[$x]->code;
+            $msg[$x]['title'] = (string)$xml->entry[$x]->title;
+            $msg[$x]['detail'] = (string)$xml->entry[$x]->detail;
+            $msg[$x]['murmation'] = (string)$xml->entry[$x]->murmation;
+            $msg[$x]['status'] = (string)$xml->entry[$x]->status;
+            $msg[$x]['created'] = (string)$xml->entry[$x]->created;
 
+         } 
+         $code = array();
+         foreach ($msg as $key => $row) {
+            $code[$key] = $row['code'];
+            $title[$key] = $row['title'];
+            $detail[$key] = $row['detail'];
+            $murmation[$key] = $row['murmation'];
+            $status[$key] = $row['status'];
+            $created[$key] = $row['created'];
+         }
+
+         $murmation_lowercase = array_map('strtolower', $murmation); 
+         array_multisort(
+         //change $titl to any variable created by "foreach"
+         $murmation_lowercase, SORT_DESC, SORT_NUMERIC,$msg); 
+
+         for ($x=0;$x<$msg_count;$x++){
+            $xml->entry[$x]->code =  $msg[$x]['code'];
+            $xml->entry[$x]->title =  $msg[$x]['title'];
+            $xml->entry[$x]->detail =  $msg[$x]['detail'];
+            $xml->entry[$x]->murmation =  $msg[$x]['murmation'];
+            $xml->entry[$x]->status =  $msg[$x]['status'];
+            $xml->entry[$x]->created =  $msg[$x]['created'];
+
+         }
+      }
+      
+      
       if(isset($_GET['edit'])){
          echo "<a href='view.php?user=".$user."'                            >Hide Form</a><p>";
       }else{
-         if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort'])){
+         if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort_m'])  && !isset($_GET['sort'])){
             echo "<a href='view.php?user=".$user."&submit'                  >Submit</a><p>";
             echo "<a href='view.php?user=".$user."&see_closed'              >Show Closed</a><p>"; 
             echo "<a href='view.php?user=".$user."&sort'                    >Sort by Title</a><p>";
          }
-         if(isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort'])){
+         if(isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort_m'])  && !isset($_GET['sort'])){
             echo "<a href='view.php?user=".$user."&see_closed&submit'       >Submit</a><p>";
             echo "<a href='view.php?user=".$user."'                         >Hide Closed</a><p>";
             echo "<a href='view.php?user=".$user."&see_closed&sort'         >Sort by Title</a><p>";
          }
-         if(!isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort'])){
+         if(!isset($_GET['see_closed']) && isset($_GET['submit'])&& !isset($_GET['sort_m']) && !isset($_GET['sort'])){
             echo "<a href='view.php?user=".$user."'                         >Hide Form</a><p>";
             echo "<a href='view.php?user=".$user."&submit&see_closed'       >Show Closed</a><p>"; 
             echo "<a href='view.php?user=".$user."&submit&sort'             >Sort by Title</a><p>";
@@ -447,19 +488,19 @@
          if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && isset($_GET['sort'])){
             echo "<a href='view.php?user=".$user."&submit&sort'             >Submit</a><p>";
             echo "<a href='view.php?user=".$user."&see_closed&sort'         >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."'                         >Sort by Code</a><p>";
+            echo "<a href='view.php?user=".$user."&sort_m'                  >Sort by Murmation</a><p>";
          }
          if(!isset($_GET['see_closed']) && isset($_GET['submit']) && isset($_GET['sort'])){
             echo "<a href='view.php?user=".$user."&sort'                    >Hide Form</a><p>";
             echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&submit'                  >Sort by Code</a><p>";
+            echo "<a href='view.php?user=".$user."&submit&sort_m'           >Sort by Murmation</a><p>";
          }
          if(isset($_GET['see_closed']) && !isset($_GET['submit']) && isset($_GET['sort'])){
             echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Submit</a><p>";
             echo "<a href='view.php?user=".$user."&sort'                    >Hide Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&see_closed'              >Sort by Code</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed&sort_m'       >Sort by Murmation</a><p>";
          }
-         if(isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort'])){
+         if(isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort_m']) && !isset($_GET['sort'])){
             echo "<a href='view.php?user=".$user."&see_closed'              >Hide Form</a><p>";
             echo "<a href='view.php?user=".$user."&submit'                  >Hide Closed</a><p>"; 
             echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Sort by Title</a><p>";
@@ -467,7 +508,30 @@
          if(isset($_GET['see_closed']) && isset($_GET['submit']) && isset($_GET['sort'])){
             echo "<a href='view.php?user=".$user."&see_closed&sort'         >Hide Form</a><p>";
             echo "<a href='view.php?user=".$user."&submit&sort'             >Hide Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&see_closed&submit'       >Sort by Code</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed&submit&sort_m'>Sort by Murmation</a><p>";
+         }
+
+
+         
+         if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort']) && isset($_GET['sort_m'])){
+            echo "<a href='view.php?user=".$user."&submit&sort_m'             >Submit</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed&sort_m'         >Show Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."'                        >Sort by Code</a><p>";
+         }
+         if(!isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort']) && isset($_GET['sort_m'])){
+            echo "<a href='view.php?user=".$user."&sort_m'                    >Hide Form</a><p>";
+            echo "<a href='view.php?user=".$user."&see_closed&submit&sort_m'  >Show Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."&submit'           >Sort by Code</a><p>";
+         }
+         if(isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort'])  && isset($_GET['sort_m'])){
+            echo "<a href='view.php?user=".$user."&see_closed&submit&sort_m'  >Submit</a><p>";
+            echo "<a href='view.php?user=".$user."&sort_m'                    >Hide Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."&see_closed'       >Sort by Code</a><p>";
+         } 
+         if(isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort'])  && isset($_GET['sort_m'])){
+            echo "<a href='view.php?user=".$user."&see_closed&sort_m'         >Hide Form</a><p>";
+            echo "<a href='view.php?user=".$user."&submit&sort_m'             >Hide Closed</a><p>"; 
+            echo "<a href='view.php?user=".$user."&see_closed&submit'>Sort by Code</a><p>";
          } 
       } 
       $num = $xml->count();	
@@ -497,7 +561,9 @@
          if(isset($_GET['sort'])){
             $change_str = $change_str."&sort";  
          }
-         
+         if(isset($_GET['sort_m'])){
+            $change_str = $change_str."&sort_m";  
+         }  
 
          if( isset($_GET['see_closed'])){
             // New row with colour depedent on status
@@ -528,6 +594,9 @@
             if(isset($_GET['sort'])){
                $state = $state."&sort";
             }
+            if(isset($_GET['sort_m'])){
+                  $state = $state."&sort_m";
+               }
 
             echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
             echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
@@ -563,6 +632,9 @@
                }  
                if(isset($_GET['sort'])){
                   $state = $state."&sort";
+               }
+               if(isset($_GET['sort_m'])){
+                  $state = $state."&sort_m";
                }
                echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
                echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
