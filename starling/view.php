@@ -467,73 +467,67 @@
       }
       
       
-      if(isset($_GET['edit'])){
-         echo "<a href='view.php?user=".$user."'                            >Hide Form</a><p>";
-      }else{
-         if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort_m'])  && !isset($_GET['sort'])){
-            echo "<a href='view.php?user=".$user."&submit'                  >Submit</a><p>";
-            echo "<a href='view.php?user=".$user."&see_closed'              >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&sort'                    >Sort by Title</a><p>";
-         }
-         if(isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort_m'])  && !isset($_GET['sort'])){
-            echo "<a href='view.php?user=".$user."&see_closed&submit'       >Submit</a><p>";
-            echo "<a href='view.php?user=".$user."'                         >Hide Closed</a><p>";
-            echo "<a href='view.php?user=".$user."&see_closed&sort'         >Sort by Title</a><p>";
-         }
-         if(!isset($_GET['see_closed']) && isset($_GET['submit'])&& !isset($_GET['sort_m']) && !isset($_GET['sort'])){
-            echo "<a href='view.php?user=".$user."'                         >Hide Form</a><p>";
-            echo "<a href='view.php?user=".$user."&submit&see_closed'       >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&submit&sort'             >Sort by Title</a><p>";
-         }
-         if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && isset($_GET['sort'])){
-            echo "<a href='view.php?user=".$user."&submit&sort'             >Submit</a><p>";
-            echo "<a href='view.php?user=".$user."&see_closed&sort'         >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&sort_m'                  >Sort by Murmation</a><p>";
-         }
-         if(!isset($_GET['see_closed']) && isset($_GET['submit']) && isset($_GET['sort'])){
-            echo "<a href='view.php?user=".$user."&sort'                    >Hide Form</a><p>";
-            echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&submit&sort_m'           >Sort by Murmation</a><p>";
-         }
-         if(isset($_GET['see_closed']) && !isset($_GET['submit']) && isset($_GET['sort'])){
-            echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Submit</a><p>";
-            echo "<a href='view.php?user=".$user."&sort'                    >Hide Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&see_closed&sort_m'       >Sort by Murmation</a><p>";
-         }
-         if(isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort_m']) && !isset($_GET['sort'])){
-            echo "<a href='view.php?user=".$user."&see_closed'              >Hide Form</a><p>";
-            echo "<a href='view.php?user=".$user."&submit'                  >Hide Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Sort by Title</a><p>";
-         }
-         if(isset($_GET['see_closed']) && isset($_GET['submit']) && isset($_GET['sort'])){
-            echo "<a href='view.php?user=".$user."&see_closed&sort'         >Hide Form</a><p>";
-            echo "<a href='view.php?user=".$user."&submit&sort'             >Hide Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&see_closed&submit&sort_m'>Sort by Murmation</a><p>";
-         }
-
-
-         
-         if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort']) && isset($_GET['sort_m'])){
-            echo "<a href='view.php?user=".$user."&submit&sort_m'             >Submit</a><p>";
-            echo "<a href='view.php?user=".$user."&see_closed&sort_m'         >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."'                        >Sort by Code</a><p>";
-         }
-         if(!isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort']) && isset($_GET['sort_m'])){
-            echo "<a href='view.php?user=".$user."&sort_m'                    >Hide Form</a><p>";
-            echo "<a href='view.php?user=".$user."&see_closed&submit&sort_m'  >Show Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&submit'           >Sort by Code</a><p>";
-         }
-         if(isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort'])  && isset($_GET['sort_m'])){
-            echo "<a href='view.php?user=".$user."&see_closed&submit&sort_m'  >Submit</a><p>";
-            echo "<a href='view.php?user=".$user."&sort_m'                    >Hide Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&see_closed'       >Sort by Code</a><p>";
-         } 
-         if(isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort'])  && isset($_GET['sort_m'])){
-            echo "<a href='view.php?user=".$user."&see_closed&sort_m'         >Hide Form</a><p>";
-            echo "<a href='view.php?user=".$user."&submit&sort_m'             >Hide Closed</a><p>"; 
-            echo "<a href='view.php?user=".$user."&see_closed&submit'>Sort by Code</a><p>";
-         } 
+      if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort_m'])  && !isset($_GET['sort'])){
+         echo "<a href='view.php?user=".$user."&submit'                  >Submit</a><p>";
+         echo "<a href='view.php?user=".$user."&see_closed'              >Show Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."&sort'                    >Sort by Title</a><p>";
+      }
+      if(isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort_m'])  && !isset($_GET['sort'])){
+         echo "<a href='view.php?user=".$user."&see_closed&submit'       >Submit</a><p>";
+         echo "<a href='view.php?user=".$user."'                         >Hide Closed</a><p>";
+         echo "<a href='view.php?user=".$user."&see_closed&sort'         >Sort by Title</a><p>";
+      }
+      if(!isset($_GET['see_closed']) && isset($_GET['submit'])&& !isset($_GET['sort_m']) && !isset($_GET['sort'])){
+         echo "<a href='view.php?user=".$user."'                         >Hide Form</a><p>";
+         echo "<a href='view.php?user=".$user."&submit&see_closed'       >Show Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."&submit&sort'             >Sort by Title</a><p>";
+      }
+      if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && isset($_GET['sort'])){
+         echo "<a href='view.php?user=".$user."&submit&sort'             >Submit</a><p>";
+         echo "<a href='view.php?user=".$user."&see_closed&sort'         >Show Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."&sort_m'                  >Sort by Murmation</a><p>";
+      }
+      if(!isset($_GET['see_closed']) && isset($_GET['submit']) && isset($_GET['sort'])){
+         echo "<a href='view.php?user=".$user."&sort'                    >Hide Form</a><p>";
+         echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Show Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."&submit&sort_m'           >Sort by Murmation</a><p>";
+      }
+      if(isset($_GET['see_closed']) && !isset($_GET['submit']) && isset($_GET['sort'])){
+         echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Submit</a><p>";
+         echo "<a href='view.php?user=".$user."&sort'                    >Hide Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."&see_closed&sort_m'       >Sort by Murmation</a><p>";
+      }
+      if(isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort_m']) && !isset($_GET['sort'])){
+         echo "<a href='view.php?user=".$user."&see_closed'              >Hide Form</a><p>";
+         echo "<a href='view.php?user=".$user."&submit'                  >Hide Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."&see_closed&submit&sort'  >Sort by Title</a><p>";
+      }
+      if(isset($_GET['see_closed']) && isset($_GET['submit']) && isset($_GET['sort'])){
+         echo "<a href='view.php?user=".$user."&see_closed&sort'         >Hide Form</a><p>";
+         echo "<a href='view.php?user=".$user."&submit&sort'             >Hide Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."&see_closed&submit&sort_m'>Sort by Murmation</a><p>";
       } 
+      if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort']) && isset($_GET['sort_m'])){
+         echo "<a href='view.php?user=".$user."&submit&sort_m'             >Submit</a><p>";
+         echo "<a href='view.php?user=".$user."&see_closed&sort_m'         >Show Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."'                        >Sort by Code</a><p>";
+      }
+      if(!isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort']) && isset($_GET['sort_m'])){
+         echo "<a href='view.php?user=".$user."&sort_m'                    >Hide Form</a><p>";
+         echo "<a href='view.php?user=".$user."&see_closed&submit&sort_m'  >Show Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."&submit'           >Sort by Code</a><p>";
+      }
+      if(isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort'])  && isset($_GET['sort_m'])){
+         echo "<a href='view.php?user=".$user."&see_closed&submit&sort_m'  >Submit</a><p>";
+         echo "<a href='view.php?user=".$user."&sort_m'                    >Hide Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."&see_closed'       >Sort by Code</a><p>";
+      } 
+      if(isset($_GET['see_closed']) && isset($_GET['submit']) && !isset($_GET['sort'])  && isset($_GET['sort_m'])){
+         echo "<a href='view.php?user=".$user."&see_closed&sort_m'         >Hide Form</a><p>";
+         echo "<a href='view.php?user=".$user."&submit&sort_m'             >Hide Closed</a><p>"; 
+         echo "<a href='view.php?user=".$user."&see_closed&submit'>Sort by Code</a><p>";
+      } 
+    
       $num = $xml->count();	
 
 		echo 
