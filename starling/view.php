@@ -545,9 +545,9 @@
 					<th>Murmation</th>
                <th>Change</th>	
                <th>Edit</th>
-               <th>+1</th>   
-               <th>+24</th>
-               <th>+1w</th>
+               <th>+D</th>   
+               <th>+W</th>
+               <th>+M</th>
                </tr>";
 
       $odd_even = true;
@@ -598,9 +598,9 @@
                   $state = $state."&sort_m";
                }
 
-            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
-            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
-            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
+            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+</a></td>";
+            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
+            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>";
  
             
             echo "</tr>";				
@@ -636,9 +636,9 @@
                if(isset($_GET['sort_m'])){
                   $state = $state."&sort_m";
                }
-               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 1)."&code=".$xml->entry[$i]->code."'>+1</a></td>";
-               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+24</a></td>";
-               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+1w</a></td>";
+               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+</a></td>";
+               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
+               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>";
  
 
                echo "</tr>";				
