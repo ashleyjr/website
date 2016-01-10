@@ -445,15 +445,15 @@
             $code[$key] = $row['code'];
             $title[$key] = $row['title'];
             $detail[$key] = $row['detail'];
-            $murmation[$key] = $row['murmation'];
+            $murm[$key] = $row['murmation'];
             $status[$key] = $row['status'];
             $created[$key] = $row['created'];
          }
 
-         $murmation_lowercase = array_map('strtolower', $murmation); 
+         $murm_lowercase = array_map('strtolower', $murm); 
          array_multisort(
          //change $titl to any variable created by "foreach"
-         $murmation_lowercase, SORT_DESC, SORT_NUMERIC,$msg); 
+         $murm_lowercase, SORT_DESC, SORT_NUMERIC,$msg); 
 
          for ($x=0;$x<$msg_count;$x++){
             $xml->entry[$x]->code =  $msg[$x]['code'];
