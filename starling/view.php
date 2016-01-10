@@ -545,8 +545,17 @@
                </tr>";
 
       $odd_even = true;
-		for($i=($num-1);$i>-1;$i--){
-
+      for($i=($num-1);$i>-1;$i--){
+         
+         $link = false;
+         $file = $i.".xml";
+         if(file_exists($file)){
+            $info = file_get_contents($file);
+            //echo $info;
+            if(strstr($info,"<url>")){
+               $link = true;
+            }
+         }
 
          $change_str = "<td><a href='view.php?user=".$user;
          if(isset($_GET['see_closed'])){
@@ -567,7 +576,11 @@
 			   	echo '<tr bgcolor="#FF6666">';
 			   }
 			   
-            echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a></td>";   
+            echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a>";
+            if($link){
+               echo "(link)";
+            }
+            echo "</td>";   
             echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		   echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
 	 		   echo "<td>".($xml->entry[$i]->murmation)."</a></td>";
@@ -608,8 +621,12 @@
                   $odd_even = true;
                   echo '<tr bgcolor="#FFFFFF">';
 			      }
-			      echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a></td>";   
-			      echo "<td>".$xml->entry[$i]->title."</td>";   
+               echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a>";
+               if($link){
+                  echo "(link)";
+               }
+               echo "</td>";   
+               echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
 	 		      echo "<td>".($xml->entry[$i]->murmation)." </a></td>";
     
