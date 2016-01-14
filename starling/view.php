@@ -548,7 +548,7 @@
       for($i=($num-1);$i>-1;$i--){
          
          $link = false;
-         $file = $i.".xml";
+         $file = $xml->entry[$i]->code.".xml";
          if(file_exists($file)){
             $info = file_get_contents($file);
             //echo $info;
