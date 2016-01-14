@@ -78,7 +78,17 @@
 
       if(isset($_GET['user'])){ 
          $user = $_GET['user'];
-		   echo "<br><a href=\"view.php?user=".$user."\">Back to main list</a><br><br>";
+         echo "<br><a href=\"view.php?user=".$user;
+         if(isset($_GET['sort'])){
+            echo "&sort";
+         }
+         if(isset($_GET['sort_m'])){
+            echo "&sort_m";
+         }
+         if(isset($_GET['see_closed'])){
+            echo "&see_closed";
+         }
+         echo "\">Back to main list</a><br><br>";
       }
 		// Add new updates
 		echo '

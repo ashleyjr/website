@@ -576,7 +576,18 @@
 			   	echo '<tr bgcolor="#FF6666">';
 			   }
 			   
-            echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a>";
+            echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code; 
+            if(isset($_GET['sort'])){
+               echo "&sort";
+            }
+            if(isset($_GET['sort_m'])){
+               echo "&sort_m";
+            }
+            if(isset($_GET['see_closed'])){
+               echo "&see_closed";
+            }
+            echo "'>".$xml->entry[$i]->code."</a>";
+
             if($link){
                echo "(link)";
             }
@@ -621,7 +632,20 @@
                   $odd_even = true;
                   echo '<tr bgcolor="#FFFFFF">';
 			      }
-               echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code."'>".$xml->entry[$i]->code."</a>";
+
+               echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code; 
+               if(isset($_GET['sort'])){
+                  echo "&sort";
+               }
+               if(isset($_GET['sort_m'])){
+                  echo "&sort_m";
+               }
+               if(isset($_GET['see_closed'])){
+                  echo "&see_closed";
+               }
+               echo "'>".$xml->entry[$i]->code."</a>";
+
+                  
                if($link){
                   echo "(link)";
                }
