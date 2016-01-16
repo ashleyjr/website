@@ -99,9 +99,7 @@
 				<label for="detail">Detail</label><br>
 				<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
 				<label for="murmation">Murmation</label><br>	
-            			<input  type="radio" name="murmation" value="1">                        1    
-                     <input  type="radio" name="murmation" value="6">                        6
-                     <input  type="radio" name="murmation" value="12">                       12 
+            			<input  type="radio" name="murmation" value="0">                        0 
                      <input  type="radio" name="murmation" value="24">                       24 
             			<input  type="radio" name="murmation" value="48">                       2d  
             			<input  type="radio" name="murmation" value="72">                       3d
@@ -310,9 +308,7 @@
 					                <textarea  name="detail" maxlength="1000" cols="45" rows="6">'.$detail.'</textarea><br>
 					                <label for="murmation">Murmation</label><br>
 
-                                    <input  type="radio" name="murmation" value="1">                        1    
-                                    <input  type="radio" name="murmation" value="6">                        6
-                                    <input  type="radio" name="murmation" value="12">                       12 
+                                    <input  type="radio" name="murmation" value="0">                        0    
                                     <input  type="radio" name="murmation" value="24">                       24 
                                     <input  type="radio" name="murmation" value="48">                       2d  
                                     <input  type="radio" name="murmation" value="72">                       3d
