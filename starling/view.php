@@ -498,7 +498,7 @@
       }
       
 
-      if(isset($_GET['edit'])){     
+      if(isset($_GET['edit']) && !isset($_POST['detail'])){     
          if(!isset($_GET['see_closed']) && !isset($_GET['submit']) && !isset($_GET['sort_m'])  && !isset($_GET['sort'])){
             echo "<a href='view.php?user=".$user."'                  >Hide Form</a><p>";
             echo "<a href='view.php?user=".$user."&see_closed&edit=".$_GET['edit']."'              >Show Closed</a><p>"; 
