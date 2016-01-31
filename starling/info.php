@@ -136,8 +136,11 @@
 			
 		$num = $xml->count();
 	
-		echo "<table>";	
-		for($i=($num-1);$i>-1;$i--){
+      echo "<table>";
+      echo "<tr><th>Timestamp</th>";   
+      echo "<th>Info</th>";
+      echo "<th>URL</th>";
+      for($i=($num-1);$i>-1;$i--){
 			echo "<tr>";
 			echo "<td>".$xml->entry[$i]->date."</td>";	
 			echo "<td>".$xml->entry[$i]->info."</td>";
