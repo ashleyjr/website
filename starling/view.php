@@ -254,8 +254,8 @@
 				//
 				if( isset($_GET['edit'])){
 					if(isset($_POST['detail']) and isset($_POST['murmation']) and isset($_POST['code'])){
-                  				$code = post_unwrap($_POST['code']); 
-				                  $murmation = post_unwrap($_POST['murmation']);
+                  $code = post_unwrap($_POST['code']); 
+				      $murmation = post_unwrap($_POST['murmation']);
 						$detail = post_unwrap($_POST['detail']); 
 						$filename = "starlings.xml";
 						if(file_exists($filename)){
@@ -266,7 +266,8 @@
 							for($i=0;$i<$num;$i++){
 								$test = $xml->entry[$i]->code;
 								if($code == $test){
-									$xml->entry[$i]->detail = $detail;	
+                           $old = (string)$xml->entry[$i]->detail;
+                           $xml->entry[$i]->detail = $detail;	
                            $xml->entry[$i]->murmation = $murmation;
                            break;
 								}
@@ -281,6 +282,40 @@
 							$output =  $doc->saveXML();
 							// Save as xml file
 							file_put_contents($filename,$output);
+
+
+
+                     
+                     // Create the info file if it does not exist	
+		               $name = $code.".xml";
+		               if(!file_exists($name)){	
+		               	// Make xml file
+		               	$file = fopen($name,"wb");
+		               	$entry = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<i".$code.">\n</i".$code.">\n";
+		               	fwrite($file,$entry);
+		               	fclose($file);
+		               }
+                     
+                     
+                     // Add change to info log 
+                     $xml = new SimpleXMLElement(file_get_contents($name)); 
+			            $num = $xml->count();
+			            $xml->entry[$num]->code = $num+1;	
+			            $xml->entry[$num]->info = "DETAIL EDIT<br>Old: ".$old."<br>New: ".$detail;	
+                     $xml->entry[$num]->url = "";
+			            $xml->entry[$num]->date = gmdate("m/d/Y g:i:s A", time()-($ms));;
+			            // Add new entry
+			            $output = $xml->asXML();
+			            // Use DomDoc to format
+			            $doc = new DOMDocument();
+			            $doc->preserveWhiteSpace = false;
+			            $doc->formatOutput = true;
+			            $doc->loadXML($output);
+			            $output =  $doc->saveXML();
+			            // Save as xml file
+			            file_put_contents($name,$output);
+ 
+                  
                   }
 					}else{		
 						$code = $_GET['edit'];
