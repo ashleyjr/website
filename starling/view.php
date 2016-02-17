@@ -90,13 +90,31 @@
 
 
 
+
+
+
+
    $form =    '	
 			<form id="starling" name="starling" method="post" action="" enctype="application/x-www-form-urlencoded">
 				Submit Starling<br>
 					
 				<label for="title">Title </label><br>
-				<input  type="title" name="title" maxlength="50" size="50"><br>
-				<label for="detail">Detail</label><br>
+            <input list="title" name="title">
+               <datalist id="title">';
+
+	if(file_exists($filename)){
+	
+		// Open xml file and go through each entry
+	   $xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
+      $msg = array();
+      $msg_count = $xml->count();
+      for ($x=$msg_count;$x>-1;$x--){
+         $form .='<option value="'.(string)$xml->entry[$x]->title.'">';   
+      } 
+     }
+         
+   $form .= '</datalist><br>
+            <label for="detail">Detail</label><br>
 				<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
 				<label for="murmation">Murmation</label><br>	
             			<input  type="radio" name="murmation" value="0">                        0 
@@ -113,6 +131,14 @@
                      <br>
 				<input type="submit" value="Submit"><br>	
   			</form>';
+
+
+
+
+
+
+
+
 
    $user = "ashley181291";
    
