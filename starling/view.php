@@ -667,14 +667,19 @@
 
       $odd_even = true;
       for($i=($num-1);$i>-1;$i--){
-         
-         $link = false;
+
+   
          $file = $xml->entry[$i]->code.".xml";
          if(file_exists($file)){
             $info = file_get_contents($file);
             //echo $info;
-            if(strstr($info,"<url>")){
-               $link = true;
+            $code_add = "";
+            if(strstr($info,"<url>")){ 
+               $code_add .= "(link)";
+            }else{
+               if(strstr($info,"<info>")){
+                  $code_add .= "(info)";
+               }
             }
          }
 
@@ -709,9 +714,9 @@
             }
             echo "'>".$xml->entry[$i]->code."</a>";
 
-            if($link){
-               echo "(link)";
-            }
+
+            echo $code_add;
+                        
             echo "</td>";   
             echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		   echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
@@ -766,10 +771,9 @@
                }
                echo "'>".$xml->entry[$i]->code."</a>";
                
-                  
-               if($link){
-                  echo "(link)";
-               }
+               
+               echo $code_add; 
+               
                echo "</td>";   
                echo "<td>".$xml->entry[$i]->title."</td>";   
 	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
