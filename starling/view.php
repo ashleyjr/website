@@ -102,17 +102,18 @@
             <input list="title" name="title">
                <datalist id="title">';
 
-	if(file_exists($filename)){
-	
-		// Open xml file and go through each entry
-	   $xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
+   // Display 10 of the most recent entries
+   if(file_exists($filename)){	
+      // Open xml file and go through each entry
+      $xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
       $msg = array();
       $msg_count = $xml->count();
-      for ($x=$msg_count;$x>-1;$x--){
-         $form .='<option value="'.(string)$xml->entry[$x]->title.'">';   
+      for ($x=$msg_count;$x>$msg_count-11;$x--){
+         $form .='<option value="'.(string)$xml->entry[$x]->title.'">'; 
+         if($x == 0) break;  
       } 
-     }
-         
+   }
+   
    $form .= '</datalist><br>
             <label for="detail">Detail</label><br>
 				<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
