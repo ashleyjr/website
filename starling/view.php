@@ -723,9 +723,9 @@
 	 		   echo "<td>".($xml->entry[$i]->murmation)."</a></td>";
 
             if($xml->entry[$i]->status == "open"){
-               echo $change_str."&close=".$xml->entry[$i]->code."'>Close</a></td>";
+               echo $change_str."&close=".$xml->entry[$i]->code." 'id=\"c".$xml->entry[$i]->code."\" onclick='getScroll(\"c".$xml->entry[$i]->code."\")'>Close</a></td>";
             }else{	
-               echo $change_str."&reopen=".$xml->entry[$i]->code."'>Reopen</a></td>";
+               echo $change_str."&reopen=".$xml->entry[$i]->code." 'id=\"r".$xml->entry[$i]->code."\" onclick='getScroll(\"r".$xml->entry[$i]->code."\")'>Reopen</a></td>";
             }
             
             
@@ -741,11 +741,12 @@
             if(isset($_GET['sort_m'])){
                   $state = $state."&sort_m";
                }
+            
+            echo "<td><a id=\"d".$xml->entry[$i]->code."\" onclick='getScroll(\"d".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+</a></td>";
+            echo "<td><a id=\"w".$xml->entry[$i]->code."\" onclick='getScroll(\"w".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
+            echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
 
-            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+</a></td>";
-            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
-            echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>";
- 
+
             
             echo "</tr>";				
          }else{
@@ -779,8 +780,8 @@
 	 		      echo "<td>".stripslashes($xml->entry[$i]->detail)."</td>";    
 	 		      echo "<td>".($xml->entry[$i]->murmation)." </a></td>";
     
-		
-			      echo $change_str."&close=".$xml->entry[$i]->code."'>Close</a></td>";
+
+               echo $change_str."&close=".$xml->entry[$i]->code." 'id=\"c".$xml->entry[$i]->code."\" onclick='getScroll(\"c".$xml->entry[$i]->code."\")'>Close</a></td>";
 
                   
 			      echo "<td><a href='view.php?user=".$user."&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
@@ -797,11 +798,10 @@
                   $state = $state."&sort_m";
                }
 
-               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+</a></td>";
-               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
-               echo "<td><a href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>";
- 
-
+               echo "<td><a id=\"d".$xml->entry[$i]->code."\" onclick='getScroll(\"d".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+</a></td>";
+               echo "<td><a id=\"w".$xml->entry[$i]->code."\" onclick='getScroll(\"w".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
+               echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
+  
                echo "</tr>";				
            }
          }
@@ -813,5 +813,23 @@
 		echo "Access denied";
 	}	
 ?>
+
+
+      <script>
+         function getScroll(id) {
+            document.getElementById(id).href += "&scroll=" + window.pageYOffset;
+         }
+         var search = window.location.search,matches;
+         // if query string exists
+         if (search) {
+            // find scroll parameter in query string
+            matches = /scroll=(\d+)/.exec(search);
+            // jump to the scroll position if scroll parameter exists
+            if (matches) {
+               window.scrollTo(0, matches[1]);
+            }
+         }
+      </script>
+      
    </body>
 </html>
