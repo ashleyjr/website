@@ -96,11 +96,16 @@
                      height: 250px;
                   }
                </style>
-            ';
+                  ';
+            echo "<h2>Verilog Repo</h2>";
             $list = file_get_contents('https://raw.githubusercontent.com/ashleyjr/Verilog/master/list.txt');
+            echo "<ul>";
             foreach(preg_split("/((\r?\n)|(\r\n?))/", $list) as $line){
-               echo "<a href='verilog.php?file=".$line."'>".$line."</a><br>";
-            } 
+               if (strpos($line, '.v') !== false) {
+                  echo "<li><a href='verilog.php?file=".$line."'>".$line."</a><br>";
+               } 
+            }
+            echo "</ul>";
          } 
       ?> 
    </head>
