@@ -34,42 +34,101 @@
 
    <body>
    <h2>Cars and Bikes</h2>
-    My vehicle history from the embarrassing to astronomically awesome.
-	
-	<ul>
+       <table 
+         border="1"
+         style="
+         background-color:#FFFFFF;
+         border:1px  #8F590D;
+         width:50%;
+         border-collapse:collapse;" 
+      >
+      <tr>
+         <th>Brought</th>
+         <th>Sold</th>
+         <th>Vechicle</th>
+	  </tr>
+      <tr>
+         <td>2014</td>
+         <td>-</td>
+         <td><a href="#wendy">Mazda Mx5</a></td>
+      </tr>
+       <tr>
+         <td>2012</td>
+         <td>2014</td>
+         <td><a href="#gn">Suzuki GN 125cc</a></td>
+      </tr>
+        <tr>
+         <td>2010</td>
+         <td>2011</td>
+         <td><a href="#saxo">Citeron Saxo</a></td>
+      </tr>
+      <tr>
+         <td>2009</td>
+         <td>2010</td>
+         <td><a href="#landy">Land Rover Defender</a></td>
+      </tr>
+      <tr>
+         <td>2008</td>
+         <td>2009</td>
+         <td><a href="#dt">Yamaha DT 125cc</a></td>
+      </tr>
+      <tr>
+         <td>2007</td>
+         <td>2008</td>
+         <td><a href="#derbi">Derbi Senda DRD 50cc</a></td>
+      </tr>
+   </table>
 
-		<li>2008 to 2009 - Derbi Senda DRD 50cc<br>
 
-		First bike I ever rode. Dad taught me how to ride and I spent the next year clogging up the roads doing 30mph with this tiny engine.
-		I can't find any actual pictures but this is the same model.
-	
-		<p><img src="derbi1.jpg" alt="derbi1.jpg" target="_blank"><br> 	
+   
+		<p> 
+      <a id="wendy"></a>
+      <h3>Mazda Mx5</h3>
 
-		<li>2008 to 2009 - Yamaha DT 125cc<br>
+	  	<a><img src="wendy" alt="Wendy"></a>   <br>
+      Cheap thrills but keeps stalling in traffic. Considering selling on.      
 
-		Awesome bike. Took me a month to find the power band at which point I never stopped to gunning it everywhere.
-		Eventually blew up the exhaust on the bypass.
+ 
+		<p> 
+      <a id="gn"></a>
+      <h3>Suzuki GN 125cc</h3>
 
-		<p><img src="Yamaha1.jpg" alt="Yamaha1.jpg" target="_blank"><br> 	
+	  	<a><img src="gn" alt="gn"></a>   <br>
+      Very good MPG but a bit flashy. Bent the brake pedal by trying to use the bridge of ford and slipping on the wet wood. Sold to a friend from uni who got on well with the bike.
+ 
+		<p> 
+      <a id="saxo"></a>
+      <h3>Citeron Saxo</h3>
 
-		<li>2009 to 2010 - Land Rover<br>
+	  	<a><img src="saxo1" alt="saxo1"></a>   <br>
+      Not a bad little car. Special edition which meant it had different colour seat belts!
+
+		<p> 
+      <a id="landy"></a>
+      <h3>Land Rover Defender</h3>
+
+	  	<a><img src="LandRover1" alt="LandRover1"></a><a><img src="LandRover2" alt="LandRover2"></a><a><img src="LandRover3" alt="LandRover3"></a><br>
 
 		Hours of fun. 
 		The winter I had this Landy it snowed heavily which was good news for me.
-					
 
-		<p><img src="LandRover1.jpg" alt="LandRover1.jpg" target="_blank"><img src="LandRover2.jpg" alt="LandRover2.jpg" target="_blank"><img src="LandRover3.jpg" alt="LandRover3.jpg" target="_blank">
 
-		<li> 2010 to 2011 - Citeron Saxo<br>
+		<p> 
+      <a id="dt"></a>
+      <h3>Yamaha DT 125cc</h3>
 
-		<img src="saxo1.jpg" alt="saxo1.jpg" target="_blank">
+	  	<a><img src="Yamaha1" alt="Yamaha1"></a>   <br>
+  		Awesome bike. Took me a month to find the power band at which point I never stopped to gunning it everywhere.
+		Eventually blew up the exhaust on the bypass.
 
-		<li> 2012 to 2014 - Suzuki GN 125cc<br>
+ 
+		<p> 
+      <a id="derbi"></a>
+      <h3>Derbi Senda 50cc</h3>
 
-		<li> 2014 to Present - Mazda MX5<br>	
-		 
-
-	</ul>
-   	</body>
+	  	<a><img src="derbi1" alt="derbi1"></a>   <br>
+		First bike I ever rode. Dad taught me how to ride and I spent the next year clogging up the roads doing 30mph with this tiny engine.
+		I can't find any actual pictures but this is the same model.
+	</body>
 
 </html>
