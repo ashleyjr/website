@@ -44,40 +44,7 @@
    </head>
 <body>
 <?php
-
-
-   function xml2array ( $xmlObject, $out = array () )
-   {
-          foreach ( (array) $xmlObject as $index => $node )
-                     $out[$index] = ( is_object ( $node ) ) ? xml2array ( $node ) : $node;
-
-              return $out;
-   }
-
-
-   function array_sort_by_column(&$arr, $col, $dir = SORT_ASC) {
-      $sort_col = array();
-      foreach ($arr as $key=> $row) {
-         $sort_col[$key] = $row[$col];
-      }
-      array_multisort($sort_col, $dir, $arr);
-   }
-   
-   
-   function array_to_xml( $data, &$xml_data ) {
-      foreach( $data as $key => $value ) {
-      if( is_array($value) ) {
-      if( is_numeric($key) ){
-      $key = 'item'.$key; //dealing with <0/>..<n/> issues
-      }
-      $subnode = $xml_data->addChild($key);
-      array_to_xml($value, $subnode);
-      } else {
-      $xml_data->addChild("$key",htmlspecialchars("$value"));
-      }
-      }
-      }
-      
+        
 	function post_unwrap($input) {
     		$new = htmlspecialchars($input);
 		$new = utf8_encode($new);
@@ -87,17 +54,9 @@
 
 	$filename = "starlings.xml";
 
-
-
-
-
-
-
-
    $form =    '	
-			<form id="starling" name="starling" method="post" action="" enctype="application/x-www-form-urlencoded">
-				Submit Starling<br>
-					
+			   <form id="starling" name="starling" method="post" action="" enctype="application/x-www-form-urlencoded">
+				Submit Starling<br>	
 				<label for="title">Title </label><br>
             <input list="title" name="title">
                <datalist id="title">';
