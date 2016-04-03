@@ -52,7 +52,12 @@
          <th>Title</th>
          <th>Duration</th>
 	  </tr>
-		<tr>
+      <tr>
+         <td>Spring 2016</td>
+         <td><a href="#east">Bratislava to Split</a></td>
+         <td>9 days</td>
+      </tr>
+      <tr>
          <td>Summer 2014</td>
          <td><a href="#canada">Vancouver to Montreal</a></td>
          <td>4 weeks</td>
@@ -71,16 +76,22 @@
       </table>
 
 
+		<p> 
+      <a id="east"></a>
+      <h3>Bratislava to Split</h3>
+
+	  	<a><img src="east1.png" alt="East euro route"></a><a><img src="east2.jpg" alt="Drowning bee"></a><a><img src="east3.jpg" alt="Ellie on wall"></a><a><img src="east4.jpg" alt="snow"></a><a><img src="east5.jpg" alt="Coast"></a><a><img src="east6.jpg" alt="Train"></a>
+   <br>
+     Me and my girlfriend, Ellie, travel from Bratislava, Slovakia to Split, Croatia. Speeding across Austria on a night train we settled
+      in Slovenia for a while. Bohinj lake in the Triglavski national park was incredible. Moving down south we jumped across the Dalmatian islands
+      which was a strange experience in out of season tourist towns. Will certainly be heading back to Croatia!
+
 
 		<p> 
       <a id="canada"></a>
       <h3>Vancouver to Montreal</h3>
 
-	  	<a><img src="Canada1.jpg" alt="Canada route 1"></a>
-		<a><img src="Canada2.jpg" alt="Canada route 2"></a>
-		<a><img src="gang.jpg" alt="Canada gang"></a>
-		<a><img src="raft.jpg" alt="Rafting"></a>
-		<a><img src="monkey.jpg" alt="Monkey on the road"></a>
+	  	<a><img src="Canada1.jpg" alt="Canada route 1"></a><a><img src="Canada2.jpg" alt="Canada route 2"></a><a><img src="gang.jpg" alt="Canada gang"></a><a><img src="raft.jpg" alt="Rafting"></a><a><img src="monkey.jpg" alt="Monkey on the road"></a>
 	<br>
 	  Me and four friends from University take to the roads of Canda in an RV. Visting British Columbia and Alberta. We then visted Toronto, Ottawa and finally Montreal by train.
 		Truely amazing. Surfing in the Pacific ocean and white water rafting in the Rockies followed by the humming streets of downtown Toronto. Such a contrast in a vast country of which we only saw a tiny fraction.
