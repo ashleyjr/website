@@ -89,111 +89,85 @@
    if($_GET['user'] != $user){                                                                                       // Basic username in url
       echo "Access denied";
    }else{
-	// SUBMIT
-	//
-	if( isset($_GET['submit'])){
-		if( isset($_POST['title']) 	and
-			isset($_POST['detail']) and
-			isset($_POST['murmation']) ){
-
-			   // Look for new number
-			   $filename = "starlings.xml";
-			   $end = "</starlings>";
-			   while(1){
-			   	if(file_exists($filename)){
-			   		// Open xml	
-			   		$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
-			   		// Find next code
-			   		$num = $xml->count();
-			   		$code = 0;
-			   		for($i=0;$i<$num;$i++){
-			   			$test = intval($xml->entry[$i]->code);
-			   			if($code == $test){
-			   				$code = $test + 1;
-			   			}
-			   		}
-			   		// Add new entry
-			   		$entry = $xml->addChild('entry');
-			   		$entry->addChild("code",$code);
-			   		$entry->addChild("title",utf8_encode($htmlspecialchars(($_POST['title']))));
-			   		$entry->addChild("detail",utf8_encode($htmlspecialchars(($_POST['detail']))));
-			   		$entry->addChild("murmation",utf8_encode($htmlspecialchars(($_POST['murmation']))));
-			   		$entry->addChild("status","open");
-			   		$entry->addChild("created",gmdate('d-m-Y'));
-			   		$output = $xml->asXML();
-			   		// Use DomDoc to format
-			   		$doc = new DOMDocument();
-			   		$doc->preserveWhiteSpace = false;
-			   		$doc->formatOutput = true;
-			   		$doc->loadXML($output);
-			   		$output =  $doc->saveXML();
-			   		// Save as xml file
-			   		file_put_contents($filename,$output);
-			   		break;		
-			   	}else{
-			   		$file = fopen($filename,"wb");
-			   		$entry = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<starlings>\n</starlings>";
-			   		fwrite($file,$entry);
-			   		fclose($file);
+	   if( isset($_GET['submit'])){                                                                                   // ------------------------ SUBMIT
+		   if(   isset($_POST['title']      ) 	and
+			      isset($_POST['detail']     )  and
+			      isset($_POST['murmation']) ){    
+			   if(file_exists($filename) == False){                                                                     // If file does not exist then create
+               $file = fopen($filename,"wb");
+			   	$entry = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<starlings>\n</starlings>";
+			   	fwrite($file,$entry);
+			   	fclose($file);
+            }
+            $xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));                                 // Open up the file to look for new number
+			   $num = $xml->count();                                                                                    // Number of entrie in database
+			   $code = 0;
+			   for($i=0;$i<$num;$i++){
+			   	$test = intval($xml->entry[$i]->code);
+			   	if($code == $test){
+			   		$code = $test + 1;
 			   	}
 			   }
-
-         echo $form; 
-      }else{
-		   echo $form;         
-      }
-      if(isset($_GET['murmation']) and isset($_GET['code'])){
-                  $code = $_GET['code']; 
-                  $murmation = $_GET['murmation']; 
-						$filename = "starlings.xml";
-						if(file_exists($filename)){
-							// Open xml	
-							$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
-							// Find next code
-							$num = $xml->count();
-							for($i=0;$i<$num;$i++){
-								$test = $xml->entry[$i]->code;
-								if($code == $test){	
-                           $xml->entry[$i]->murmation = $murmation;
-                           break;
-								}
-							}
-							// Add new entry
-							$output = $xml->asXML();
-							// Use DomDoc to format
-							$doc = new DOMDocument();
-							$doc->preserveWhiteSpace = false;
-							$doc->formatOutput = true;
-							$doc->loadXML($output);
-							$output =  $doc->saveXML();
-							// Save as xml file
-							file_put_contents($filename,$output);
-                  }
-      }           
-	}else{
-		// CLOSE
-		//
-		if( isset($_GET['close'])){
-			$code = $_GET['close'];
-			$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
-			$num = $xml->count();
-			for($i=0;$i<$num;$i++){
-				$test = $xml->entry[$i]->code;
-				if($test == $code){
-					$xml->entry[$i]->status = "closed";
-					break;
-				}
-			}
-			$output = $xml->asXML();
-			// Use DomDoc to format
-			$doc = new DOMDocument();
-			$doc->preserveWhiteSpace = false;
-			$doc->formatOutput = true;
-			$doc->loadXML($output);
-			$output =  $doc->saveXML();
-			file_put_contents($filename, $output);
-      
-      }else{
+			   $entry = $xml->addChild('entry');                                                                        // Build the entry
+			   $entry->addChild("code",$code);
+			   $entry->addChild("title",utf8_encode(htmlspecialchars(($_POST['title']))));
+			   $entry->addChild("detail",utf8_encode(htmlspecialchars(($_POST['detail']))));
+			   $entry->addChild("murmation",utf8_encode(htmlspecialchars(($_POST['murmation']))));
+			   $entry->addChild("status","open");
+			   $entry->addChild("created",gmdate('d-m-Y'));
+			   $output = $xml->asXML();
+			   $doc = new DOMDocument();                                                                                // Use DomDoc to format
+			   $doc->preserveWhiteSpace = false;
+			   $doc->formatOutput = true;
+			   $doc->loadXML($output);
+			   $output =  $doc->saveXML();
+			   file_put_contents($filename,$output);                                                                    // Save xml file
+         }      
+         echo $form;  
+         if(   isset($_GET['murmation'])  and 
+               isset($_GET['code'])       ){
+            $code = $_GET['code']; 
+            $murmation = $_GET['murmation']; 
+			   $filename = "starlings.xml";
+			   if(file_exists($filename)){
+			   	$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
+			   	$num = $xml->count();                                                                                 // Find next code
+			   	for($i=0;$i<$num;$i++){
+			   		$test = $xml->entry[$i]->code;
+			   		if($code == $test){	
+                     $xml->entry[$i]->murmation = $murmation;
+                     break;
+			   		}
+			   	}
+			   	$output = $xml->asXML();
+			   	$doc = new DOMDocument();
+			   	$doc->preserveWhiteSpace = false;
+			   	$doc->formatOutput = true;
+			   	$doc->loadXML($output);
+			   	$output =  $doc->saveXML();
+			   	file_put_contents($filename,$output);
+            }
+         }           
+	   }else{
+		   if( isset($_GET['close'])){                                                                                 // -------------------------------- CLOSE                                                                            
+			   $code = $_GET['close'];
+			   $xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
+			   $num = $xml->count();
+			   for($i=0;$i<$num;$i++){
+				   $test = $xml->entry[$i]->code;
+				   if($test == $code){
+					   $xml->entry[$i]->status = "closed";                                                                // Set the code to "Closed"
+					   break;
+			   	}
+			   }
+			   $output = $xml->asXML();
+			   $doc = new DOMDocument();
+			   $doc->preserveWhiteSpace = false;
+			   $doc->formatOutput = true;
+			   $doc->loadXML($output);
+			   $output =  $doc->saveXML();
+			   file_put_contents($filename, $output); 
+         }else{
 			// REOPEN
 			//
 			if( isset($_GET['reopen'])){
