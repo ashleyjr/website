@@ -86,11 +86,9 @@
                      <input type="submit" value="Submit"><br>	
   			</form>';
 
-   if($_GET['user'] == $user){
-
-
-
-
+   if($_GET['user'] != $user){                                                                                       // Basic username in url
+      echo "Access denied";
+   }else{
 	// SUBMIT
 	//
 	if( isset($_GET['submit'])){
@@ -752,8 +750,6 @@
 		echo "</table>";
 	}
 
-	}else{
-		echo "Access denied";
 	}	
 ?>
 
