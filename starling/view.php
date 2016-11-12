@@ -43,36 +43,35 @@
       </style>
    </head>
 <body>
-<?php
-        
+<?php  
 	function post_unwrap($input) {
-    		$new = htmlspecialchars($input);
+    	$new = htmlspecialchars($input);
 		$new = utf8_encode($new);
 		return $new;
-	}
-	
+   }
 
-	$filename = "starlings.xml";
+   // XML file
+   $filename = "starlings.xml";
+   
+   // Username required in url
+   $user = "ashley181291";
 
+   // Form builder
    $form =    '	
 			   <form id="starling" name="starling" method="post" action="" enctype="application/x-www-form-urlencoded">
 				Submit Starling<br>	
 				<label for="title">Title </label><br>
             <input list="title" name="title">
                <datalist id="title">';
-
-   // Display 10 of the most recent entries
-   if(file_exists($filename)){	
-      // Open xml file and go through each entry
-      $xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
-      $msg = array();
-      $msg_count = $xml->count();
-      for ($x=$msg_count;$x>$msg_count-11;$x--){
-         $form .='<option value="'.(string)$xml->entry[$x]->title.'">'; 
-         if($x == 0) break;  
-      } 
-   }
-   
+               if(file_exists($filename)){	                                                                        // 10 recent entries to fill drop down
+                  $xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));                           // Open the xml file and go through for entries
+                  $msg = array();
+                  $msg_count = $xml->count();
+                  for ($x=$msg_count;$x>$msg_count-11;$x--){                                                         // Add entries to html
+                     $form .='<option value="'.(string)$xml->entry[$x]->title.'">'; 
+                     if($x == 0) break;  
+                  } 
+               }
    $form .= '</datalist><br>
             <label for="detail">Detail</label><br>
 				<textarea  name="detail" maxlength="1000" cols="45" rows="6"></textarea><br>
@@ -87,8 +86,7 @@
                      <input  type="radio" name="murmation" value="172" checked="checked">    1w
                      <input  type="radio" name="murmation" value="336">                      2w
                      <input  type="radio" name="murmation" value="504">                      3w
-                     <input  type="radio" name="murmation" value="672">                      1m
-                     
+                     <input  type="radio" name="murmation" value="672">                      1m               
                      <br>
                      <br> 
                      <input type="submit" value="Submit"><br>	
@@ -97,13 +95,6 @@
 
 
 
-
-
-
-
-
-   $user = "ashley181291";
-   
    if($_GET['user'] == $user){
 
 
