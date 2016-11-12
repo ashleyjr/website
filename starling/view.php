@@ -44,12 +44,6 @@
    </head>
 <body>
 <?php  
-	function post_unwrap($input) {
-    	$new = htmlspecialchars($input);
-		$new = utf8_encode($new);
-		return $new;
-   }
-
    // XML file
    $filename = "starlings.xml";
    
@@ -92,9 +86,6 @@
                      <input type="submit" value="Submit"><br>	
   			</form>';
 
-
-
-
    if($_GET['user'] == $user){
 
 
@@ -126,9 +117,9 @@
 			   		// Add new entry
 			   		$entry = $xml->addChild('entry');
 			   		$entry->addChild("code",$code);
-			   		$entry->addChild("title",post_unwrap($_POST['title']));
-			   		$entry->addChild("detail",post_unwrap($_POST['detail']));
-			   		$entry->addChild("murmation",post_unwrap($_POST['murmation']));
+			   		$entry->addChild("title",utf8_encode($htmlspecialchars(($_POST['title']))));
+			   		$entry->addChild("detail",utf8_encode($htmlspecialchars(($_POST['detail']))));
+			   		$entry->addChild("murmation",utf8_encode($htmlspecialchars(($_POST['murmation']))));
 			   		$entry->addChild("status","open");
 			   		$entry->addChild("created",gmdate('d-m-Y'));
 			   		$output = $xml->asXML();
@@ -233,9 +224,9 @@
 				//
 				if( isset($_GET['edit'])){
 					if(isset($_POST['detail']) and isset($_POST['murmation']) and isset($_POST['code'])){
-                  $code = post_unwrap($_POST['code']); 
-				      $murmation = post_unwrap($_POST['murmation']);
-						$detail = post_unwrap($_POST['detail']); 
+                  $code = utf8_encode($htmlspecialchars(($_POST['code']))); 
+				      $murmation = utf8_encode($htmlspecialchars($_POST['murmation']));
+						$detail = utf8_encode($htmlspecialchars(($_POST['detail']))); 
 						$filename = "starlings.xml";
 						if(file_exists($filename)){
 							// Open xml	
