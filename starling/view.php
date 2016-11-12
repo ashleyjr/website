@@ -43,7 +43,17 @@
       </style>
    </head>
 <body>
-<?php  
+<?php 
+   function saveXML($xml,$filename){                                                                                 // Format and save xml
+      $output = $xml->asXML();
+		$doc = new DOMDocument();                                                                                      // Use DomDoc to format
+		$doc->preserveWhiteSpace = false;
+		$doc->formatOutput = true;
+		$doc->loadXML($output);
+		$output =  $doc->saveXML();
+		file_put_contents($filename,$output);                                                                          // Save xml file 
+   }
+
    // XML file
    $filename = "starlings.xml";
    
@@ -115,13 +125,7 @@
 			   $entry->addChild("murmation",utf8_encode(htmlspecialchars(($_POST['murmation']))));
 			   $entry->addChild("status","open");
 			   $entry->addChild("created",gmdate('d-m-Y'));
-			   $output = $xml->asXML();
-			   $doc = new DOMDocument();                                                                                // Use DomDoc to format
-			   $doc->preserveWhiteSpace = false;
-			   $doc->formatOutput = true;
-			   $doc->loadXML($output);
-			   $output =  $doc->saveXML();
-			   file_put_contents($filename,$output);                                                                    // Save xml file
+            saveXML($xml,$filename);
          }      
          echo $form;  
          if(   isset($_GET['murmation'])  and 
@@ -139,13 +143,7 @@
                      break;
 			   		}
 			   	}
-			   	$output = $xml->asXML();
-			   	$doc = new DOMDocument();
-			   	$doc->preserveWhiteSpace = false;
-			   	$doc->formatOutput = true;
-			   	$doc->loadXML($output);
-			   	$output =  $doc->saveXML();
-			   	file_put_contents($filename,$output);
+               saveXML($xml,$filename);
             }
          }           
 	   }else{
@@ -159,39 +157,22 @@
 					   $xml->entry[$i]->status = "closed";                                                                // Set the code to "Closed"
 					   break;
 			   	}
-			   }
-			   $output = $xml->asXML();
-			   $doc = new DOMDocument();
-			   $doc->preserveWhiteSpace = false;
-			   $doc->formatOutput = true;
-			   $doc->loadXML($output);
-			   $output =  $doc->saveXML();
-			   file_put_contents($filename, $output); 
+            }
+            saveXML($xml,$filename);
          }else{
-			// REOPEN
-			//
-			if( isset($_GET['reopen'])){
-				$code = $_GET['reopen'];
-				$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
-				$num = $xml->count();
-				for($i=0;$i<$num;$i++){
-					$test = $xml->entry[$i]->code;
-					if($test == $code){
-						$xml->entry[$i]->status = "open";
-						break;
-					}
-				}
-					//		echo $out;
-				$output = $xml->asXML();
-				// Use DomDoc to format
-				$doc = new DOMDocument();
-				$doc->preserveWhiteSpace = false;
-				$doc->formatOutput = true;
-				$doc->loadXML($output);
-				$output =  $doc->saveXML();
-				file_put_contents($filename, $output);
-           
-     		}else{
+			   if( isset($_GET['reopen'])){                                                                             // ----------------------------------REOPEN
+				   $code = $_GET['reopen'];
+				   $xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
+				   $num = $xml->count();
+				   for($i=0;$i<$num;$i++){
+				   	$test = $xml->entry[$i]->code;
+				   	if($test == $code){
+				   		$xml->entry[$i]->status = "open";
+				   		break;
+				   	}
+               }
+               saveXML($xml,$filename);
+     		   }else{
 				// EDIT
 				//
 				if( isset($_GET['edit'])){
