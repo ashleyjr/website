@@ -248,41 +248,27 @@
 				   	      </form>';
      			   	}
                }else{
-               // Murmation
-               //
-               if(isset($_GET['murmation']) and isset($_GET['code'])){
-                  $code = $_GET['code']; 
-                  $murmation = $_GET['murmation']; 
-						$filename = "starlings.xml";
-						if(file_exists($filename)){
-							// Open xml	
-							$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
-							// Find next code
-							$num = $xml->count();
-							for($i=0;$i<$num;$i++){
-								$test = $xml->entry[$i]->code;
-								if($code == $test){	
-                           $xml->entry[$i]->murmation = $murmation;
-                           break;
-								}
-							}
-							// Add new entry
-							$output = $xml->asXML();
-							// Use DomDoc to format
-							$doc = new DOMDocument();
-							$doc->preserveWhiteSpace = false;
-							$doc->formatOutput = true;
-							$doc->loadXML($output);
-							$output =  $doc->saveXML();
-							// Save as xml file
-							file_put_contents($filename,$output);
-                  
-                  } 
-               }            
-            }
-			}
-		}
-	}
+                  if(isset($_GET['murmation']) and isset($_GET['code'])){                                               // ------------------------------ MURMATION
+                     $code = $_GET['code']; 
+                     $murmation = $_GET['murmation']; 
+					   	$filename = "starlings.xml";
+					   	if(file_exists($filename)){	
+					   		$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
+					   		$num = $xml->count();
+					   		for($i=0;$i<$num;$i++){
+					   			$test = $xml->entry[$i]->code;
+					   			if($code == $test){	
+                              $xml->entry[$i]->murmation = $murmation;
+                              break;
+					   			}
+                        }
+                        saveXML($xml,$filename);                                      
+                     } 
+                  }            
+               }
+			   }
+		   }
+	   }
 
 
 
