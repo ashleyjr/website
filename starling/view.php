@@ -173,121 +173,81 @@
                }
                saveXML($xml,$filename);
      		   }else{
-				// EDIT
-				//
-				if( isset($_GET['edit'])){
-					if(isset($_POST['detail']) and isset($_POST['murmation']) and isset($_POST['code'])){
-                  $code = utf8_encode($htmlspecialchars(($_POST['code']))); 
-				      $murmation = utf8_encode($htmlspecialchars($_POST['murmation']));
-						$detail = utf8_encode($htmlspecialchars(($_POST['detail']))); 
-						$filename = "starlings.xml";
-						if(file_exists($filename)){
-							// Open xml	
-							$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
-							// Find next code
-							$num = $xml->count();
-							for($i=0;$i<$num;$i++){
-								$test = $xml->entry[$i]->code;
-								if($code == $test){
-                           $old = (string)$xml->entry[$i]->detail;
-                           $xml->entry[$i]->detail = $detail;	
-                           $xml->entry[$i]->murmation = $murmation;
-                           break;
-								}
-							}
-							// Add new entry
-							$output = $xml->asXML();
-							// Use DomDoc to format
-							$doc = new DOMDocument();
-							$doc->preserveWhiteSpace = false;
-							$doc->formatOutput = true;
-							$doc->loadXML($output);
-							$output =  $doc->saveXML();
-							// Save as xml file
-							file_put_contents($filename,$output);
-
-
-
-                     
-                     // Create the info file if it does not exist	
-		               $name = $code.".xml";
-		               if(!file_exists($name)){	
-		               	// Make xml file
-		               	$file = fopen($name,"wb");
-		               	$entry = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<i".$code.">\n</i".$code.">\n";
-		               	fwrite($file,$entry);
-		               	fclose($file);
-		               }
-                     
-                     
-                     // Add change to info log 
-                     $xml = new SimpleXMLElement(file_get_contents($name)); 
-			            $num = $xml->count();
-			            $xml->entry[$num]->code = $num+1;	
-			            $xml->entry[$num]->info = "DETAIL EDIT<br>Old: ".$old."<br>New: ".$detail;	
-                     $xml->entry[$num]->url = "";
-			            $xml->entry[$num]->date = gmdate("m/d/Y g:i:s A", time()-($ms));;
-			            // Add new entry
-			            $output = $xml->asXML();
-			            // Use DomDoc to format
-			            $doc = new DOMDocument();
-			            $doc->preserveWhiteSpace = false;
-			            $doc->formatOutput = true;
-			            $doc->loadXML($output);
-			            $output =  $doc->saveXML();
-			            // Save as xml file
-			            file_put_contents($name,$output);
- 
-                  
-                  }
-					}else{		
-						$code = $_GET['edit'];
-						if(file_exists($filename)){
-							// Open xml	
-							$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
-							// Find next code
-							$num = $xml->count();
-							for($i=0;$i<$num;$i++){
-								$test = $xml->entry[$i]->code;
-								if($code == $test){
-									$detail = $xml->entry[$i]->detail;
-									$title = $xml->entry[$i]->title;		
-                           break;
-								}
-							}
-						}	
-					
-						echo '
-							<form id="starling" name="starling" method="post" action="">
-							Edit Starling '.$code.'	<br>
-							Title: '.$title.'<br>
-							Detail: '.$detail.'	<br>
-							<label for="detail">New Detail</label><br>
-					                <textarea  name="detail" maxlength="1000" cols="45" rows="6">'.$detail.'</textarea><br>
-					                <label for="murmation">Murmation</label><br>
-
-                                    <input  type="radio" name="murmation" value="0">                        0    
-                                    <input  type="radio" name="murmation" value="24">                       24 
-                                    <input  type="radio" name="murmation" value="48">                       2d  
-                                    <input  type="radio" name="murmation" value="72">                       3d
-                                    <input  type="radio" name="murmation" value="96">                       4d 
-                                    <input  type="radio" name="murmation" value="120">                      5d
-                                    <input  type="radio" name="murmation" value="148">                      6d
-                                    <input  type="radio" name="murmation" value="172" checked="checked">    1w
-                                    <input  type="radio" name="murmation" value="336">                      2w
-                                    <input  type="radio" name="murmation" value="504">                      3w
-                                    <input  type="radio" name="murmation" value="672">                      1m
-               
-                                    <br>
-					
-					      
-					                <input type="hidden" name="code" value="'.$code.'"> <br>
-					 
-					                <input type="submit" value="Submit">   	<br>
-							 
-					                </form>';
-     					}
-            }else{
+				   if( isset($_GET['edit'])){                                                                            // ---------------------------------- EDIT
+                  if(   isset($_POST['detail'])    and 
+                        isset($_POST['murmation']) and 
+                        isset($_POST['code'])      ){
+                     $code = utf8_encode(htmlspecialchars(($_POST['code']))); 
+				         $murmation = utf8_encode(htmlspecialchars($_POST['murmation']));
+				   		$detail = utf8_encode(htmlspecialchars(($_POST['detail']))); 
+				   		$filename = "starlings.xml";
+				   		if(file_exists($filename)){
+				   			$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
+				   			$num = $xml->count();
+				   			for($i=0;$i<$num;$i++){
+				   				$test = $xml->entry[$i]->code;
+				   				if($code == $test){
+                              $old = (string)$xml->entry[$i]->detail;
+                              $xml->entry[$i]->detail = $detail;	
+                              $xml->entry[$i]->murmation = $murmation;
+                              break;
+				   				}
+                        }
+                        saveXML($xml,$filename);
+		                  $name = $code.".xml";                                                                        // Create the info file if it does not exist	
+		                  if(!file_exists($name)){	
+		                  	$file = fopen($name,"wb");
+		                  	$entry = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<i".$code.">\n</i".$code.">\n";
+		                  	fwrite($file,$entry);
+		                  	fclose($file);
+		                  }
+                        $xml = new SimpleXMLElement(file_get_contents($name));                                       // Add change to info log 
+			               $num = $xml->count();
+			               $xml->entry[$num]->code = $num+1;	
+			               $xml->entry[$num]->info = "DETAIL EDIT<br>Old: ".$old."<br>New: ".$detail;	
+                        $xml->entry[$num]->url = "";
+			               $xml->entry[$num]->date = gmdate("m/d/Y g:i:s A", time()-($ms));;
+                        saveXML($xml,$name);                     
+                     }
+				   	}else{		
+				   		$code = $_GET['edit'];
+				   		if(file_exists($filename)){                                                                     // Get the existing info from the file
+				   			$xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
+				   			$num = $xml->count();
+				   			for($i=0;$i<$num;$i++){
+				   				$test = $xml->entry[$i]->code;
+				   				if($code == $test){
+				   					$detail = $xml->entry[$i]->detail;
+				   					$title = $xml->entry[$i]->title;		
+                              break;
+				   				}
+				   			}
+				   		}		
+				   		echo '
+				   			<form id="starling" name="starling" method="post" action="">
+				   			Edit Starling '.$code.'	<br>
+				   			Title: '.$title.'<br>
+				   			Detail: '.$detail.'	<br>
+				   			<label for="detail">New Detail</label><br>
+				   	      <textarea  name="detail" maxlength="1000" cols="45" rows="6">'.$detail.'</textarea><br>
+				   	      <label for="murmation">Murmation</label><br>
+                        <input  type="radio" name="murmation" value="0">                        0    
+                        <input  type="radio" name="murmation" value="24">                       24 
+                        <input  type="radio" name="murmation" value="48">                       2d  
+                        <input  type="radio" name="murmation" value="72">                       3d
+                        <input  type="radio" name="murmation" value="96">                       4d 
+                        <input  type="radio" name="murmation" value="120">                      5d
+                        <input  type="radio" name="murmation" value="148">                      6d
+                        <input  type="radio" name="murmation" value="172" checked="checked">    1w
+                        <input  type="radio" name="murmation" value="336">                      2w
+                        <input  type="radio" name="murmation" value="504">                      3w
+                        <input  type="radio" name="murmation" value="672">                      1m
+                        <br>	      
+				   	      <input type="hidden" name="code" value="'.$code.'"> <br>
+				   	      <input type="submit" value="Submit">   	<br>
+				   	      </form>';
+     			   	}
+               }else{
                // Murmation
                //
                if(isset($_GET['murmation']) and isset($_GET['code'])){
