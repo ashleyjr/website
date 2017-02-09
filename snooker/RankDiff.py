@@ -7,6 +7,14 @@ def striphtml(data):
     p = re.compile(r'<.*?>')
     return p.sub('', data)
 
+
+
+
+
+
+
+""" The ranking """
+
 url = 'http://www.snooker.org/res/index.asp?template=31&season=2016'
 text_soup = BeautifulSoup(urlopen(url).read()) #read in
 
@@ -62,9 +70,38 @@ for i in range(len(players)):
     print str(positions[i]) + "\t" + str(changes[i]) + "\t" + str(players[i])
 
 
-#print "Found " + s#########tr(len(players))
 
+
+
+
+
+""" The matches """
+
+url = 'http://www.snooker.org/res/index.asp?template=24'
+text_soup = BeautifulSoup(urlopen(url).read()) #read in
+
+
+""" Print all table lines """
+#table = text_soup.findAll('td')
 #for line in table:
 #    print line
-    #if 'EPS (Basic)' in title.text:
-    #    print [td.text for td in title.findNextSiblings(attrs={'class': 'valueCell'}) if td.text]
+
+
+""" Find lines of interest """
+players = text_soup.findAll('td', {'class':'player '})
+
+#print changes
+
+""" Check length of lines """
+print "Found " + str(len(players)) + " players"
+
+
+""" Output the data of interest """
+i = 0
+while i < len(players):
+    one = str(BeautifulSoup(str(players[i])).text)
+    i += 1
+    two = str(BeautifulSoup(str(players[i])).text)
+    i += 1
+    print one + "\t\tV\t\t" + two
+
