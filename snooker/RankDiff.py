@@ -88,20 +88,39 @@ text_soup = BeautifulSoup(urlopen(url).read()) #read in
 
 
 """ Find lines of interest """
-players = text_soup.findAll('td', {'class':'player '})
+matches = text_soup.findAll('td', {'class':'player '})
 
 #print changes
 
 """ Check length of lines """
-print "Found " + str(len(players)) + " players"
+print "Found " + str(len(matches)) + " matches"
 
 
 """ Output the data of interest """
 i = 0
-while i < len(players):
-    one = str(BeautifulSoup(str(players[i])).text)
+while i < len(matches):
+    one = str(BeautifulSoup(str(matches[i])).text)
     i += 1
-    two = str(BeautifulSoup(str(players[i])).text)
+    two = str(BeautifulSoup(str(matches[i])).text)
     i += 1
-    print one + "\t\tV\t\t" + two
+
+    for j in range(0,len(players)):
+        if players[j] in one:
+            one_position = positions[j],
+            one_change = changes[j]
+            one_player = players[j]
+    for j in range(0,len(players)):
+        if players[j] in two:
+            two_position = positions[j],
+            two_change = changes[j]
+            two_player = players[j]
+    print "---------- Match " + str(i/2) + " ----------"
+    print "Difference:        " + str(abs(one_position[0] - two_position[0]))
+    print "Player one:        " + str(one_player)
+    print "Player one rank:   " + str(one_position[0])
+    print "Player one change: " + str(one_change)
+    print "Player two:        " + str(two_player)
+    print "Player two rank:   " + str(two_position[0])
+    print "Player two change: " + str(two_change)
+    print "\n\n"
 
