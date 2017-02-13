@@ -11,15 +11,15 @@ def results(url):
     times = []
     for time in timehtml:
         times.append(str(BeautifulSoup(str(time)).text).replace("&nbsp;", ""))
-    ones = []
-    twos = []
+    winners = []
+    losers = []
     i = 0
     while(i < len(players)):
-        ones.append(str(BeautifulSoup(str(players[i])).text))
+        winners.append(str(BeautifulSoup(str(players[i])).text))
         i += 1
-        twos.append(str(BeautifulSoup(str(players[i])).text))
+        losers.append(str(BeautifulSoup(str(players[i])).text))
         i += 1
-    return times,ones,twos
+    return times,winners,losers
 
 
 
@@ -66,9 +66,22 @@ def getRank(find_player):
         if players[i] in find_player:
             return players[i],positions[i],changes[i]
 
-times,ones,twos = results("http://www.snooker.org/res/index.asp?template=22&season=2016")
+times,winners,losers = results("http://www.snooker.org/res/index.asp?template=22&season=2016")
 #getRank("test")
 
 for i in range(0,len(times)):
-    print times[i],getRank(ones[i]),getRank(twos[i])
-
+    try:
+        win_rank = getRank(winners[i])
+        lose_rank = getRank(losers[i])
+        print str(times[i]),
+        print ",",
+        print str(win_rank[0]),
+        print ",",
+        print str(win_rank[1]),
+        print ",",
+        print str(lose_rank[0]),
+        print ",",
+        print str(lose_rank[1]),
+        print "\n\r",
+    except:
+        pass
