@@ -4,6 +4,13 @@ from BeautifulSoup import BeautifulSoup
 import re
 
 
+def getDate(url):
+    text_soup = BeautifulSoup(urlopen(url).read()) #read in
+    players = text_soup.findAll('td')
+    for play in players:
+        print play
+
+
 def results(url):
     text_soup = BeautifulSoup(urlopen(url).read()) #read in
     timehtml = text_soup.findAll('td', {'class':'time'})
@@ -66,22 +73,25 @@ def getRank(find_player):
         if players[i] in find_player:
             return players[i],positions[i],changes[i]
 
+
+#dates = getDate("http://www.snooker.org/res/index.asp?template=22&season=2016")
 times,winners,losers = results("http://www.snooker.org/res/index.asp?template=22&season=2016")
 #getRank("test")
 
+f = open('matches.csv', 'a+')
 for i in range(0,len(times)):
+    print float(i)/len(times)
     try:
         win_rank = getRank(winners[i])
         lose_rank = getRank(losers[i])
-        print str(times[i]),
-        print ",",
-        print str(win_rank[0]),
-        print ",",
-        print str(win_rank[1]),
-        print ",",
-        print str(lose_rank[0]),
-        print ",",
-        print str(lose_rank[1]),
-        print "\n\r",
+        f.write(str(win_rank[0]))
+        f.write(",")
+        f.write(str(win_rank[1]))
+        f.write(",")
+        f.write(str(lose_rank[0]))
+        f.write(",")
+        f.write(str(lose_rank[1]))
+        f.write("\n")
     except:
         pass
+f.close()
