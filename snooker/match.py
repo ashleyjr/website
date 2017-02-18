@@ -8,7 +8,7 @@ import numpy as np
 def main(url, csv_file):
     """ Main """
 
-    print "\n\nGet today's matches\n"
+    print "Get today's matches\n"
 
     """ Remove old file if exists """
     try:
@@ -46,6 +46,9 @@ def main(url, csv_file):
 
     """ Print details """
     print "MATCHES: " + str(num_today) + " today"
+
+
+
 
 
 if __name__ == "__main__":

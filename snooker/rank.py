@@ -8,7 +8,7 @@ import numpy as np
 def main(url, csv_file):
     """ Main """
 
-    print "\n\nGet player rankings\n"
+    print "Get player rankings\n"
 
     """ Remove old file if exists """
     try:

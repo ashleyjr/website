@@ -1,4 +1,5 @@
 import os
+import smtplib
 
 
 def main():
@@ -13,7 +14,6 @@ def main():
     print cmd
     os.system(cmd)
 
-    print "\n\n\n\n"
     """ Get upcoming matches """
     match_script = "match.py"
     match_url = "\"http://www.snooker.org/res/index.asp?template=24&season=2016\""
@@ -22,6 +22,32 @@ def main():
     cmd = "python " + match_script + " " + match_url + " " + match_file #+ #" > " + match_out
     print cmd
     os.system(cmd)
+
+    """ Get outcome of previous matches """
+    outcome_script = "outcome.py"
+    outcome_url = "\"http://www.snooker.org/res/index.asp?event=&template=22&season=2016&tzm=1\""
+    outcome_file = "outcome.csv"
+    outcome_out = "outcome_run.txt"
+    cmd = "python " + outcome_script + " " + outcome_url + " " + outcome_file  # + #" > " + match_out
+    print cmd
+    os.system(cmd)
+
+
+
+
+    """ Email details """
+    msg = ""
+    msg += "Subject: Snooker\n"
+    msg += "content"
+
+    email = open('email.txt', 'r').read()
+    password = open('password.txt', 'r').read()
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(email, password)
+    #server.sendmail(email, email, msg)
+    server.quit()
+
 
 if __name__ == "__main__":
     main()
