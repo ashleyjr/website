@@ -8,6 +8,8 @@ import numpy as np
 def main(url, csv_file):
     """ Main """
 
+    print "\n\nGet player rankings\n"
+
     """ Remove old file if exists """
     try:
         os.remove(csv_file)
