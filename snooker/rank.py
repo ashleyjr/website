@@ -85,4 +85,4 @@ def main(url, csv_file):
             print "   RANK: " + str(i) + " shared by " + str(num) + " players"
 
 if __name__ == "__main__":
-    main(sys.argv[1], "rank.csv")
+    main(sys.argv[1], sys.argv[2])
