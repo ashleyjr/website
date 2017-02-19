@@ -18,7 +18,7 @@ def main(url, csv_file):
 
     """ Create new file """
     f = open(csv_file, 'w+')
-    f.write("Rank,\t\tChange,\t\t\tSeed,\t\tName\n")
+    f.write("Rank,Change,Seed,Name\n")
 
     """ Read in table """
     text_soup = BeautifulSoup(urlopen(url).read())  # read in
@@ -61,9 +61,9 @@ def main(url, csv_file):
 
     """ Write download to csv file """
     for i in range(len(player)):
-        f.write(str(position[i]) + ",\t\t")
-        f.write(str(change[i]) + ",\t\t\t\t")
-        f.write(str(seeding[i]) + ",\t\t")
+        f.write(str(position[i]) + ",")
+        f.write(str(change[i]) + ",")
+        f.write(str(seeding[i]) + ",")
         f.write(str(player[i]) + "\n")
     f.close()
 

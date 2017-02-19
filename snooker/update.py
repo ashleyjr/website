@@ -31,8 +31,9 @@ def main():
         predict_rank_file = "rank.csv"
         predict_match_file = "match.csv"
         predict_file = "predict.csv"
+        predict_out = "predict_out.txt"
         cmd = "python " + predict_script + " \"" + predict_rank_file + "\" \"" + predict_match_file + "\" \"" + \
-            predict_file + "\""  # + #" > " + match_out
+            predict_file + "\"" + " > " + predict_out
         print cmd
         os.system(cmd)
 
@@ -41,28 +42,28 @@ def main():
         outcome_url = "\"http://www.snooker.org/res/index.asp?event=&template=22&season=2016&tzm=1\""
         outcome_file = "outcome.csv"
         outcome_out = "outcome_run.txt"
-        cmd = "python " + outcome_script + " " + outcome_url + " " + outcome_file  # + #" > " + match_out
+        cmd = "python " + outcome_script + " " + outcome_url + " " + outcome_file + " > " + outcome_out
         print cmd
         os.system(cmd)
 
-    """ Email details """
-    msg = ""
-    msg += "Subject: Snooker\n"
-    msg += "\n\n"
-    msg += open(match_out, 'r').read()
-    msg += "\n\n"
-    msg += open(match_file, 'r').read()
-    msg += "\n\n"
-    msg += open(rank_out, 'r').read()
-    msg += "\n\n"
-    msg += open(rank_file, 'r').read()
-    email = open('email.txt', 'r').read()
-    password = open('password.txt', 'r').read()
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(email, password)
-    server.sendmail(email, email, msg)
-    server.quit()
+        """ Email details """
+        msg = ""
+        msg += "Subject: Snooker\n"
+        msg += "\n\n"
+        msg += open(match_out, 'r').read()
+        msg += "\n\n"
+        msg += open(match_file, 'r').read()
+        msg += "\n\n"
+        msg += open(rank_out, 'r').read()
+        msg += "\n\n"
+        msg += open(rank_file, 'r').read()
+        email = open('email.txt', 'r').read()
+        password = open('password.txt', 'r').read()
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(email, password)
+        server.sendmail(email, email, msg)
+        server.quit()
 
 
 

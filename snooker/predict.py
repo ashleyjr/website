@@ -1,37 +1,57 @@
 import sys
 import os
-from urllib import urlopen
-from BeautifulSoup import BeautifulSoup
-import numpy as np
+import csv
+from time import gmtime, strftime
 
 
 def main(rank_file, match_file, predict_file):
     """ Main """
 
-    rank = np.genfromtxt(
-        rank_file,                                          # file name
-        skip_header=1,                                      # lines to skip at the top
-        skip_footer=0,                                      # lines to skip at the bottom
-        delimiter=',',                                      # column delimiter
-        dtype='int',                                        # data type
-        filling_values=0,                                   # fill missing values with 0
-        usecols=(0, 1, 2, 3),                               # columns to read
-        names=['Rank', 'Change', 'Seed', 'Name']            # column names
-    )
+    """ Handle file """
+    if os.path.isfile(predict_file):
+        p = open(predict_file, 'w')
+        p.write("Date,Time,RankA,ChangeA,SeedA,PlayerA,RankB,ChangeB,SeedB,PlayerB,Prediction,Outcome\n")
+        p.close()
 
-    match = np.genfromtxt(
-        match_file,                                         # file name
-        skip_header=1,                                      # lines to skip at the top
-        skip_footer=0,                                      # lines to skip at the bottom
-        delimiter=',',                                      # column delimiter
-        dtype='int',                                        # data type
-        filling_values=0,                                   # fill missing values with 0
-        usecols=(0, 1, 2),                                  # columns to read
-        names=['Time', 'A', 'B']                            # column names
-    )
 
-    print rank
-    print match
+    """ Draw on data from rank and upcoming match """
+    p = open(predict_file, 'a+')
+    match = csv.reader(open(match_file))
+    for m in match:
+        found_a = []
+        found_b = []
+        rank = csv.reader(open(rank_file))
+        for r in rank:
+            if m[1] == r[3]:
+                found_a = r
+            if m[2] == r[3]:
+                found_b = r
+        if len(found_a):
+            if len(found_b):
+                p.write(str(strftime("%Y-%m-%d", gmtime())))
+                p.write(",")
+                p.write(m[0])
+                p.write(",")
+                p.write(found_a[0])
+                p.write(",")
+                p.write(found_a[1])
+                p.write(",")
+                p.write(found_a[2])
+                p.write(",")
+                p.write(found_a[3])
+                p.write(",")
+                p.write(found_b[0])
+                p.write(",")
+                p.write(found_b[1])
+                p.write(",")
+                p.write(found_b[2])
+                p.write(",")
+                p.write(found_b[3])
+                p.write(",")
+                p.write("A")
+                p.write(",")
+                p.write("")
+                p.write("\n")
 
 
 

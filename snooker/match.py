@@ -18,7 +18,7 @@ def main(url, csv_file):
 
     """ Create new file """
     f = open(csv_file, 'w+')
-    f.write("Time,\t\tPlayer A,\t\t\t\tPlayer B\n")
+    f.write("Time,Player A,Player B\n")
 
     """ Read in the table """
     text_soup = BeautifulSoup(urlopen(url).read())          # read in
@@ -34,11 +34,11 @@ def main(url, csv_file):
         if "Today&nbsp;" == stamp[0:11]:
             t = stamp.split("&nbsp;")
             if 3 == len(t):
-                f.write(str(t[1]) + ",\t\t")
+                f.write(str(t[1]) + ",")
                 num_today += 1
                 today = True
         if today:
-            f.write(str(BeautifulSoup(str(player[i])).text.split('[')[0]) + ",\t\t\t\t")
+            f.write(str(BeautifulSoup(str(player[i])).text.split('[')[0]) + ",")
         i += 1
         if today:
             f.write(str(BeautifulSoup(str(player[i])).text.split('[')[0]) + "\n")
