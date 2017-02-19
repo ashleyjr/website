@@ -16,7 +16,7 @@ def main():
 
     """ Get upcoming matches """
     match_script = "match.py"
-    match_url = "\"http://www.snooker.org/res/index.asp?template=24&season=2016\""
+    match_url = "\"http://www.snooker.org/res/index.asp?event=&template=24&season=2016&tzm=1\""
     match_file = "match.csv"
     match_out = "match_run.txt"
     cmd = "python " + match_script + " " + match_url + " " + match_file + " > " + match_out

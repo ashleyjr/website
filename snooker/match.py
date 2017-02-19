@@ -34,7 +34,7 @@ def main(url, csv_file):
         if "Today&nbsp;" == stamp[0:11]:
             t = stamp.split("&nbsp;")
             if 3 == len(t):
-                f.write(str(t[1]) + ",")
+                f.write(str(t[1].split("m")[0]) + "m,")
                 num_today += 1
                 today = True
         if today:
