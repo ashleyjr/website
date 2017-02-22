@@ -68,19 +68,15 @@ def main(url, csv_file):
     f.close()
 
     """ Validate the csv file """
-    data = np.genfromtxt(
-        csv_file,                                   # file name
-        skip_header=1,                              # lines to skip at the top
-        skip_footer=0,                              # lines to skip at the bottom
-        delimiter=',',                              # column delimiter
-        dtype='int',                                # data type
-        filling_values=0,                           # fill missing values with 0
-        usecols=(0, 1, 2, 3),                       # columns to read
-        names=['Rank', 'Change', 'Seed', 'Name']    # column names
-    )
-    print "ENTRIES: " + str(len(data['Rank']))
-    for i in range(1, len(data['Rank'])):
-        num = list(data['Rank']).count(i)
+    ranks = []
+    f = open(csv_file,'r')
+    with open(csv_file) as f:
+        lines = f.readlines()
+    for i in range(1,len(lines)):
+        ranks.append(float(lines[i].split(",")[0]))
+    print "ENTRIES: " + str(len(ranks)-1)
+    for i in range(1, len(ranks)):
+        num = list(ranks).count(i)
         if 0 == num:
             print "   RANK: no player ranked " + str(i)
         if 1 < num:

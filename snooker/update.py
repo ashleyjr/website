@@ -51,11 +51,13 @@ def main():
         msg += "Subject: Snooker\n"
         msg += "\n\n"
         msg += match_url
-        msg + "\n\n"
+        msg += " \n\n"
         msg += open(match_out, 'r').read()
         msg += "\n\n"
         msg += open(match_file, 'r').read()
         msg += "\n\n"
+        msg += rank_url
+        msg += " \n\n"
         msg += open(rank_out, 'r').read()
         msg += "\n\n"
         msg += open(rank_file, 'r').read()
