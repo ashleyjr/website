@@ -14,29 +14,70 @@ def main(rank_file, match_file, predict_xml):
     """ Handle file """
     if not os.path.isfile(predict_xml):
         p = open(predict_xml, 'w')
-        p.write("<data>\n</data>\n")
+        p.write("<data></data>")
         p.close()
 
-    """ Draw on data from rank and upcoming match """#
-    doc = ET.parse(predict_xml)
-    root_node = doc.getroot()
-    m = ET.SubElement(doc.getroot(), "match")
-    d = ET.SubElement(m, "date")
-    d.text = "today"
-    t = ET.SubElement(m, "time")
-    t.text = "now"
-    tree = ET.ElementTree(root_node)
-    tree.write(predict_xml)
+    """ Load the data """
+    with open(rank_file) as f:
+        ranks = f.readlines()
+    with open(match_file) as f:
+        matches = f.readlines()
 
-    """ Tidy up xml """
-    f = open(predict_xml, 'w')
-    f.write(minidom.parseString(ET.tostring(root_node, 'utf-8')).toprettyxml(indent="").replace("\n",""))
-    f.close()
+    print ranks
+    print matches
 
-    x = etree.parse(predict_xml)
-    f = open(predict_xml, 'w')
-    f.write(etree.tostring(x, pretty_print = True))
-    f.close()
+    for i in range(1, len(matches)):
+
+        print matches[i]
+
+        """ Draw on data from rank and upcoming match """#
+        doc = ET.parse(predict_xml)
+        root_node = doc.getroot()
+        m = ET.SubElement(doc.getroot(), "match")
+
+        stamp = ET.SubElement(m, "stamp")
+        stamp.text = matches[i].split(",")[0]
+
+        name_a = ET.SubElement(m, "name_a")
+        name_a.text = matches[i].split(",")[1].replace("\n","")
+
+        for j in range(1, len(ranks)):
+            if name_a.text == ranks[j].split(",")[3].replace("\n",""):
+                rank_a = ET.SubElement(m, "rank_a")
+                rank_a.text = ranks[j].split(",")[0].replace("\n","")
+
+                change_a = ET.SubElement(m, "chnage_a")
+                change_a.text = ranks[j].split(",")[1].replace("\n","")
+
+                seed_a = ET.SubElement(m, "seed_a")
+                seed_a.text = ranks[j].split(",")[2].replace("\n","")
+
+
+        name_b = ET.SubElement(m, "name_b")
+        name_b.text = matches[i].split(",")[2].replace("\n","")
+
+
+        for j in range(1, len(ranks)):
+            if name_b.text == ranks[j].split(",")[3].replace("\n",""):
+                rank_b = ET.SubElement(m, "rank_b")
+                rank_b.text = ranks[j].split(",")[0].replace("\n","")
+
+                change_b = ET.SubElement(m, "chnage_b")
+                change_b.text = ranks[j].split(",")[1].replace("\n","")
+
+                seed_b = ET.SubElement(m, "seed_b")
+                seed_b.text = ranks[j].split(",")[2].replace("\n","")
+
+
+        predict = ET.SubElement(m, "predict")
+        predict.text = "a"
+
+        outcome = ET.SubElement(m, "outcome")
+        outcome.text = "?"
+
+
+        tree = ET.ElementTree(root_node)
+        tree.write(predict_xml)
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2], sys.argv[3])
