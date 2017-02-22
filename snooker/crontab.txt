@@ -1,0 +1,1 @@
+0 12 * * * cd /home/pi/website/snooker/ && python update.py > update_run.txt
