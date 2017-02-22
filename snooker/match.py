@@ -8,7 +8,7 @@ import numpy as np
 def main(url, csv_file):
     """ Main """
 
-    print "Get today's matches\n"
+    print "Get upcoming  matches\n"
 
     """ Remove old file if exists """
     try:
@@ -18,7 +18,7 @@ def main(url, csv_file):
 
     """ Create new file """
     f = open(csv_file, 'w+')
-    f.write("Time,Player A,Player B\n")
+    f.write("Timestamp,Player A,Player B\n")
 
     """ Read in the table """
     text_soup = BeautifulSoup(urlopen(url).read())          # read in
@@ -26,30 +26,30 @@ def main(url, csv_file):
     datetime = text_soup.findAll('td', {'class': 'scheduled editcell'})
 
     """ Process the text to get the players and times today"""
-    num_today = 0
+    found = 0
     i = 0
     while i < len(datetime):
-        today = False
+        good = False
         stamp = str(BeautifulSoup(str(datetime[i])).text)
-        if "Today&nbsp;" == stamp[0:11]:
-            t = stamp.split("&nbsp;")
-            if 3 == len(t):
-                f.write(str(t[1].split("m")[0]) + "m,")
-                num_today += 1
-                today = True
-        if today:
+
+        """ Get the date and time """
+        ests = stamp.split(" ")
+        stamps = stamp.split("&nbsp;")
+        if ests[0] != "Est.":
+            if len(stamps) > 2:
+                f.write(stamps[0] + " " + stamps[1] + " " + stamps[2] + ",")
+                found += 1
+                good = True
+
+        if good:
             f.write(str(BeautifulSoup(str(player[i])).text.split('[')[0]) + ",")
         i += 1
-        if today:
+        if good:
             f.write(str(BeautifulSoup(str(player[i])).text.split('[')[0]) + "\n")
         i += 1
 
     """ Print details """
-    print "MATCHES: " + str(num_today) + " today"
-
-
-
-
+    print "MATCHES: " + str(found) + " matches found"
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
