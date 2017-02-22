@@ -30,7 +30,7 @@ def main():
         predict_script = "predict.py"
         predict_rank_file = "rank.csv"
         predict_match_file = "match.csv"
-        predict_file = "predict.csv"
+        predict_file = "predict.xml"
         predict_out = "predict_out.txt"
         cmd = "python " + predict_script + " \"" + predict_rank_file + "\" \"" + predict_match_file + "\" \"" + \
             predict_file + "\"" + " > " + predict_out
@@ -50,6 +50,8 @@ def main():
         msg = ""
         msg += "Subject: Snooker\n"
         msg += "\n\n"
+        msg += match_url
+        msg + "\n\n"
         msg += open(match_out, 'r').read()
         msg += "\n\n"
         msg += open(match_file, 'r').read()

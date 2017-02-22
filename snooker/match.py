@@ -21,16 +21,19 @@ def main(url, csv_file):
     f.write("Timestamp,Player A,Player B\n")
 
     """ Read in the table """
-    text_soup = BeautifulSoup(urlopen(url).read())          # read in
+    page = urlopen(url).read()
+    text_soup = BeautifulSoup(page)          # read in
     player = text_soup.findAll('td', {'class': 'player '})
     datetime = text_soup.findAll('td', {'class': 'scheduled editcell'})
 
     """ Process the text to get the players and times today"""
     found = 0
-    i = 0
-    while i < len(datetime):
+    d_ptr = 0
+    p_ptr = 0
+    while d_ptr < len(datetime):
         good = False
-        stamp = str(BeautifulSoup(str(datetime[i])).text)
+        stamp = str(BeautifulSoup(str(datetime[d_ptr])).text)
+        d_ptr += 1
 
         """ Get the date and time """
         ests = stamp.split(" ")
@@ -41,12 +44,13 @@ def main(url, csv_file):
                 found += 1
                 good = True
 
+        """ Player names """
         if good:
-            f.write(str(BeautifulSoup(str(player[i])).text.split('[')[0]) + ",")
-        i += 1
+            f.write(str(BeautifulSoup(str(player[p_ptr])).text.split('[')[0]) + ",")
+        p_ptr += 1
         if good:
-            f.write(str(BeautifulSoup(str(player[i])).text.split('[')[0]) + "\n")
-        i += 1
+            f.write(str(BeautifulSoup(str(player[p_ptr])).text.split('[')[0]) + "\n")
+        p_ptr += 1
 
     """ Print details """
     print "MATCHES: " + str(found) + " matches found"
