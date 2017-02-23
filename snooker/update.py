@@ -37,6 +37,14 @@ def main():
         print cmd
         os.system(cmd)
 
+        """ Tody the xml file """
+        tidy_script = "tidy.py"
+        tidy_xml = "predict.xml"
+        tidy_out = "tidy_out.txt"
+        cmd = "python " + tidy_script + " " + tidy_xml + " > " + tidy_out
+        print cmd
+        os.system(cmd)
+
         """ Get outcome of previous matches """
         outcome_script = "outcome.py"
         outcome_url = "\"http://www.snooker.org/res/index.asp?event=&template=22&season=2016&tzm=1\""
