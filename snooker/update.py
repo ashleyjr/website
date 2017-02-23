@@ -77,7 +77,5 @@ def main():
         server.sendmail(email, email, msg)
         server.quit()
 
-
-
 if __name__ == "__main__":
     main()

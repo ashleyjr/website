@@ -36,7 +36,7 @@ def main(rank_file, match_file, predict_xml):
         m = ET.SubElement(doc.getroot(), "match")
 
         stamp = ET.SubElement(m, "stamp")
-        stamp.text = matches[i].split(",")[0]
+        stamp.text = strftime("%y%d%m")
 
         name_a = ET.SubElement(m, "name_a")
         name_a.text = matches[i].split(",")[1].replace("\n","")
