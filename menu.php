@@ -41,6 +41,7 @@
       <h4>Projects</h4>
          <ul>
 			<li><a href="carpentry/carpentry.php" target="content">Carpentry</a>
+         <li><a href="switcher/switcher.php" target="content">Switcher</a>
          <li><a href="verilog/verilog.php" target="content">Verilog repo</a>
          </ul>
 
