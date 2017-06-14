@@ -38,9 +38,16 @@
        
       Switcher was a project submitted for <a href="http://www.hackaday.com" target="_blank">Hackaday</a> competion.
       The goal of the competion was to create a project around a processor running a piece of software no larger than 1024 bytes. 
+      I chose to create a switch mode power supply based around a 8051 processor core.
+      The final piece of hardware can be seen below and the code size of the project is also plotted aginst the commit number.
+      <p>
 
+      <a><img src="switcher.png" alt="switcher"></a>   
+      <a><img src="code.png" alt="code"></a>   
+      
       <p> 
       The project report can be found <a href="switcher.pdf" target="_blank">here</a>. 
+      <br>The project git repo can be found <a href="https://github.com/ashleyjr/Switcher" target="_blank">here</a>. 
 
 
    </body>
