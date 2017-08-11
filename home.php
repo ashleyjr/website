@@ -41,11 +41,13 @@
  
     <p>
         <img src="bio/dinner.jpg" style="float: right;" />
-        I'm a electronics engineering consultant wokring in Cambrigde. 
-        I finished an MEng Electronic Engineering degree at the University of Southampton in the summer of 2014.   
-        This webpage is serves as my live CV, a repository for my personal projects and scratch pad for web based experiments.
-	    You'll also find some personal stories, photos and opinions.
-	    Please feel free to contact me, I look forward to hearing from you.
+         I am an engineer. My specific discipline is electronics but I also have interests in computer science, physics and mechanical engineering.
+         I completed an MEng Electronic Engineering degree at the University of Southampton in the summer of 2014.   
+   </p>
+   <p>
+         This webpage is serves as my live CV, a place for my personal projects and scratch pad for web based experiments.
+	      You'll also find some personal stories, photos and opinions.
+	      Please feel free to contact me by <a href="mailto:ashley@ajrobinson.org" target="_top">email</a> or using the form below. I look forward to hearing from you.
     </p> 
 
  
