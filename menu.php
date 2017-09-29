@@ -65,7 +65,7 @@
 			<li><a href="other_interests/vehicles.php" target="content">Cars and Bikes</a>
             <li><a href="other_interests/films.php" target="content">Films</a>
             <li><a href="other_interests/music.php" target="content">Music</a>
-            <li><a href="other_interests/outdoors.php" target="content">Outdoors</a>
+            <li><a href="other_interests/travel.php" target="content">Travel</a>
          </ul>
 
 	  <h4>Site info</h4>    
