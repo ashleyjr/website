@@ -34,6 +34,6 @@
 
    <body>
       <h3>North West USA</h3>
-   
+      <a><img src="usa.png" alt="USA route"></a> 
    </body>
 </html>
