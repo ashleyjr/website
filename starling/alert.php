@@ -67,7 +67,7 @@
 			if($xml->entry[$i]->status == "open"){
 				// Priority check for send emails
 				$murmation = $xml->entry[$i]->murmation;
-                		if($murmation == 0){
+            if($murmation == 0){
 					// Make data nice
 					$title = $xml->entry[$i]->title;
 					$detail = $xml->entry[$i]->detail;
@@ -92,19 +92,31 @@
 
 					echo $Message;
 					mail($To, $Subject, $Message, $Headers);
-				}else{
-					$murmation = $murmation - 1;
-                    			$xml->entry[$i]->murmation = $murmation;
-                    			// Add new entry
-                    			$output = $xml->asXML();
-                    			// Use DomDoc to format
-                    			$doc = new DOMDocument();  
-                    			$doc->preserveWhiteSpace = false;
-                    			$doc->formatOutput = true;
-                    			$doc->loadXML($output);
-                    			$output =  $doc->saveXML();
-                    			// Save as xml file
-                    			file_put_contents($filename,$output);
+            }else{
+               // Data over a month has random +/- 1 day
+               if($murmation > 672){
+                  $murmation = $murmation + rand(-24,24);
+               }
+
+               // Data over a week has random +/- 1 hour
+               if($murmation > 168){
+                  $murmation = $murmation + rand(-1,1);
+               } 
+
+               // Decrement
+               $murmation = $murmation - 1;
+               
+               $xml->entry[$i]->murmation = $murmation;
+               // Add new entry
+               $output = $xml->asXML();
+               // Use DomDoc to format
+               $doc = new DOMDocument();  
+               $doc->preserveWhiteSpace = false;
+               $doc->formatOutput = true;
+               $doc->loadXML($output);
+               $output =  $doc->saveXML();
+               // Save as xml file
+               file_put_contents($filename,$output);
 				}
 			}	
 		}
