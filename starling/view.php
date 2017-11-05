@@ -593,15 +593,18 @@
             echo "</tr>";				
          }else{
             if($xml->entry[$i]->status == "open"){ 
-               // Single bit state machine
-			      if($odd_even){
-                  $odd_even = false;
-                  echo '<tr bgcolor="#FFD9A3">';
-			      }else{
-                  $odd_even = true;
-                  echo '<tr bgcolor="#FFFFFF">';
-			      }
-
+               if($xml->entry[$i]->murmation == 0){ 
+                  echo '<tr bgcolor="#FF6666">'; 
+               }else{
+                  // Single bit state machine
+			         if($odd_even){
+                     $odd_even = false;
+                     echo '<tr bgcolor="#FFD9A3">';
+			         }else{
+                     $odd_even = true;
+                     echo '<tr bgcolor="#FFFFFF">';
+			         }
+               }
                echo "<td><a href='info.php?user=".$user."&code=".$xml->entry[$i]->code; 
                if(isset($_GET['sort'])){
                   echo "&sort";
