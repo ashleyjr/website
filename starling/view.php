@@ -507,6 +507,7 @@
                <th>+W</th>
                <th>+M</th>
                <th>+Y</th>
+               <th>Expires</th>
                </tr>";
 
       $odd_even = true;
@@ -590,6 +591,10 @@
             echo "<td><a id=\"w".$xml->entry[$i]->code."\" onclick='getScroll(\"w".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
             echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
             echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 8760)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
+            
+            $expires = time() + ($xml->entry[$i]->murmation*3600);
+            echo "<td>".gmdate("F j, Y, g:i a", $expires)."</td>"; 
+            
             echo "</tr>";				
          }else{
             if($xml->entry[$i]->status == "open"){ 
@@ -647,6 +652,12 @@
                echo "<td><a id=\"w".$xml->entry[$i]->code."\" onclick='getScroll(\"w".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
                echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
                echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 8760)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
+               
+                
+               $expires = time() + ($xml->entry[$i]->murmation*3600);
+               echo "<td>".gmdate("F j, Y, g:i a", $expires)."</td>"; 
+            
+
                echo "</tr>";				
            }
          }
