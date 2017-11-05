@@ -43,7 +43,8 @@
       </style>
    </head>
 <body>
-<?php 
+<?php
+
    function saveXML($xml,$filename){                                                                                 // Format and save xml
       $output = $xml->asXML();
 		$doc = new DOMDocument();                                                                                      // Use DomDoc to format
