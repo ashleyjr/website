@@ -506,6 +506,7 @@
                <th>+D</th>   
                <th>+W</th>
                <th>+M</th>
+               <th>+Y</th>
                </tr>";
 
       $odd_even = true;
@@ -588,9 +589,7 @@
             echo "<td><a id=\"d".$xml->entry[$i]->code."\" onclick='getScroll(\"d".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+</a></td>";
             echo "<td><a id=\"w".$xml->entry[$i]->code."\" onclick='getScroll(\"w".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
             echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
-
-
-            
+            echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 8760)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
             echo "</tr>";				
          }else{
             if($xml->entry[$i]->status == "open"){ 
@@ -644,7 +643,7 @@
                echo "<td><a id=\"d".$xml->entry[$i]->code."\" onclick='getScroll(\"d".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+</a></td>";
                echo "<td><a id=\"w".$xml->entry[$i]->code."\" onclick='getScroll(\"w".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
                echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
-  
+               echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 8760)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
                echo "</tr>";				
            }
          }
