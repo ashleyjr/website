@@ -131,6 +131,20 @@
 			   $entry->addChild("status","open");
 			   $entry->addChild("created",gmdate('d-m-Y'));
             saveXML($xml,$filename);
+         }else{
+            if( isset($_GET['close'])){                                                                                 // -------------------------------- CLOSE                                                                            
+			      $code = $_GET['close'];
+			      $xml = new SimpleXMLElement(stripslashes(file_get_contents($filename)));
+			      $num = $xml->count();
+			      for($i=0;$i<$num;$i++){
+				      $test = $xml->entry[$i]->code;
+				      if($test == $code){
+				   	   $xml->entry[$i]->status = "closed";                                                                // Set the code to "Closed"
+				   	   break;
+			      	}
+               }
+               saveXML($xml,$filename);
+            }
          }      
          echo $form;  
          if(   isset($_GET['murmation'])  and 
@@ -639,8 +653,11 @@
 	 		      echo "<td>".($xml->entry[$i]->murmation)." </a></td>";
     
 
-               echo $change_str."&close=".$xml->entry[$i]->code." 'id=\"c".$xml->entry[$i]->code."\" onclick='getScroll(\"c".$xml->entry[$i]->code."\")'>Close</a></td>";
-
+               if(isset($_GET['submit'])){
+                  echo $change_str."&submit&close=".$xml->entry[$i]->code." 'id=\"c".$xml->entry[$i]->code."\" onclick='getScroll(\"c".$xml->entry[$i]->code."\")'>Close</a></td>";
+               }else{
+                  echo $change_str."&close=".$xml->entry[$i]->code." 'id=\"c".$xml->entry[$i]->code."\" onclick='getScroll(\"c".$xml->entry[$i]->code."\")'>Close</a></td>";
+               }
                   
 			      echo "<td><a href='view.php?user=".$user."&edit=".$xml->entry[$i]->code."'>Edit</a></td>";
                
