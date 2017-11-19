@@ -598,8 +598,12 @@
             echo "</tr>";				
          }else{
             if($xml->entry[$i]->status == "open"){ 
-               if($xml->entry[$i]->murmation == 0){ 
-                  echo '<tr bgcolor="#FF6666">'; 
+               if($xml->entry[$i]->murmation < 25){ 
+                  if($xml->entry[$i]->murmation == 0){    
+                     echo '<tr bgcolor="#FF6666">'; 
+                  }else{
+                     echo '<tr bgcolor="#FFFF00">'; 
+                  }
                }else{
                   // Single bit state machine
 			         if($odd_even){
