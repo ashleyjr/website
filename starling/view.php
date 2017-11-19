@@ -55,6 +55,10 @@
 		file_put_contents($filename,$output);                                                                          // Save xml file 
    }
 
+   function hoursToDate($hours){
+      return gmdate("Y-m-d", $hours);
+   }
+
    // XML file
    $filename = "starlings.xml";
    
@@ -593,8 +597,8 @@
             echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 8760)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
             
             $expires = time() + ($xml->entry[$i]->murmation*3600);
-            echo "<td>".gmdate("F j, Y, g:i a", $expires)."</td>"; 
-            
+            echo "<td>".hoursToDate($expires)."</td>"; 
+
             echo "</tr>";				
          }else{
             if($xml->entry[$i]->status == "open"){ 
@@ -659,7 +663,7 @@
                
                 
                $expires = time() + ($xml->entry[$i]->murmation*3600);
-               echo "<td>".gmdate("F j, Y, g:i a", $expires)."</td>"; 
+               echo "<td>".hoursToDate($expires)."</td>"; 
             
 
                echo "</tr>";				
