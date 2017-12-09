@@ -605,10 +605,10 @@
                   $state = $state."&sort_m";
                }
             
-            echo "<td><a id=\"d".$xml->entry[$i]->code."\" onclick='getScroll(\"d".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+</a></td>";
-            echo "<td><a id=\"w".$xml->entry[$i]->code."\" onclick='getScroll(\"w".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
-            echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
-            echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 8760)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
+            echo "<td><a id=\"d".$xml->entry[$i]->code."\" onclick='getScroll(\"d".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+D</a></td>";
+            echo "<td><a id=\"w".$xml->entry[$i]->code."\" onclick='getScroll(\"w".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+W</a></td>";
+            echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+M</a></td>"; 
+            echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 8760)."&code=".$xml->entry[$i]->code."'>+Y</a></td>"; 
             
             $expires = time() + ($xml->entry[$i]->murmation*3600);
             echo "<td>".hoursToDate($expires)."</td>"; 
@@ -673,10 +673,10 @@
                   $state = $state."&sort_m";
                }
 
-               echo "<td><a id=\"d".$xml->entry[$i]->code."\" onclick='getScroll(\"d".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+</a></td>";
-               echo "<td><a id=\"w".$xml->entry[$i]->code."\" onclick='getScroll(\"w".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+</a></td>";
-               echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
-               echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 8760)."&code=".$xml->entry[$i]->code."'>+</a></td>"; 
+               echo "<td><a id=\"d".$xml->entry[$i]->code."\" onclick='getScroll(\"d".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 24)."&code=".$xml->entry[$i]->code."'>+D</a></td>";
+               echo "<td><a id=\"w".$xml->entry[$i]->code."\" onclick='getScroll(\"w".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 168)."&code=".$xml->entry[$i]->code."'>+W</a></td>";
+               echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 672)."&code=".$xml->entry[$i]->code."'>+M</a></td>"; 
+               echo "<td><a id=\"m".$xml->entry[$i]->code."\" onclick='getScroll(\"m".$xml->entry[$i]->code."\")' href='".$state."&murmation=".(($xml->entry[$i]->murmation) + 8760)."&code=".$xml->entry[$i]->code."'>+Y</a></td>"; 
                
                 
                $expires = time() + ($xml->entry[$i]->murmation*3600);
